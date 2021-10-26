@@ -28,12 +28,16 @@ h1{
 .table th{
     background-color: #316796;
     text-transform:uppercase;
+    text-align: center;
 }
 .table{
     background-color: white;
     color:black;
     width: 90%;
     margin: auto;
+}
+.table td{
+    text-align: center;
 }
 #nuevo, #nuevo1, #nuevo2{
     margin-left: 5%;
