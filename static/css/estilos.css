@@ -15,7 +15,7 @@ header {
 main{
     background-image: url('../img/fondo.jpeg');
     background-size: cover;
-    height: 600px;
+    height: 1200px;
 }
 h1{
     color: black;
@@ -35,6 +35,15 @@ h1{
     width: 90%;
     margin: auto;
 }
-#nuevo{
+#nuevo, #nuevo1, #nuevo2{
     margin-left: 5%;
+}
+.row{
+    background-color: #316796;
+    color: white;
+    width: 55%;
+    margin: auto;
+    padding: 22px;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }

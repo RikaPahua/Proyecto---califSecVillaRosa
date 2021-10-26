@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36fc3775-c90d-4d7b-80d0-a10504f1c85e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Proyecto---califSecVillaRosa.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Proyecto---califSecVillaRosa.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlador/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/comunes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/comunes/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/estilos.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/estilos.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/administrativos/administrativoEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/administrativos/administrativoEditar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/administrativos/administrativoNuevo.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/administrativos/administrativoNuevo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/administrativos/administrativosListado.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/administrativos/administrativosListado.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vista/comunes/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/comunes/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/estudiantes/estudianteEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/estudiantes/estudianteEditar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/estudiantes/estudianteNuevo.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/estudiantes/estudianteNuevo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/estudiantes/estudiantesListado.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/estudiantes/estudiantesListado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/profesores/profesorEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/profesores/profesorEditar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/profesores/profesorNuevo.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/profesores/profesorNuevo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/profesores/profesoresListado.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/profesores/profesoresListado.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
