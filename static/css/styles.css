@@ -1,0 +1,80 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url(../img/fondo.jpeg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.container_for{
+    background-color:#316796;
+    border-radius: 15px;
+    padding: 40px;
+    opacity: 0.8;
+
+}
+img{
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    margin-left: 105px;
+
+
+}
+h2{
+    text-align: center;
+    color: white;
+}
+
+input{
+    display: block;
+    width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    background:transparent;
+    color: white;
+    
+    border-bottom: 2px solid white;
+
+}
+input::-webkit-input-placeholder{
+    color: white;
+    
+}
+
+.boton{
+    display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 150px;
+	height: 50px;
+	background-color: #29b130;
+	color: #fff;
+	font-family: 'Roboto',sans-serif;
+	
+	border: none;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: .3s ease all;
+	border-radius: 5px;
+	position: relative;
+	overflow: hidden;
+    
+}
+.boton span{
+	position: relative;
+	z-index: 2;
+	transform: .3s ease all;
+	}

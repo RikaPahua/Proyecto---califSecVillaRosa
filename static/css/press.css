@@ -1,0 +1,30 @@
+.press span{
+transition: .4s ease-in-out all;
+position: absolute;
+left: 30%;
+}
+.press .icono{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    left: -40px;
+    transition: .3s ease-in-out all;
+    opacity: 0;
+    
+    }
+    .boton svg{
+        color: white;
+        width: 20px;
+        height: 20px;
+    }
+    .press:hover{
+        background-color: #2f9d05;
+    }
+    .press:hover .icono{
+        left: 120px;
+        opacity: 1;
+    }
+    .press:hover span{
+        left: 10px;
+    }
