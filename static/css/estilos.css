@@ -51,3 +51,10 @@ h1{
     padding-top: 25px;
     padding-bottom: 25px;
 }
+#btn1,#btn2{
+    background-color: #316796;
+    border-color: white;
+   color: white;
+
+}
+

@@ -116,5 +116,11 @@ def horarios():
 def inscripciones():
     return render_template('inscripciones/inscripciones.html')
 
+
+@app.route('/registrarInscripcion', methods=['post'])
+def registrarInscripcion():
+    return 'SE HA REALIZADO UNA INSCRIPCIÓN'
+
+
 if __name__ == '__main__':
     app.run(debug=True)
