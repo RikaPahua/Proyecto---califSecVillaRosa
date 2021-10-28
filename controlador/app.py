@@ -115,6 +115,13 @@ def grupoCalificaciones():
 @app.route('/horarios')
 def horarios():
     return render_template('horarios/horarios.html')
+@app.route('/generarHorario',methods=['post'])
+def horarioGenerar():
+    return 'SE HA GENERADO EL HORARIO'
+###################################################################################
+@app.route('/registroCalificaciones',methods=['post'])
+def registroCalificaciones():
+    return 'SE HAN REGISTRADO LAS CALIFICACIONES'
 ###################################################################################
 @app.route('/inscripciones')
 def inscripciones():
