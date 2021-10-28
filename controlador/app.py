@@ -39,6 +39,10 @@ def administrativosDatosNuevo():
 @app.route('/administrativosDatosEdicion',methods=['post'])
 def administrativosDatosEdicion():
     return 'SE HAN GUARDADO LOS DATOS'
+
+@app.route('/administrativoPerfil')
+def administrativoPerfil():
+    return render_template('administrativos/administrativoEditar.html')
 ###################################################################################
 @app.route('/estudiantes')
 def estudiantesListado():

@@ -1,9 +1,9 @@
 {% extends 'comunes/index.html'%}
     {% block contenido%}
-        <h1>MODIFICACIÓN DE DATOS DE UN USUARIO ADMINISTRATIVO</h1>
+        <h1>DATOS E INFORMACIÓN DEL USUARIO</h1>
         <form action="/administrativosDatosEdicion" method="post" class="row g-3">
             <label for="idUsuario">idUsuario: </label>
-            <input type="number" name="idUsuario" id="idUsuario" value="1" required/>
+            <input type="number" name="idUsuario" id="idUsuario" value="1" disabled required/>
             <br/><br/>
             <label for="nombre">Nombre: </label>
             <input type="text" name="nombre" id="nombre" value="Luz Maria Cruz Jiménez" maxlength="100" required/>

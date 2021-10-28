@@ -1,9 +1,9 @@
 {% extends 'comunes/index.html'%}
 {% block contenido%}
-        <h1>MODIFICACIÓN DE DATOS DE UN ESTUDIANTE</h1>
+        <h1>DATOS E INFORMACIÓN DEL ESTUDIANTE</h1>
         <form action="/estudiantesDatosEdicion" method="post" class="row g-3">
             <label for="idUsuario">idUsuario: </label>
-            <input type="number" name="idUsuario" id="idUsuario" value="3" required/>
+            <input type="number" name="idUsuario" id="idUsuario" value="3" disabled required/>
             <br/><br/>
             <label for="nombre">Nombre: </label>
             <input type="text" name="nombre" id="nombre" value="Alejandra Aranda Mares" maxlength="100" required/>
@@ -33,7 +33,7 @@
             <input type="password" name="clave" id="clave" value="HOLA123!" maxlength="10" required/>
             <br/><br/>
             <label for="noControl">noControl: </label>
-            <input type="text" name="noControl" id="noControl" value="17010300" maxlength="8" required/>
+            <input type="text" name="noControl" id="noControl" value="17010300" maxlength="8" disabled required/>
             <br/><br/>
             <label for="fechaNacimiento">Fecha de Nacimiento: </label>
             <input type="date" name="fechaNacimiento" id="fechaNacimiento" value="2007-04-01" required/>
