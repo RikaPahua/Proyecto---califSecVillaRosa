@@ -39,7 +39,7 @@ h1{
 .table td{
     text-align: center;
 }
-#nuevo, #nuevo1, #nuevo2, #regresarAmaterias, #guardarCal{
+#nuevo, #nuevo1, #nuevo2, #regresarAmaterias, #guardarCal, #selec, #selec2{
     margin-left: 5%;
 }
 .row{

@@ -1,46 +1,30 @@
 {% extends 'comunes/index.html'%}
 {% block contenido%}
-     <br/><br/>
+     <br/>
      <div class="Tab">
 
             <div id="selec">
                 <a id="combo">
-                    <label for="Grupos">Profesor:  </label>
-                <select id="Gruposr">
-                    <option value="1A">Cecilia</option>
-                    <option value="1B">Ricardo</option>
-                    <option value="1C">Alejandro</option>
-                    <option value="2A">Antonio</option>
-
-                </select>
-
-                    <label for="Grupos">&nbsp;&nbsp;Grupos: </label>
-                <select id="Grupos">
-                    <option value="1A">1A</option>
-                    <option value="1B">1B</option>
-                    <option value="1C">1C</option>
-                    <option value="2A">2A</option>
-                    <option value="2B">2B</option>
-                    <option value="2C">2C</option>
-                    <option value="3A">3A</option>
-                    <option value="3B">3B</option>
-                    <option value="3C">3C</option>
-
-                </select>
-
-                    <label for="materia">&nbsp;&nbsp; Selecciona materia: </label>
-                    <select id="materia">
-                        <option value="Matematicas">Matematicas</option>
-                        <option value="Historia">Historia</option>
-                        <option value="Quimica">Quimica</option>
-                        <option value="Ciencias Naturales">Ciencias Naturales</option>
-                        <option value="Geografia">Geografia</option>
-                        <option value="Ed. Fisica">Ed. Fisica</option>
-                        <option value="Civica y Etica">Civica y Etica</option>
+                    <label for="Grupos">Seleccionar el grupo: </label>
+                    <select id="Grupos">
+                        <option value="1A">1A</option>
+                        <option value="1B">1B</option>
+                        <option value="1C">1C</option>
+                        <option value="2A">2A</option>
+                        <option value="2B">2B</option>
+                        <option value="2C">2C</option>
+                        <option value="3A">3A</option>
+                        <option value="3B">3B</option>
+                        <option value="3C">3C</option>
 
                     </select>
 
-                    <button id="regresarCal" type="submit" class="btn btn-success" >Generar</button>
+                    <label for="materia">&nbsp;&nbsp; Selecciona ciclo escolar: </label>
+                    <select id="materia">
+                        <option value="ciclo">2020-2021</option>
+                    </select>
+
+                    <button id="regresarCal" type="submit" class="btn btn-success" >Seleccionar</button>
                 </a>
 
             </div>
@@ -60,31 +44,24 @@
         </tr>
         </thead>
         <tr>
-            <td>7:00</td>
-            <td>1 A</td>
-            <td>2 C</td>
-            <td>1 B</td>
-            <td>2 B</td>
-            <td>3 A</td>
+            <td>7:00-8:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td>8:00</td>
-            <td>1 A</td>
-            <td>2 C</td>
-            <td>1 B</td>
-            <td>2 B</td>
-            <td>3 A</td>
+            <td>8:00-9:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
+
         <tr>
-            <td>9:00</td>
-            <td>3 A</td>
-            <td>2 C</td>
-            <td>1 B</td>
-            <td>2 B</td>
-            <td>1 A</td>
-        </tr>
-        <tr>
-            <td>9:30</td>
+            <td>9:30-100</td>
             <td>Receso</td>
             <td>Receso</td>
             <td>Receso</td>
@@ -92,29 +69,69 @@
             <td>Receso</td>
         </tr>
         <tr>
-            <td>10:00</td>
-            <td>3 C</td>
-            <td>2 A</td>
-            <td>1 D</td>
-            <td>2 B</td>
-            <td>3 A</td>
+            <td>10:00-11:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td>11:00</td>
-            <td>3 C</td>
-            <td>2 A</td>
-            <td>1 D</td>
-            <td>2 B</td>
-            <td>3 A</td>
+            <td>11:00-12:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td>12:00</td>
-            <td>3 C</td>
-            <td>2 A</td>
-            <td>1 D</td>
-            <td>2 B</td>
-            <td>3 A</td>
+            <td>12:00-1:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         </table>
+          <br/>
+         <div id="selec2">
+                <a >
+                    <label for="Grupos">Seleccionar Profesor:  </label>
+                <select >
+                    <option value="1A">Cecilia</option>
+                    <option value="1B">Ricardo</option>
+                    <option value="1C">Alejandro</option>
+                    <option value="2A">Antonio</option>
+
+                </select>
+
+                    <label for="materia">&nbsp;&nbsp; Materia: </label>
+                    <select >
+                        <option value="Matematicas">Matematicas</option>
+                        <option value="Historia">Historia</option>
+                        <option value="Quimica">Quimica</option>
+                        <option value="Ciencias Naturales">Ciencias Naturales</option>
+                        <option value="Geografia">Geografia</option>
+                        <option value="Ed. Fisica">Ed. Fisica</option>
+                        <option value="Civica y Etica">Civica y Etica</option>
+                    </select>
+                    <label for="materia">&nbsp;&nbsp; Dia: </label>
+                    <select >
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miercoles">Miercoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                    </select>
+
+                    <label for="materia">&nbsp;&nbsp; Hora inicio: </label>
+                    <input type="time"  name="horain">
+                    <label for="materia">&nbsp;&nbsp Hora fin: </label>
+                    <input type="time"  name="horaout">
+
+                    <button  type="submit" class="btn btn-success" > Generar</button>
+                </a>
+
+            </div>
     </div>
 {%endblock%}
