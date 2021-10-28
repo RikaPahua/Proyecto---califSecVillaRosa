@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36fc3775-c90d-4d7b-80d0-a10504f1c85e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Proyecto---califSecVillaRosa.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Proyecto---califSecVillaRosa.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/estilos.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/estilos.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/horarios/horarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/horarios/horarios.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/calificaciones/kardex.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/calificaciones/kardex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,17 +17,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vista/horarios/horarios.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="10" lean-forward="true" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+            <state relative-caret-position="170">
+              <caret line="31" column="14" lean-forward="true" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
               <folding>
                 <element signature="e#841#847#0" expanded="true" />
                 <element signature="e#4085#4091#0" expanded="true" />
                 <element signature="e#4091#4097#0" expanded="true" />
                 <element signature="e#4216#4222#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vista/calificaciones/kardex.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="109" column="24" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="141" selection-start-line="3" selection-start-column="141" selection-end-line="3" selection-end-column="141" />
             </state>
           </provider>
         </entry>
@@ -63,6 +80,8 @@
         <option value="$PROJECT_DIR$/vista/inscripciones/inscripciones.html" />
         <option value="$PROJECT_DIR$/static/css/estilos.css" />
         <option value="$PROJECT_DIR$/vista/horarios/horarios.html" />
+        <option value="$PROJECT_DIR$/vista/calificaciones/kardex.html" />
+        <option value="$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html" />
       </list>
     </option>
   </component>
@@ -112,6 +131,12 @@
               <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
               <item name="vista" type="462c0819:PsiDirectoryNode" />
               <item name="administrativos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
+              <item name="vista" type="462c0819:PsiDirectoryNode" />
+              <item name="calificaciones" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
@@ -207,7 +232,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -291,14 +316,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vista/horarios/horarios.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="10" lean-forward="true" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+        <state relative-caret-position="170">
+          <caret line="31" column="14" lean-forward="true" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
           <folding>
             <element signature="e#841#847#0" expanded="true" />
             <element signature="e#4085#4091#0" expanded="true" />
             <element signature="e#4091#4097#0" expanded="true" />
             <element signature="e#4216#4222#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vista/calificaciones/kardex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="109" column="24" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="141" selection-start-line="3" selection-start-column="141" selection-end-line="3" selection-end-column="141" />
         </state>
       </provider>
     </entry>
