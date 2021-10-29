@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36fc3775-c90d-4d7b-80d0-a10504f1c85e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/controlador/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/estilos.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/estilos.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vista/horarios/horarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/horarios/horarios.html" afterDir="false" />
     </list>
@@ -17,18 +18,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vista/horarios/horarios.html">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vista/materias/materiasImpartidas.html">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="62" />
-              <folding>
-                <element signature="e#841#847#0" expanded="true" />
-                <element signature="e#4085#4091#0" expanded="true" />
-                <element signature="e#4091#4097#0" expanded="true" />
-                <element signature="e#4216#4222#0" expanded="true" />
-              </folding>
+              <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -42,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+            <state relative-caret-position="-143">
+              <caret line="8" column="5" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -54,7 +58,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vista/inscripciones/inscripciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
+            <state relative-caret-position="612">
               <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="15" />
             </state>
           </provider>
@@ -63,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controlador/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="121" column="35" lean-forward="true" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="35" />
+            <state relative-caret-position="2057">
+              <caret line="121" column="35" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -72,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/estilos.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="41" column="74" selection-start-line="41" selection-start-column="74" selection-end-line="41" selection-end-column="74" />
+            <state relative-caret-position="370">
+              <caret line="70" column="1" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -96,11 +100,12 @@
       <list>
         <option value="$PROJECT_DIR$/vista/grupos/gruposListado.html" />
         <option value="$PROJECT_DIR$/vista/inscripciones/inscripciones.html" />
-        <option value="$PROJECT_DIR$/static/css/estilos.css" />
         <option value="$PROJECT_DIR$/vista/calificaciones/kardex.html" />
-        <option value="$PROJECT_DIR$/vista/horarios/horarios.html" />
         <option value="$PROJECT_DIR$/controlador/app.py" />
+        <option value="$PROJECT_DIR$/vista/materias/materiasImpartidas.html" />
+        <option value="$PROJECT_DIR$/static/css/estilos.css" />
         <option value="$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html" />
+        <option value="$PROJECT_DIR$/vista/horarios/horarios.html" />
       </list>
     </option>
   </component>
@@ -269,12 +274,12 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10438729" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10590015" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.29787233" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29787233" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -283,11 +288,11 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32715008" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.3288364" />
-      <window_info anchor="right" id="R Packages" />
-      <window_info anchor="right" id="R Graphics" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="R Graphics" order="3" />
+      <window_info anchor="right" id="R Packages" order="4" />
     </layout>
   </component>
   <component name="editorHistoryManager">
@@ -312,37 +317,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/estilos.css">
+    <entry file="file://$PROJECT_DIR$/vista/materias/materiasImpartidas.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="41" column="74" selection-start-line="41" selection-start-column="74" selection-end-line="41" selection-end-column="74" />
+        <state relative-caret-position="51">
+          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vista/inscripciones/inscripciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
+        <state relative-caret-position="612">
           <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vista/horarios/horarios.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="62" />
-          <folding>
-            <element signature="e#841#847#0" expanded="true" />
-            <element signature="e#4085#4091#0" expanded="true" />
-            <element signature="e#4091#4097#0" expanded="true" />
-            <element signature="e#4216#4222#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controlador/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="121" column="35" lean-forward="true" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="35" />
+        <state relative-caret-position="2057">
+          <caret line="121" column="35" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/estilos.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="70" column="1" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-143">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -353,10 +359,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html">
+    <entry file="file://$PROJECT_DIR$/vista/horarios/horarios.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+        <state relative-caret-position="255">
+          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
         </state>
       </provider>
     </entry>

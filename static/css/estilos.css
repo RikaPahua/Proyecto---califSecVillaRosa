@@ -57,3 +57,15 @@ h1{
    color: white;
 
 }
+#generarHorarios{
+    background-color: #316796;
+        color: white;
+        width: 90%;
+        margin: auto;
+        padding: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+}
+#generarHorarios h1{
+    color: white;
+}
