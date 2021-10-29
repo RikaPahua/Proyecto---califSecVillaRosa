@@ -117,7 +117,7 @@ def horarios():
     return render_template('horarios/horarios.html')
 @app.route('/generarHorario',methods=['post'])
 def horarioGenerar():
-    return 'SE HA GENERADO EL HORARIO'
+    return 'GESTIÓN DE HORARIOS'
 ###################################################################################
 @app.route('/registroCalificaciones',methods=['post'])
 def registroCalificaciones():
@@ -126,7 +126,6 @@ def registroCalificaciones():
 @app.route('/inscripciones')
 def inscripciones():
     return render_template('inscripciones/inscripciones.html')
-
 
 @app.route('/registrarInscripcion', methods=['post'])
 def registrarInscripcion():
