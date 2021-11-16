@@ -25,6 +25,14 @@ h1{
     text-align: center;
     font-weight: bold;
 }
+th{
+    color: white;
+}
+table{
+    font-family: Arial Narrow;
+    font-size: 20px;
+}
+
 .table th{
     background-color: #316796;
     text-transform:uppercase;
@@ -43,13 +51,16 @@ h1{
     margin-left: 5%;
 }
 .row{
+    border-radius: 30px;
     background-color: #316796;
     color: white;
     width: 55%;
     margin: auto;
-    padding: 22px;
+    padding: 30px;
     padding-top: 25px;
     padding-bottom: 25px;
+    font-family: Arial Narrow;
+    font-size: 25px;
 }
 #btn1,#btn2{
     background-color: #316796;
