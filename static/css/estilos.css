@@ -28,7 +28,7 @@ h1{
 th{
     color: white;
 }
-table{
+table, th tr, td{
     font-family: Arial Narrow;
     font-size: 20px;
 }
@@ -71,7 +71,7 @@ table{
 #generarHorarios{
     background-color: #316796;
         color: white;
-        width: 90%;
+        width: 95%;
         margin: auto;
         padding: 20px;
         padding-top: 20px;
