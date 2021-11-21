@@ -1,33 +1,41 @@
-{% extends 'comunes/index.html'%}
-{% block contenido%}
-    <h1>DATOS E INFORMACIÓN DEL PROFESOR</h1>
-    <form action="/profesoresDatosEdicion" method="post" class="row g-3">
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+    <form action="/profesoresDatosEdicion" method="post" class="FormularioUsuarios">
+        <h1>DATOS E INFORMACIÓN DEL PROFESOR</h1>
+        <div>
+            <label for="foto">Fotografía: </label>
+            <input type="file" name="foto" id="foto" value="Selecciona la imagen" accept="image/png, .jpeg, .jpg, image/gif">
+        </div>
+        <br/>
         <label for="idUsuario">idUsuario: </label>
         <input type="number" name="idUsuario" id="idUsuario" value="8" disabled required/>
         <br/><br/>
         <label for="nombre">Nombre: </label>
-        <input type="text" name="nombre" id="nombre" value="Rosa Elena Villa Duarte" maxlength="100" required/>
+        <input type="text" name="nombre" id="nombre" value="Rosa Elena Villa Duarte" maxlength="100" size="60px" required/>
         <br/><br/>
-        <div class="radio">
-            <label>Sexo: </label>
-            <input type="radio" name="sexo" id="H" value="H"/>Hombre
-            <input type="radio" name="sexo" id="M" value="M" checked>Mujer
+        <div class="dropdown">
+            <label for="sexo">Sexo: </label>
+            <select id="sexo" name="sexo">
+                <option disabled selected>Seleccionar</option>
+                <option value="M">Mujer</option>
+                <option value="H">Hombre</option>
+            </select>
         </div>
-        <br/><br/>
+        <br/>
         <label for="telefono">Teléfono: </label>
         <input type="tel" name="telefono" id="telefono" value="441-456-2570" maxlength="12" size="12" required/>
         <br/><br/>
         <label for="domicilio">Domicilio: </label>
         <input type="text" name="domicilio" id="domicilio" value="Lerdo de tejada #08 Zamora Michoacán" maxlength="50" size="50" required/>
         <br/><br/>
-        <div class="radio">
-            <label>Estatus: </label>
-            <input type="radio" name="Estatus" id="A" value="A" checked/>Activo
-            <input type="radio" name="Estatus" id="I" value="I">Inactivo
+        <div>
+            <label for="estatus">Estatus:</label>
+            <input type="checkbox" name="estatus" id="estatus" checked>
         </div>
-        <br/><br/>
+        <br/>
         <label for="email">E-mail: </label>
-        <input type="email" name="email" id="email" value="rvilla234@vros.com" maxlength="50" required/>
+        <input type="email" name="email" id="email" value="rvilla234@vros.com" maxlength="50" size="50px" required/>
         <br/><br/>
         <label for="clave">Contraseña: </label>
         <input type="password" name="clave" id="clave" value="HOLA123!" maxlength="10" required/>
@@ -36,7 +44,7 @@
         <input type="number" name="idProfesor" id="idProfesor" value="1" disabled required/>
         <br/><br/>
         <label for="especialidad">Especialidad: </label>
-        <input type="text" name="especialidad" id="especialidad" value="Ciencias naturales" maxlength="50" required/>
+        <input type="text" name="especialidad" id="especialidad" value="Ciencias naturales" maxlength="50" size="50px" required/>
         <br/><br/>
         <label for="fechaContratacion">Fecha de contratación: </label>
         <input type="date" name="fechaContratacion" id="fechaContratacion" value="2015-08-20"  required/>
@@ -44,6 +52,8 @@
         <label for="cedula">Cédula: </label>
         <input type="text" name="cedula" id="cedula" value="23456129" maxlength="8" required/>
         <br/><br/>
-        <button type="submit" class="btn btn-success">Guardar</button>
+        <a class="btn btn-dark" href="/profesores"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <button type="submit" class="btn btn-info btn-lg">Guardar</button>
+        <a class="btn btn-danger btn-lg" href="/profesores"><span class="glyphicon glyphicon-trash"></span></a>
     </form>
-{%endblock%}
+{%endblock content%}

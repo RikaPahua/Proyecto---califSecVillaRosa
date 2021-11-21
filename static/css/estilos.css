@@ -1,9 +1,7 @@
-header {
-    background-color: #316796;
-}
 .encabezado{
     display: flex;
     padding-top: 15px;
+    background-color: #316796;
 }
 #titulo{
     font-size: 60px;
@@ -12,10 +10,10 @@ header {
     color: white;
     text-align: center;
 }
-main{
+body{
     background-image: url('../img/fondo.jpeg');
     background-size: cover;
-    height: 1200px;
+    height: 100%;
 }
 h1{
     color: black;
@@ -47,36 +45,83 @@ table, th tr, td{
 .table td{
     text-align: center;
 }
-#nuevo, #nuevo1, #nuevo2, #regresarAmaterias, #guardarCal, #selec, #selec2{
+#nuevo, #nuevo1, #nuevo2, #regresarAmaterias, #guardarCal, #selec, #selec2, #obtenerGrup{
     margin-left: 5%;
 }
-.row{
+
+.FormularioUsuarios{
     border-radius: 30px;
     background-color: #316796;
-    color: white;
-    width: 55%;
+    border:3px solid #316796;
+    padding: 20px;
+    width: 50%;
     margin: auto;
-    padding: 30px;
-    padding-top: 25px;
-    padding-bottom: 25px;
     font-family: Arial Narrow;
-    font-size: 25px;
+    font-size:15px;
 }
+
+.formularioInscripciones{
+   border-radius: 30px;
+   background-color: #316796;
+   border:3px solid #316796;
+   padding: 20px;
+   width: 35%;
+   margin: auto;
+   margin-top: 40px;
+   font-family: Arial Narrow;
+   font-size:15px;
+}
+#registro, #registro1, #guardarCal, #obtenerGrup{
+    font-size 10px;
+    background: #303130;
+    color: white;
+    font-family: Arial Narrow;
+}
+
+form h1, #titlcon, h1{
+   font-family: Georgia;
+   size: 50px;
+   padding-bottom: 15px;
+   text-align: center;
+}
+form label{
+   color: white;
+}
+form h1, #foto{
+   color: white;
+}
+
+
 #btn1,#btn2{
     background-color: #316796;
     border-color: white;
-   color: white;
+    color: white;
 
 }
 #generarHorarios{
+    border-radius: 30px;
     background-color: #316796;
-        color: white;
-        width: 95%;
-        margin: auto;
-        padding: 20px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-}
-#generarHorarios h1, #titg{
     color: white;
+    width: 95%;
+    margin: auto;
+    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#generarHorarios h1, #titg, #imgn{
+    color: white;
+}
+footer{
+   color: white;
+   font-size: 20px;
+   font-family: Arial Narrow;
+}
+
+input, select{
+    color: black;
+    font-family: Arial Narrow;
+}
+label{
+    font-size: 15px;
+    font-family: Arial Narrow;
 }

@@ -1,22 +1,22 @@
-{% extends 'comunes/index.html'%}
-{% block contenido%}
-        <h1>INSCRIPCIONES</h1>
-        <form  action="/registrarInscripcion" method="post" class="row g-3">
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
 
+        <form  action="/registrarInscripcion" method="post" class="formularioInscripciones">
+            <h1>INSCRIPCIONES</h1>
             <label for="ID inscripcion">ID: </label>
             <input type="number" name="ID inscripcion" id="ID inscripcion" placeholder="ID inscripcion"  value="1"  disabled="disabled" required/>
             <br/><br/>
-            <label for="Numero de control">Numero de Control: </label>
-            <input type="text" name="Numero de control" id="Numero de control" placeholder="Numero de control" maxlength="8"   required/>
+            <label for="noControl">Numero de Control: </label>
+            <input type="text" name="Numero de control" id="noControl" placeholder="Numero de control" maxlength="8"   required/>
             <br/><br/>
             <div class="dropdown">
-
                 <label for="Ciclo">Ciclo escolar: </label>
                 <select id="Ciclo" >
                     <option value="2020-2021">2020-2021</option>
                 </select>
-</div>
-            <br/><br/>
+            </div>
+            <br/>
             <div class="dropdown">
                 <label for="Grupos">Grupos: </label>
                 <select id="Grupos">
@@ -29,10 +29,9 @@
                     <option value="3A">3A</option>
                     <option value="3B">3B</option>
                     <option value="3C">3C</option>
-
                 </select>
             </div>
-            <br/><br/>
-            <button type="submit" id="registro" class="btn btn-success">Registrar</button>
+            <br/>
+            <button type="submit" id="registro">Realizar inscripción</button>
         </form>
-{%endblock%}
+{%endblock content%}

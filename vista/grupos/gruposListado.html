@@ -1,5 +1,6 @@
-{% extends 'comunes/index.html'%}
-{% block contenido%}
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
     <h1>LISTADO DE GRUPOS</h1>
     <div>
         <table class="table table-bordered">
@@ -67,4 +68,4 @@
         </tr>
     </table>
     </div>
-{%endblock%}
+{%endblock content%}

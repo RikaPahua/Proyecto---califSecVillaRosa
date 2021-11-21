@@ -1,5 +1,6 @@
-{% extends 'comunes/index.html'%}
-{% block contenido%}
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
     <h1>KARDEX</h1>
     <div class="Tab">
       <table class="table table-bordered">
@@ -123,4 +124,4 @@
               </tr>
           </table>
     </div>
-{%endblock%}
+{%endblock content%}

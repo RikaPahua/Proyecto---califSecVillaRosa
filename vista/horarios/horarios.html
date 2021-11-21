@@ -1,10 +1,10 @@
-{% extends 'comunes/index.html'%}
-{% block contenido%}
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
      <br/>
-<form id="generarHorarios" action="/generarHorario" method="post" class="row g-3">
+<form id="generarHorarios" action="/generarHorario" method="post">
     <H1>HORARIO</H1>
      <div class="Tab">
-
             <div id="selec">
                 <a id="combo">
                     <label for="Grupos">Seleccionar el grupo: </label>
@@ -18,7 +18,6 @@
                         <option value="3A">3A</option>
                         <option value="3B">3B</option>
                         <option value="3C">3C</option>
-
                     </select>
 
                     <label for="materia">&nbsp;&nbsp; Selecciona ciclo escolar: </label>
@@ -26,7 +25,7 @@
                         <option value="ciclo">2020-2021</option>
                     </select>
 
-                    <button  id="recolectarHorarioActual" class="btn btn-success">Seleccionar</button>
+                    <button  id="registro1">Seleccionar</button>
                 </a>
 
             </div>
@@ -131,10 +130,10 @@
                     <label for="materia">&nbsp;&nbsp Hora fin: </label>
                     <input type="time"  name="horaout">
 
-                    <button  type="submit" class="btn btn-success" > Generar</button>
+                    <button  type="submit" id="registro">Generar</button>
                 </a>
 
             </div>
     </div>
     </form>
-{%endblock%}
+{%endblock content%}

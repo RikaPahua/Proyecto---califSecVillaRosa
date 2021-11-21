@@ -1,37 +1,30 @@
-{% extends 'comunes/index.html'%}
-{% block contenido%}
-  <br/>
-         <a id ="regresarAmaterias" href="/materiasImpartidas" id="regresarCal"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
-             <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
-         </svg></a>
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+<H1>LISTADO DE ALUMNOS</H1>
 <form  action="/registroCalificaciones" method="post" class="row g-3">
-
-    <H1 id="titg">LISTADO DE ALUMNOS</H1>
-    <br/>
-     <div class="Tab">
+    <div class="Tab">
+        <a id="obtenerGrup" class="btn btn-primary" href="/materiasImpartidas"><span class="glyphicon glyphicon-menu-left"> Atras</span></a>
+        <br/><br/>
     <table class="table table-bordered">
         <thead class="table-dark">
         <tr>
-            <th>Id</th>
-            <th>Alumno</th>
-            <th>Bimestre</th>
-            <th>Calificacion</th>
+            <th>ID</th>
+            <th>ALUMNO</th>
+            <th>BIMESTRE</th>
+            <th>CALIFICACIÓN</th>
         </tr>
         <tr>
             <td>1</td>
             <td>Luis </td>
-           <td><select >
+            <td><select >
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-
                 </select></td>
             <td><input type="number" name="calificacion"  ></td>
-
-
-
         </tr>
         <tr>
             <td>2</td>
@@ -112,10 +105,10 @@
                 </select></td>
             <td><input type="number" name="calificacion" ></td>
         </tr>
-        </table>
-         <br/>
-            <button id="guardarCal" type="submit" class="btn btn-success">Guardar</button>
-         </div>
-     </main>
+        </thead>
+    </table>
+        <br/>
+        <button id="guardarCal" type="submit"><span class="glyphicon glyphicon-floppy-disk"> Guardar</span></button>
+    </div>
 </form>
-{%endblock%}
+{%endblock content%}
