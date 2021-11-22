@@ -2,6 +2,15 @@
 {% block content %}
 {{super()}}
 <H1>USUARIOS ADMINISTRATIVOS</H1>
+{% if get_flashed_messages() %}
+{% for m in get_flashed_messages()%}
+<div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{m}}</strong>
+</div>
+{% endfor %}
+{% endif %}
+<br/>
 <a href="/administrativosNuevo" class="btn btn-success" id="nuevo"> Registrar nuevo </a>
 <br/><br/>
 <div class="Tab">

@@ -1,6 +1,6 @@
-from flask import Flask,render_template, request, flash
+from flask import Flask,render_template, request, flash,redirect, url_for
 from flask_bootstrap import Bootstrap
-from modelo.DAO import db, Usuarios
+from modelo.DAO import db, Usuarios, Estudiantes
 
 app = Flask(__name__, template_folder='../vista',static_folder='../static')
 Bootstrap(app)
@@ -39,9 +39,12 @@ def administrativosEditar(id):
     u=Usuarios()
     return render_template('administrativos/administrativoEditar.html', usuario=u.consultaIndividual(id))
 
-@app.route('/administrativosEliminar')
-def administrativosEliminar():
-    return 'SE HA ELIMINADO UN USUARIO ADMINISTRATIVO'
+@app.route('/administrativosEliminar/<int:id>')
+def administrativosEliminar(id):
+    u = Usuarios()
+    u.eliminar(id)
+    flash ('Usuario eliminado con éxito!!')
+    return redirect(url_for('administrativosListado'))
 
 @app.route('/administrativosDatosNuevo',methods=['post'])
 def administrativosDatosNuevo():
@@ -59,16 +62,14 @@ def administrativosDatosNuevo():
     return render_template('administrativos/administrativoNuevo.html')
 
 @app.route('/usuarios/imagen/<int:id>')
-def consultarImagenProducto(id):
+def consultarImagenUsuario(id):
     u = Usuarios()
     return u.consultaIndividual(id).foto
 
 @app.route('/administrativosDatosEdicion',methods=['post'])
 def administrativosDatosEdicion():
     u = Usuarios()
-    imagen=request.files['foto'].read()
-    if imagen:
-        u.foto=imagen
+    u.idUsuario=request.form['idUsuario']
     u.nombre=request.form['nombre']
     u.sexo=request.form['sexo']
     u.telefono=request.form['telefono']
@@ -81,8 +82,11 @@ def administrativosDatosEdicion():
         u.estatus=True
     else:
         u.estatus=False
+    imagen=request.files['foto'].read()
+    if imagen:
+        u.foto=imagen
     u.actualizar()
-    flash('Producto editado con éxito!!')
+    flash('Usuario editado con éxito!!')
     return render_template('administrativos/administrativoEditar.html',usuario=u)
 
 @app.route('/administrativoPerfil')
