@@ -24,22 +24,32 @@
                 <th>EDITAR</th>
             </tr>
             </thead>
-            <tr>
-                <td></td>
-                <td>8</td>
-                <td>Rosa Elena Villa Duarte</td>
-                <td>F</td>
-                <td>441-456-2570</td>
-                <td>Lerdo de tejada #08 Zamora Michoacán</td>
-                <td>Activo</td>
-                <td>rvilla234@vros.com</td>
-                <td>HOLA123!</td>
-                <td>1</td>
-                <td>Ciencias naturales</td>
-                <td>20/08/2015</td>
-                <td>23456129</td>
-                <td><a href="/profesoresEditar"><span class="glyphicon glyphicon-edit"></span></a></td>
-            </tr>
+            {% for us in usuarios %}
+                {% if us.tipo=='P'%}
+                    {% for prof in profesores %}
+                        {% if us.idUsuario==prof.idUsuario%}
+                            <tr>
+                            <td><img src="/usuarios/imagen/{{us.idUsuario}}" width="100px"></td>
+                            <td>{{us.idUsuario}}</td>
+                            <td>{{us.nombre}}</td>
+                            <td>{{us.sexo}}</td>
+                            <td>{{us.telefono}}</td>
+                            <td>{{us.domicilio}}</td>
+                            <td>{{us.estatus}}</td>
+                            <td>{{us.email}}</td>
+                            <td>{{us.clave}}</td>
+                            <td>{{prof.idProfesor}}</td>
+                            <td>{{prof.especialidad}}</td>
+                            <td>{{prof.fechaContratacion}}</td>
+                            <td>{{prof.cedula}}</td>
+                            <td><a href="/profesoresEditar"><span class="glyphicon glyphicon-edit"></span></a></td>
+                            </tr>
+                        {% else %}
+                        {% endif %}
+                    {%endfor%}
+                {% else %}
+                {% endif %}
+            {% endfor %}
         </table>
     </div>
 {%endblock content%}

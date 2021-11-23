@@ -121,7 +121,7 @@ input, select{
     color: black;
     font-family: Arial Narrow;
 }
-label{
+label, #us{
     font-size: 15px;
     font-family: Arial Narrow;
 }

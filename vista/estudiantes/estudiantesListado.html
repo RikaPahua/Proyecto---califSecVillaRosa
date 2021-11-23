@@ -24,22 +24,32 @@
                     <th>EDITAR</th>
                 </tr>
                 </thead>
-                <tr>
-                    <td></td>
-                    <td>3</td>
-                    <td>Alejandra Aranda Mares</td>
-                    <td>F</td>
-                    <td>351-983-4345</td>
-                    <td>Guerrero #12 Zamora Michoacán</td>
-                    <td>Activo</td>
-                    <td>aaranda300@vros.com</td>
-                    <td>HOLA123!</td>
-                    <td>17010300</td>
-                    <td>01/04/2007</td>
-                    <td>20/08/2020</td>
-                    <td>90</td>
-                    <td><a href="/estudiantesEditar"><span class="glyphicon glyphicon-edit"></span></a></td>
-                </tr>
+                {% for us in usuarios %}
+                    {% if us.tipo=='E'%}
+                        {% for est in estudiantes %}
+                            {% if us.idUsuario==est.idUsuario%}
+                                <tr>
+                                    <td><img src="/usuarios/imagen/{{us.idUsuario}}" width="100px"></td>
+                                    <td>{{us.idUsuario}}</td>
+                                    <td>{{us.nombre}}</td>
+                                    <td>{{us.sexo}}</td>
+                                    <td>{{us.telefono}}</td>
+                                    <td>{{us.domicilio}}</td>
+                                    <td>{{us.estatus}}</td>
+                                    <td>{{us.email}}</td>
+                                    <td>{{us.clave}}</td>
+                                    <td>{{est.noControl}}</td>
+                                    <td>{{est.fechaNacimiento}}</td>
+                                    <td>{{est.fechaIngreso}}</td>
+                                    <td>{{est.promedioGeneral}}</td>
+                                    <td><a href="/estudiantesEditar"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                </tr>
+                            {% else %}
+                            {% endif %}
+                        {%endfor%}
+                    {% else %}
+                    {% endif %}
+                {% endfor %}
             </table>
         </div>
 {%endblock content%}

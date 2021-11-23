@@ -31,8 +31,8 @@
         </tr>
         </thead>
         {% for us in usuarios %}
-            <tr>
-                {% if us.tipo=='A'%}
+            {% if us.tipo=='A'%}
+                <tr>
                     <td><img src="/usuarios/imagen/{{us.idUsuario}}" width="100px"></td>
                     <td>{{us.idUsuario}}</td>
                     <td>{{us.nombre}}</td>
@@ -44,23 +44,25 @@
                     <td>{{us.email}}</td>
                     <td>{{us.clave}}</td>
                     <td><a href="/administrativosEditar/{{us.idUsuario}}"><span class="glyphicon glyphicon-edit"></span></a></td>
-                {% else %}
+                </tr>
+            {% else %}
                     {% if us.tipo=='S'%}
-                        <td><img src="/usuarios/imagen/{{us.idUsuario}}" width="100px"></td>
-                        <td>{{us.idUsuario}}</td>
-                        <td>{{us.nombre}}</td>
-                        <td>{{us.sexo}}</td>
-                        <td>{{us.telefono}}</td>
-                        <td>{{us.domicilio}}</td>
-                        <td>{{us.tipo}}</td>
-                        <td>{{us.estatus}}</td>
-                        <td>{{us.email}}</td>
-                        <td>{{us.clave}}</td>
-                        <td><a href="/administrativosEditar/{{us.idUsuario}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                        <tr>
+                            <td><img src="/usuarios/imagen/{{us.idUsuario}}" width="100px"></td>
+                            <td>{{us.idUsuario}}</td>
+                            <td>{{us.nombre}}</td>
+                            <td>{{us.sexo}}</td>
+                            <td>{{us.telefono}}</td>
+                            <td>{{us.domicilio}}</td>
+                            <td>{{us.tipo}}</td>
+                            <td>{{us.estatus}}</td>
+                            <td>{{us.email}}</td>
+                            <td>{{us.clave}}</td>
+                            <td><a href="/administrativosEditar/{{us.idUsuario}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                        </tr>
                     {% else %}
                     {% endif %}
-                {% endif %}
-            </tr>
+            {% endif %}
         {% endfor %}
     </table>
 </div>

@@ -1,6 +1,7 @@
 from flask import Flask,render_template, request, flash,redirect, url_for
 from flask_bootstrap import Bootstrap
-from modelo.DAO import db, Usuarios, Estudiantes
+from modelo.DAO import db, Usuarios, Estudiantes, Profesores
+from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 app = Flask(__name__, template_folder='../vista',static_folder='../static')
 Bootstrap(app)
@@ -8,18 +9,43 @@ Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://userCalifSecVillaRosa:Hola.123@localhost/CalifSecVillaRosa'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.secret_key='cl4v3'
+login_manager= LoginManager()
+login_manager.init_app(app)
+login_manager.login_view='login'
+login_manager.login_message = u"Debes iniciar sesión !"
+
+@login_manager.user_loader
+def load_user(id):
+    return Usuarios.query.get(int(id))
 
 @app.route('/')
 def login():
-    return render_template('comunes/login.html')
+    if current_user.is_authenticated:
+        return render_template('comunes/index.html')
+    else:
+        return render_template('comunes/login.html')
 
 @app.route('/recopilarDatosLogin',methods=['post'])
-def recopilarDatosLogin():
-    #nombreUsuario = request.form['nombreUsuario']
-    #return 'Se verificara si existe el usuario '+nombreUsuario
-    return render_template('comunes/index.html')
+def validarUsuario():
+    user=Usuarios()
+    email = request.form['email']
+    contraseña= request.form['password']
+    user = user.validar(email, contraseña)
+    if user != None:
+        login_user(user)
+        return render_template('comunes/index.html')
+    else:
+        flash('¡ Datos incorrectos !')
+        return render_template('comunes/login.html')
+
+@app.route('/cerrarSesion')
+@login_required
+def cerrarSesion():
+    logout_user()
+    return redirect(url_for('login'))
 
 @app.route('/Index')
+@login_required #DECORADOR PARA EXIGIR INICIO DE SESIÓN
 def index():
     return render_template('comunes/index.html')
 
@@ -95,7 +121,11 @@ def administrativoPerfil():
 ###################################################################################
 @app.route('/estudiantes')
 def estudiantesListado():
-    return render_template('estudiantes/estudiantesListado.html')
+    u = Usuarios()
+    e = Estudiantes()
+    usuarios=u.consultaGeneral()
+    estudiantes = e.consultaGeneral()
+    return render_template('estudiantes/estudiantesListado.html', usuarios=usuarios, estudiantes = estudiantes)
 
 @app.route('/estudiantesNuevo')
 def estudiantesNuevo():
@@ -119,7 +149,11 @@ def estudiantesDatosEdicion():
 ###################################################################################
 @app.route('/profesores')
 def profesoresListado():
-    return render_template('profesores/profesoresListado.html')
+    u = Usuarios()
+    p = Profesores()
+    usuarios=u.consultaGeneral()
+    profesores = p.consultaGeneral()
+    return render_template('profesores/profesoresListado.html', usuarios=usuarios, profesores=profesores)
 
 @app.route('/profesoresNuevo')
 def profesoresNuevo():
