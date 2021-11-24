@@ -12,60 +12,14 @@
                 <th>CAPACIDAD</th>
              </tr>
         </thead>
-        <tr>
-            <td>1</td>
-            <td>1A</td>
-            <td>1</td>
-            <td>40</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>1B</td>
-            <td>1</td>
-            <td>30</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>1C</td>
-            <td>1</td>
-            <td>25</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>2A</td>
-            <td>2</td>
-            <td>38</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>2B</td>
-            <td>2</td>
-            <td>35</td>
-        </tr>
-            <tr>
-            <td>6</td>
-                <td>2C</td>
-            <td>2</td>
-            <td>30</td>
-            </tr>
-             <tr>
-            <td>7</td>
-                 <td>3A</td>
-            <td>3</td>
-            <td>39</td>
-        </tr>
-             <tr>
-            <td>8</td>
-                 <td>3B</td>
-            <td>3</td>
-            <td>27</td>
-        </tr>
-             <tr>
-            <td>9</td>
-                 <td>3C</td>
-            <td>3</td>
-            <td>32</td>
-        </tr>
+            {% for gp in grupos %}
+              <tr>
+                 <td>{{gp.idGrupo}}</td>
+                 <td>{{gp.nombre}}</td>
+                 <td>{{gp.grado}}</td>
+                 <td>{{gp.capacidad}}</td>
+              </tr>
+          {% endfor %}
     </table>
     </div>
 {%endblock content%}

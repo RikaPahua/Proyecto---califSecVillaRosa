@@ -100,4 +100,12 @@ class Profesores(db.Model):
     def consultaGeneral (self):
         return self.query.all()
 
+class Grupos (db.Model):
+    __tablename__='Grupos'
+    idGrupo=Column(Integer, primary_key=True)
+    nombre=Column(String (2), unique=True)
+    grado=Column(Integer, nullable=False)
+    capacidad=Column(Integer, nullable=False)
 
+    def consultaGeneral (self):
+        return self.query.all()

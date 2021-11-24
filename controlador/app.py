@@ -1,6 +1,6 @@
 from flask import Flask,render_template, request, flash,redirect, url_for
 from flask_bootstrap import Bootstrap
-from modelo.DAO import db, Usuarios, Estudiantes, Profesores
+from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 app = Flask(__name__, template_folder='../vista',static_folder='../static')
@@ -189,7 +189,10 @@ def materiasImpartidas():
 ###################################################################################
 @app.route('/gruposListado')
 def gruposListado():
-    return render_template('grupos/gruposListado.html')
+    g = Grupos()
+    grup = g.consultaGeneral()
+    return render_template('grupos/gruposListado.html', grupos=grup)
+
 
 @app.route('/grupoCalificaciones')
 def grupoCalificaciones():

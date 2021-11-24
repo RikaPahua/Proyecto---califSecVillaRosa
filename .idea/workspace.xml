@@ -5,20 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36fc3775-c90d-4d7b-80d0-a10504f1c85e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Proyecto---califSecVillaRosa.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Proyecto---califSecVillaRosa.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controlador/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modelo/DAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/DAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/estilos.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/estilos.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/administrativos/administrativosListado.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/administrativos/administrativosListado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/comunes/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/comunes/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/comunes/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/comunes/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/estudiantes/estudiantesListado.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/estudiantes/estudiantesListado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/profesores/profesoresListado.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/profesores/profesoresListado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/grupos/gruposListado.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/grupos/gruposListado.html" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/venv/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controlador/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="68" selection-start-line="2" selection-start-column="68" selection-end-line="2" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vista/inscripciones/inscripciones.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vista/grupos/gruposListado.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modelo/DAO.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="110" column="31" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -42,9 +84,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/vista/grupos/gruposListado.html" />
-        <option value="$PROJECT_DIR$/vista/inscripciones/inscripciones.html" />
-        <option value="$PROJECT_DIR$/controlador/app.py" />
         <option value="$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html" />
         <option value="$PROJECT_DIR$/vista/horarios/horarios.html" />
         <option value="$PROJECT_DIR$/vista/estudiantes/estudianteNuevo.html" />
@@ -52,14 +91,18 @@
         <option value="$PROJECT_DIR$/vista/calificaciones/kardex.html" />
         <option value="$PROJECT_DIR$/vista/materias/materiasImpartidas.html" />
         <option value="$PROJECT_DIR$/static/css/estilos.css" />
+        <option value="$PROJECT_DIR$/vista/inscripciones/inscripciones.html" />
+        <option value="$PROJECT_DIR$/modelo/DAO.py" />
+        <option value="$PROJECT_DIR$/controlador/app.py" />
+        <option value="$PROJECT_DIR$/vista/grupos/gruposListado.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="675" />
-    <option name="y" value="-8" />
-    <option name="width" value="699" />
-    <option name="height" value="744" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="47" />
+    <option name="y" value="-16" />
+    <option name="width" value="1366" />
+    <option name="height" value="768" />
   </component>
   <component name="ProjectId" id="201vPBYEZXP4UBbKLGb8lWxnHqc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -68,86 +111,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="controlador" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="vista" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="vista" type="462c0819:PsiDirectoryNode" />
-              <item name="calificaciones" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="vista" type="462c0819:PsiDirectoryNode" />
-              <item name="comunes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="vista" type="462c0819:PsiDirectoryNode" />
-              <item name="estudiantes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="vista" type="462c0819:PsiDirectoryNode" />
-              <item name="grupos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="vista" type="462c0819:PsiDirectoryNode" />
-              <item name="horarios" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="vista" type="462c0819:PsiDirectoryNode" />
-              <item name="inscripciones" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="vista" type="462c0819:PsiDirectoryNode" />
-              <item name="materias" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Proyecto---califSecVillaRosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto---califSecVillaRosa" type="462c0819:PsiDirectoryNode" />
-              <item name="vista" type="462c0819:PsiDirectoryNode" />
-              <item name="profesores" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -162,6 +126,18 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../SHOPITESZ-practica1" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Proyecto---califSecVillaRosa" />
@@ -170,7 +146,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Python37\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\Martin Vaca\AppData\Local\Programs\Python\Python37-32\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/controlador" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -190,7 +166,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -206,7 +182,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17633928" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -230,20 +205,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vista/grupos/gruposListado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="117" column="22" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vista/inscripciones/inscripciones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vista/grupos/grupoCalificaciones.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-143">
@@ -262,13 +223,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controlador/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="121" column="35" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -304,6 +258,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="56" column="13" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vista/inscripciones/inscripciones.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modelo/DAO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="110" column="31" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controlador/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="68" selection-start-line="2" selection-start-column="68" selection-end-line="2" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vista/grupos/gruposListado.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
