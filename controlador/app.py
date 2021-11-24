@@ -211,7 +211,9 @@ def registroCalificaciones():
 ###################################################################################
 @app.route('/inscripciones')
 def inscripciones():
-    return render_template('inscripciones/inscripciones.html')
+    g = Grupos()
+    grup = g.consultaGeneral()
+    return render_template('inscripciones/inscripciones.html', grupos=grup)
 @app.route('/registrarInscripcion', methods=['post'])
 def registrarInscripcion():
     ins = Inscripciones()
