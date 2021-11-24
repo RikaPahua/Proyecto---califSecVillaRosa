@@ -1,6 +1,6 @@
 from flask import Flask,render_template, request, flash,redirect, url_for
 from flask_bootstrap import Bootstrap
-from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos
+from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos, Inscripciones
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 app = Flask(__name__, template_folder='../vista',static_folder='../static')
@@ -212,11 +212,15 @@ def registroCalificaciones():
 @app.route('/inscripciones')
 def inscripciones():
     return render_template('inscripciones/inscripciones.html')
-
 @app.route('/registrarInscripcion', methods=['post'])
 def registrarInscripcion():
-    return 'SE HA REALIZADO UNA INSCRIPCIÓN'
-
+    ins = Inscripciones()
+    ins.noControl = request.form['noControl']
+    ins.idGrupo = request.form['idGrupo']
+    ins.idCiclo = 4
+    ins.insertar()
+    flash('Se ha registrado la inscripción con éxito!!')
+    return render_template('inscripciones/inscripciones.html')
 
 if __name__ == '__main__':
     db.init_app(app)

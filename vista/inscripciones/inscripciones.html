@@ -2,36 +2,31 @@
 {% block content %}
 {{super()}}
 
-        <form  action="/registrarInscripcion" method="post" class="formularioInscripciones">
+          <form  action="/registrarInscripcion" method="post" class="formularioInscripciones" enctype="multipart/form-data">
             <h1>INSCRIPCIONES</h1>
-            <label for="ID inscripcion">ID: </label>
-            <input type="number" name="ID inscripcion" id="ID inscripcion" placeholder="ID inscripcion"  value="1"  disabled="disabled" required/>
-            <br/><br/>
             <label for="noControl">Numero de Control: </label>
-            <input type="text" name="Numero de control" id="noControl" placeholder="Numero de control" maxlength="8"   required/>
+            <input type="text" name="noControl" id="noControl" placeholder="Numero de control" maxlength="8"   required/>
             <br/><br/>
-            <div class="dropdown">
-                <label for="Ciclo">Ciclo escolar: </label>
-                <select id="Ciclo" >
-                    <option value="2020-2021">2020-2021</option>
-                </select>
-            </div>
+            <label for="nombreCiclo">Ciclo: </label>
+            <input type="text" name="nombreCiclo" id="nombreCiclo" value="2021-2022" disabled/>
             <br/>
             <div class="dropdown">
-                <label for="Grupos">Grupos: </label>
-                <select id="Grupos">
-                    <option value="1A">1A</option>
-                    <option value="1B">1B</option>
-                    <option value="1C">1C</option>
-                    <option value="2A">2A</option>
-                    <option value="2B">2B</option>
-                    <option value="2C">2C</option>
-                    <option value="3A">3A</option>
-                    <option value="3B">3B</option>
-                    <option value="3C">3C</option>
+                <label for="idGrupo">Grupos: </label>
+                <select id="idGrupo" name="idGrupo">
+                    {% for gp in grupos %}
+                        <option value={{gp.idGrupo}}>{{gp.nombre}}</option>
+                    {% endfor %}
                 </select>
             </div>
             <br/>
             <button type="submit" id="registro">Realizar inscripción</button>
+            {% if get_flashed_messages() %}
+            {% for m in get_flashed_messages()%}
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>{{m}}</strong>
+            </div>
+            {% endfor %}
+            {% endif %}
         </form>
 {%endblock content%}

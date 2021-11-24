@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36fc3775-c90d-4d7b-80d0-a10504f1c85e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Proyecto---califSecVillaRosa.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Proyecto---califSecVillaRosa.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controlador/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modelo/DAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/DAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/grupos/gruposListado.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/grupos/gruposListado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/inscripciones/inscripciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/inscripciones/inscripciones.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,25 +19,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controlador/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="68" selection-start-line="2" selection-start-column="68" selection-end-line="2" selection-end-column="68" />
+            <state relative-caret-position="245">
+              <caret line="219" column="19" lean-forward="true" selection-start-line="219" selection-start-column="19" selection-end-line="219" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#73#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vista/inscripciones/inscripciones.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vista/grupos/gruposListado.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
@@ -51,10 +43,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modelo/DAO.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="110" column="31" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
+            <state relative-caret-position="304">
+              <caret line="122" column="27" lean-forward="true" selection-start-line="122" selection-start-column="27" selection-end-line="122" selection-end-column="27" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vista/inscripciones/inscripciones.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="10" column="72" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
+              <folding>
+                <element signature="e#1281#1288#1" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,14 +95,14 @@
         <option value="$PROJECT_DIR$/vista/calificaciones/kardex.html" />
         <option value="$PROJECT_DIR$/vista/materias/materiasImpartidas.html" />
         <option value="$PROJECT_DIR$/static/css/estilos.css" />
-        <option value="$PROJECT_DIR$/vista/inscripciones/inscripciones.html" />
-        <option value="$PROJECT_DIR$/modelo/DAO.py" />
-        <option value="$PROJECT_DIR$/controlador/app.py" />
         <option value="$PROJECT_DIR$/vista/grupos/gruposListado.html" />
+        <option value="$PROJECT_DIR$/modelo/DAO.py" />
+        <option value="$PROJECT_DIR$/vista/inscripciones/inscripciones.html" />
+        <option value="$PROJECT_DIR$/controlador/app.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="47" />
     <option name="y" value="-16" />
     <option name="width" value="1366" />
@@ -261,34 +265,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vista/inscripciones/inscripciones.html">
+    <entry file="file://$PROJECT_DIR$/vista/grupos/gruposListado.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modelo/DAO.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="110" column="31" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
+        <state relative-caret-position="304">
+          <caret line="122" column="27" lean-forward="true" selection-start-line="122" selection-start-column="27" selection-end-line="122" selection-end-column="27" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controlador/app.py">
+    <entry file="file://$PROJECT_DIR$/vista/inscripciones/inscripciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="68" selection-start-line="2" selection-start-column="68" selection-end-line="2" selection-end-column="68" />
+        <state relative-caret-position="130">
+          <caret line="10" column="72" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
+          <folding>
+            <element signature="e#1281#1288#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vista/grupos/gruposListado.html">
+    <entry file="file://$PROJECT_DIR$/controlador/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="245">
+          <caret line="219" column="19" lean-forward="true" selection-start-line="219" selection-start-column="19" selection-end-line="219" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

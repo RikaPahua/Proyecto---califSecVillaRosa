@@ -109,3 +109,15 @@ class Grupos (db.Model):
 
     def consultaGeneral (self):
         return self.query.all()
+
+
+class Inscripciones(db.Model):
+    __tablename__ = 'Inscripciones'
+    idInscripciones=Column(Integer, primary_key=True)
+    noControl=Column(String(8), unique=True)
+    idGrupo=Column(Integer, nullable=False)
+    idCiclo=Column(Integer, nullable=False)
+
+    def insertar (self):
+        db.session.add(self)
+        db.session.commit()
