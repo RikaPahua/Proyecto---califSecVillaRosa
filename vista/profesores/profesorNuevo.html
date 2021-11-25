@@ -1,8 +1,9 @@
 {% extends 'comunes/base.html'%}
 {% block content %}
 {{super()}}
-        <form action="/profesoresDatosNuevo" method="post" class="FormularioUsuarios">
+        <form action="/profesoresDatosNuevo" method="post" class="FormularioUsuarios" enctype="multipart/form-data">
             <h1>REGISTRO DE UN NUEVO PROFESOR</h1>
+            <input type="hidden" name="idUsuario" id="idUsuario" value="{{usuario.idUsuario}}" maxlength="100" required/>
             <div>
                 <label for="foto">Fotografía: </label>
                 <input type="file" name="foto" id="foto" value="Selecciona la imagen" accept="image/png, .jpeg, .jpg, image/gif">
@@ -15,8 +16,8 @@
                 <label for="sexo">Sexo: </label>
                 <select id="sexo" name="sexo">
                     <option disabled selected>Seleccionar</option>
-                    <option value="M">Mujer</option>
-                    <option value="H">Hombre</option>
+                    <option value="F">Mujer</option>
+                    <option value="M">Hombre</option>
                 </select>
             </div>
             <br/>
@@ -36,9 +37,6 @@
             <br/><br/>
             <label for="clave">Contraseña: </label>
             <input type="password" name="clave" id="clave" placeholder="Contraseña" maxlength="10" required/>
-            <br/><br/>
-            <label for="idProfesor">idProfesor: </label>
-            <input type="number" name="idProfesor" id="idProfesor" value="6" disabled required/>
             <br/><br/>
             <label for="especialidad">Especialidad: </label>
             <input type="text" name="especialidad" id="especialidad" placeholder="Especialidad" maxlength="50" size="50px" required/>

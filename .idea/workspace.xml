@@ -5,61 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36fc3775-c90d-4d7b-80d0-a10504f1c85e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Proyecto---califSecVillaRosa.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Proyecto---califSecVillaRosa.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controlador/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/DAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/DAO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/estudiantes/estudianteEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/estudiantes/estudianteEditar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/estudiantes/estudianteNuevo.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/estudiantes/estudianteNuevo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/estudiantes/estudiantesListado.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/estudiantes/estudiantesListado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/profesores/profesorEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/profesores/profesorEditar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/profesores/profesorNuevo.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/profesores/profesorNuevo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/profesores/profesoresListado.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/profesores/profesoresListado.html" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/venv/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controlador/app.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="214" column="30" lean-forward="true" selection-start-line="214" selection-start-column="30" selection-end-line="214" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#73#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vista/grupos/gruposListado.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modelo/DAO.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="117" column="43" lean-forward="true" selection-start-line="117" selection-start-column="43" selection-end-line="117" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vista/inscripciones/inscripciones.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="10" column="72" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -122,20 +83,8 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SHOPITESZ-practica1" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -145,7 +94,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\Martin Vaca\AppData\Local\Programs\Python\Python37-32\python.exe" />
+      <option name="SDK_HOME" value="C:\Python37\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/controlador" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -165,7 +114,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>

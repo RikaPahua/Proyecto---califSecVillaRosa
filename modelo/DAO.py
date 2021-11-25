@@ -16,6 +16,7 @@ class Usuarios(UserMixin,db.Model):
     estatus=Column(Boolean, default=True)
     email=Column(String(50), unique=True)
     clave=Column(String(50), nullable=False)
+
 #MÉTODOS PARA CUESTIONES DE CRUD
     def insertar (self):
         db.session.add(self)
@@ -89,6 +90,22 @@ class Estudiantes(db.Model):
     def consultaGeneral (self):
         return self.query.all()
 
+    def insertar (self):
+        db.session.add(self)
+        db.session.commit()
+
+    def consultaIndividual (self,id):
+        return self.query.get(id)
+
+    def actualizar (self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,noControl):
+        objeto= self.consultaIndividual(noControl)
+        db.session.delete(objeto)
+        db.session.commit()
+
 class Profesores(db.Model):
     __tablename__='Profesores'
     idProfesor=Column(Integer, primary_key=True)
@@ -99,6 +116,22 @@ class Profesores(db.Model):
 
     def consultaGeneral (self):
         return self.query.all()
+
+    def insertar (self):
+        db.session.add(self)
+        db.session.commit()
+
+    def consultaIndividual (self,id):
+        return self.query.get(id)
+
+    def actualizar (self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        objeto= self.consultaIndividual(id)
+        db.session.delete(objeto)
+        db.session.commit()
 
 class Grupos (db.Model):
     __tablename__='Grupos'
@@ -121,3 +154,4 @@ class Inscripciones(db.Model):
     def insertar (self):
         db.session.add(self)
         db.session.commit()
+

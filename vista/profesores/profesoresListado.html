@@ -2,7 +2,20 @@
 {% block content %}
 {{super()}}
     <H1>LISTADO DE PROFESORES</H1>
-    <a href="/profesoresNuevo" class="btn btn-success" id="nuevo2"> Registrar nuevo</a>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% for us in usuarios %}
+        {% if us.idUsuario==ul%}
+            <a href="/profesoresNuevo/{{us.idUsuario}}" class="btn btn-success" id="nuevo2"> Registrar nuevo</a>
+        {% else %}
+        {% endif %}
+    {% endfor %}
     <br/><br/>
     <div class="table-responsive">
         <table class="table table-bordered">
@@ -42,7 +55,7 @@
                             <td>{{prof.especialidad}}</td>
                             <td>{{prof.fechaContratacion}}</td>
                             <td>{{prof.cedula}}</td>
-                            <td><a href="/profesoresEditar"><span class="glyphicon glyphicon-edit"></span></a></td>
+                            <td><a href="/profesoresEditar/{{us.idUsuario}}"><span class="glyphicon glyphicon-edit"></span></a></td>
                             </tr>
                         {% else %}
                         {% endif %}
