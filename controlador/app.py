@@ -51,6 +51,7 @@ def index():
 ###################################################################################
 
 @app.route('/administrativos')
+@login_required
 def administrativosListado():
     u = Usuarios()
     usuarios = u.consultaGeneral()
@@ -58,15 +59,18 @@ def administrativosListado():
 
 
 @app.route('/administrativosNuevo')
+@login_required
 def administrativosNuevo():
     return render_template('administrativos/administrativoNuevo.html')
 
 @app.route('/administrativosEditar/<int:id>')
+@login_required
 def administrativosEditar(id):
     u=Usuarios()
     return render_template('administrativos/administrativoEditar.html', usuario=u.consultaIndividual(id))
 
 @app.route('/administrativosEliminar/<int:id>')
+@login_required
 def administrativosEliminar(id):
     u = Usuarios()
     u.eliminar(id)
@@ -74,6 +78,7 @@ def administrativosEliminar(id):
     return redirect(url_for('administrativosListado'))
 
 @app.route('/administrativosDatosNuevo',methods=['post'])
+@login_required
 def administrativosDatosNuevo():
     u= Usuarios()
     u.foto=request.files['foto'].read()
@@ -89,11 +94,13 @@ def administrativosDatosNuevo():
     return render_template('administrativos/administrativoNuevo.html')
 
 @app.route('/usuarios/imagen/<int:id>')
+@login_required
 def consultarImagenUsuario(id):
     u = Usuarios()
     return u.consultaIndividual(id).foto
 
 @app.route('/administrativosDatosEdicion',methods=['post'])
+@login_required
 def administrativosDatosEdicion():
     u = Usuarios()
     u.idUsuario=request.form['idUsuario']
@@ -117,10 +124,12 @@ def administrativosDatosEdicion():
     return render_template('administrativos/administrativoEditar.html',usuario=u)
 
 @app.route('/administrativoPerfil')
+@login_required
 def administrativoPerfil():
     return render_template('administrativos/administrativoEditar.html')
 ###################################################################################
 @app.route('/estudiantes')
+@login_required
 def estudiantesListado():
     u = Usuarios()
     e = Estudiantes()
@@ -132,18 +141,21 @@ def estudiantesListado():
     return render_template('estudiantes/estudiantesListado.html', usuarios=usuarios, estudiantes = estudiantes,ul=ul)
 
 @app.route('/estudiantesNuevo/<int:id>')
+@login_required
 def estudiantesNuevo(id):
     u = Usuarios()
     usuario = u.consultaIndividual(id)
     return render_template('estudiantes/estudianteNuevo.html',usuario=usuario)
 
 @app.route('/estudiantesEditar/<int:id>')
+@login_required
 def estudiantesEditar(id):
     u = Usuarios()
     e = Estudiantes()
     return render_template('estudiantes/estudianteEditar.html',usuario=u.consultaIndividual(id),estudiante=e.consultaGeneral())
 
 @app.route('/estudianteEliminar/<int:id>')
+@login_required
 def estudiantesEliminar(id):
     u = Usuarios()
     e= Estudiantes()
@@ -157,6 +169,7 @@ def estudiantesEliminar(id):
     return redirect(url_for('estudiantesListado'))
 
 @app.route('/estudiantesDatosNuevo',methods=['post'])
+@login_required
 def estudiantesDatosNuevo():
     e = Estudiantes()
     u= Usuarios()
@@ -179,6 +192,7 @@ def estudiantesDatosNuevo():
     return redirect(url_for('estudiantesListado'))
 
 @app.route('/estudiantesDatosEdicion',methods=['post'])
+@login_required
 def estudiantesDatosEdicion():
     e = Estudiantes()
     u= Usuarios()
@@ -210,6 +224,7 @@ def estudiantesDatosEdicion():
 
 ###################################################################################
 @app.route('/profesores')
+@login_required
 def profesoresListado():
     u = Usuarios()
     p = Profesores()
@@ -221,18 +236,21 @@ def profesoresListado():
     return render_template('profesores/profesoresListado.html', usuarios=usuarios, profesores = profesores,ul=ul)
 
 @app.route('/profesoresNuevo/<int:id>')
+@login_required
 def profesoresNuevo(id):
     u = Usuarios()
     usuario = u.consultaIndividual(id)
     return render_template('profesores/profesorNuevo.html', usuario = usuario)
 
 @app.route('/profesoresEditar/<int:id>')
+@login_required
 def profesoresEditar(id):
     u = Usuarios()
     p = Profesores()
     return render_template('profesores/profesorEditar.html',usuario=u.consultaIndividual(id),profesor=p.consultaGeneral())
 
 @app.route('/profesorEliminar/<int:id>')
+@login_required
 def profesoresEliminar(id):
     u = Usuarios()
     p= Profesores()
@@ -245,6 +263,7 @@ def profesoresEliminar(id):
     return redirect(url_for('profesoresListado'))
 
 @app.route('/profesoresDatosNuevo',methods=['post'])
+@login_required
 def profesoresDatosNuevo():
     u= Usuarios()
     p = Profesores()
@@ -268,6 +287,7 @@ def profesoresDatosNuevo():
 
 
 @app.route('/profesoresDatosEdicion',methods=['post'])
+@login_required
 def profesoresDatosEdicion():
     p = Profesores()
     u= Usuarios()
@@ -298,28 +318,34 @@ def profesoresDatosEdicion():
     return render_template('profesores/profesorEditar.html',usuario=u.consultaIndividual(u.idUsuario),profesor=p.consultaGeneral())
 ###################################################################################
 @app.route('/calificacionesEncurso')
+@login_required
 def calificacionesEncurso():
     return render_template('calificaciones/calificacionesEstudiante.html')
 
 @app.route('/calificacionesKardex')
+@login_required
 def calificacionesKardex():
     return render_template('calificaciones/kardex.html')
 ###################################################################################
 @app.route('/materiasImpartidas')
+@login_required
 def materiasImpartidas():
     return render_template('materias/materiasImpartidas.html')
 ###################################################################################
 @app.route('/gruposListado')
+@login_required
 def gruposListado():
     g = Grupos()
     grup = g.consultaGeneral()
     return render_template('grupos/gruposListado.html', grupos=grup)
 
 @app.route('/grupoNuevo')
+@login_required
 def gruposNuevo():
     return render_template('grupos/nuevoGrupo.html')
 
 @app.route('/registrarGrupo',methods=['post'])
+@login_required
 def registrarGrupo():
     g = Grupos()
     g.nombre=request.form['nombre']
@@ -330,11 +356,13 @@ def registrarGrupo():
     return render_template('grupos/nuevoGrupo.html')
 
 @app.route('/gruposEditar/<int:id>')
+@login_required
 def gruposEditar(id):
     g= Grupos()
     return render_template('grupos/grupoEditar.html', grupo = g.consultaIndividual(id))
 
 @app.route('/gruposEliminar/<int:id>')
+@login_required
 def gruposEliminar(id):
     g= Grupos()
     g.eliminar(id)
@@ -343,6 +371,7 @@ def gruposEliminar(id):
     return render_template('grupos/gruposListado.html', grupos=grup)
 
 @app.route('/gruposObtenerDatos',methods=['post'])
+@login_required
 def gruposObtenerDatos():
     g= Grupos()
     g.idGrupo=request.form['idGrupo']
@@ -354,26 +383,32 @@ def gruposObtenerDatos():
     return render_template('grupos/grupoEditar.html', grupo = g.consultaIndividual(request.form['idGrupo']))
 
 @app.route('/grupoCalificaciones')
+@login_required
 def grupoCalificaciones():
     return render_template('grupos/grupoCalificaciones.html')
 ###################################################################################
 @app.route('/horarios')
+@login_required
 def horarios():
     return render_template('horarios/horarios.html')
 @app.route('/generarHorario',methods=['post'])
+@login_required
 def horarioGenerar():
     return 'GESTIÓN DE HORARIOS'
 ###################################################################################
 @app.route('/registroCalificaciones',methods=['post'])
+@login_required
 def registroCalificaciones():
     return 'SE HAN REGISTRADO LAS CALIFICACIONES'
 ###################################################################################
 @app.route('/inscripciones')
+@login_required
 def inscripciones():
     g = Grupos()
     grup = g.consultaGeneral()
     return render_template('inscripciones/inscripciones.html', grupos=grup)
 @app.route('/registrarInscripcion', methods=['post'])
+@login_required
 def registrarInscripcion():
     ins = Inscripciones()
     ins.noControl = request.form['noControl']
@@ -384,16 +419,19 @@ def registrarInscripcion():
     return render_template('inscripciones/inscripciones.html')
 #################################################################################
 @app.route('/materiasListado')
+@login_required
 def materiasListado():
     m = Materias()
     mat = m.consultaGeneral()
     return render_template('materias/materiasListado.html', materias=mat)
 
 @app.route('/materiaNuevo')
+@login_required
 def materiaNuevo():
     return render_template('materias/nuevaMateria.html')
 
 @app.route('/registrarMateria',methods=['post'])
+@login_required
 def registrarMateria():
     m = Materias ()
     m.nombre=request.form['nombre']
@@ -403,11 +441,13 @@ def registrarMateria():
     return render_template('materias/nuevaMateria.html')
 
 @app.route('/materiasEditar/<int:id>')
+@login_required
 def materiasEditar(id):
     m= Materias()
     return render_template('materias/materiaEditar.html', materia = m.consultaIndividual(id))
 
 @app.route('/materiasEliminar/<int:id>')
+@login_required
 def materiasEliminar(id):
     m= Materias()
     m.eliminar(id)
@@ -416,6 +456,7 @@ def materiasEliminar(id):
     return render_template('materias/materiasListado.html', materias=mat)
 
 @app.route('/materiasObtenerDatos',methods=['post'])
+@login_required
 def materiasObtenerDatos():
     m= Materias()
     m.idMateria=request.form['idMateria']
