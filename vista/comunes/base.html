@@ -66,7 +66,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right" id="usuar">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><img src="{{url_for('static',filename='img/usuarios.png')}}" width="28px"> {{current_user.nombre}}</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown"><img src="/usuarios/imagen/{{current_user.idUsuario}}" width="28px"> {{current_user.nombre}}</a>
                     <ul class="dropdown-menu">
                         {%if current_user.is_authenticated and current_user.is_administrador()%}
                         <li><a href="/administrativosEditar/{{current_user.idUsuario}}"> <span class="glyphicon glyphicon-edit"></span> Editar Perfil</a></li>
