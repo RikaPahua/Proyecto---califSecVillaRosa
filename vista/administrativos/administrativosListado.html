@@ -26,7 +26,6 @@
             <th>TIPO</th>
             <th>ESTATUS</th>
             <th>E-MAIL</th>
-            <th>CONTRASEÑA</th>
             <th>EDITAR</th>
         </tr>
         </thead>
@@ -39,10 +38,9 @@
                     <td>{{us.sexo}}</td>
                     <td>{{us.telefono}}</td>
                     <td>{{us.domicilio}}</td>
-                    <td>{{us.tipo}}</td>
+                    <td>Administrador</td>
                     <td>{{us.estatus}}</td>
                     <td>{{us.email}}</td>
-                    <td>{{us.clave}}</td>
                     <td><a href="/administrativosEditar/{{us.idUsuario}}"><span class="glyphicon glyphicon-edit"></span></a></td>
                 </tr>
             {% else %}
@@ -54,10 +52,9 @@
                             <td>{{us.sexo}}</td>
                             <td>{{us.telefono}}</td>
                             <td>{{us.domicilio}}</td>
-                            <td>{{us.tipo}}</td>
+                            <td>Staff Administrativo</td>
                             <td>{{us.estatus}}</td>
                             <td>{{us.email}}</td>
-                            <td>{{us.clave}}</td>
                             <td><a href="/administrativosEditar/{{us.idUsuario}}"><span class="glyphicon glyphicon-edit"></span></a></td>
                         </tr>
                     {% else %}

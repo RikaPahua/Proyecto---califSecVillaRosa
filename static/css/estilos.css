@@ -42,6 +42,13 @@ table, th tr, td{
     width: 90%;
     margin: auto;
 }
+
+.tabb{
+    background-color: white;
+    color:black;
+    width: 40%;
+    margin: auto;
+}
 .table td{
     text-align: center;
 }
@@ -124,4 +131,7 @@ input, select{
 label, #us{
     font-size: 15px;
     font-family: Arial Narrow;
+}
+#naveg li {
+    padding-top: 7px;
 }

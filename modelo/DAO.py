@@ -55,7 +55,7 @@ class Usuarios(UserMixin,db.Model):
     def get_id(self):
         return self.idUsuario
 
-    def is_admin(self):
+    def is_administrador(self):
         if self.tipo=="A":
             return True
         else:
@@ -143,6 +143,21 @@ class Grupos (db.Model):
     def consultaGeneral (self):
         return self.query.all()
 
+    def insertar (self):
+        db.session.add(self)
+        db.session.commit()
+
+    def consultaIndividual (self,id):
+        return self.query.get(id)
+
+    def actualizar (self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        objeto= self.consultaIndividual(id)
+        db.session.delete(objeto)
+        db.session.commit()
 
 class Inscripciones(db.Model):
     __tablename__ = 'Inscripciones'
@@ -153,5 +168,31 @@ class Inscripciones(db.Model):
 
     def insertar (self):
         db.session.add(self)
+        db.session.commit()
+
+
+class Materias (db.Model):
+    __tablename__ = 'Materias'
+    idMateria=Column(Integer, primary_key=True)
+    nombre=Column(String(20), unique=True)
+    grado=Column(Integer, nullable=False)
+
+    def consultaGeneral (self):
+        return self.query.all()
+
+    def insertar (self):
+        db.session.add(self)
+        db.session.commit()
+
+    def consultaIndividual (self,id):
+        return self.query.get(id)
+
+    def actualizar (self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        objeto= self.consultaIndividual(id)
+        db.session.delete(objeto)
         db.session.commit()
 

@@ -1,0 +1,35 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+<h1>LISTADO DE GRUPOS</h1>
+<div>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <a href="/materiaNuevo" class="btn btn-success" id="nuevo1"> Registrar nuevo </a>
+    <br/><br/>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>ID MATERIA</th>
+            <th>NOMBRE</th>
+            <th>GRADO</th>
+            <th>EDITAR</th>
+        </tr>
+        </thead>
+        {% for mat in materias %}
+        <tr>
+            <td>{{mat.idMateria}}</td>
+            <td>{{mat.nombre}}</td>
+            <td>{{mat.grado}}</td>
+            <td><a href="/materiasEditar/{{mat.idMateria}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{%endblock content%}

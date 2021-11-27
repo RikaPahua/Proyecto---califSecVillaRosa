@@ -1,6 +1,6 @@
 from flask import Flask,render_template, request, flash,redirect, url_for
 from flask_bootstrap import Bootstrap
-from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos, Inscripciones
+from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos, Inscripciones, Materias
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 app = Flask(__name__, template_folder='../vista',static_folder='../static')
@@ -49,11 +49,13 @@ def index():
     return render_template('comunes/index.html')
 
 ###################################################################################
+
 @app.route('/administrativos')
 def administrativosListado():
     u = Usuarios()
     usuarios = u.consultaGeneral()
     return render_template('administrativos/administrativosListado.html', usuarios = usuarios)
+
 
 @app.route('/administrativosNuevo')
 def administrativosNuevo():
@@ -313,6 +315,43 @@ def gruposListado():
     grup = g.consultaGeneral()
     return render_template('grupos/gruposListado.html', grupos=grup)
 
+@app.route('/grupoNuevo')
+def gruposNuevo():
+    return render_template('grupos/nuevoGrupo.html')
+
+@app.route('/registrarGrupo',methods=['post'])
+def registrarGrupo():
+    g = Grupos()
+    g.nombre=request.form['nombre']
+    g.grado=request.form['grado']
+    g.capacidad=request.form['capacidad']
+    g.insertar()
+    flash('Se ha registrado un nuevo grupo con éxito!!')
+    return render_template('grupos/nuevoGrupo.html')
+
+@app.route('/gruposEditar/<int:id>')
+def gruposEditar(id):
+    g= Grupos()
+    return render_template('grupos/grupoEditar.html', grupo = g.consultaIndividual(id))
+
+@app.route('/gruposEliminar/<int:id>')
+def gruposEliminar(id):
+    g= Grupos()
+    g.eliminar(id)
+    grup = g.consultaGeneral()
+    flash('Se ha eliminado el grupo con éxito!!')
+    return render_template('grupos/gruposListado.html', grupos=grup)
+
+@app.route('/gruposObtenerDatos',methods=['post'])
+def gruposObtenerDatos():
+    g= Grupos()
+    g.idGrupo=request.form['idGrupo']
+    g.nombre=request.form['nombre']
+    g.grado=request.form['grado']
+    g.capacidad=request.form['capacidad']
+    g.actualizar()
+    flash('Se han gruardado los cambios con éxito!!')
+    return render_template('grupos/grupoEditar.html', grupo = g.consultaIndividual(request.form['idGrupo']))
 
 @app.route('/grupoCalificaciones')
 def grupoCalificaciones():
@@ -343,7 +382,50 @@ def registrarInscripcion():
     ins.insertar()
     flash('Se ha registrado la inscripción con éxito!!')
     return render_template('inscripciones/inscripciones.html')
+#################################################################################
+@app.route('/materiasListado')
+def materiasListado():
+    m = Materias()
+    mat = m.consultaGeneral()
+    return render_template('materias/materiasListado.html', materias=mat)
+
+@app.route('/materiaNuevo')
+def materiaNuevo():
+    return render_template('materias/nuevaMateria.html')
+
+@app.route('/registrarMateria',methods=['post'])
+def registrarMateria():
+    m = Materias ()
+    m.nombre=request.form['nombre']
+    m.grado=request.form['grado']
+    m.insertar()
+    flash('Se ha registrado una nueva materia con éxito!!')
+    return render_template('materias/nuevaMateria.html')
+
+@app.route('/materiasEditar/<int:id>')
+def materiasEditar(id):
+    m= Materias()
+    return render_template('materias/materiaEditar.html', materia = m.consultaIndividual(id))
+
+@app.route('/materiasEliminar/<int:id>')
+def materiasEliminar(id):
+    m= Materias()
+    m.eliminar(id)
+    mat = m.consultaGeneral()
+    flash('Se ha eliminado la materia con éxito!!')
+    return render_template('materias/materiasListado.html', materias=mat)
+
+@app.route('/materiasObtenerDatos',methods=['post'])
+def materiasObtenerDatos():
+    m= Materias()
+    m.idMateria=request.form['idMateria']
+    m.nombre=request.form['nombre']
+    m.grado=request.form['grado']
+    m.actualizar()
+    flash('Se han gruardado los cambios con éxito!!')
+    return render_template('materias/materiaEditar.html', materia = m.consultaIndividual(request.form['idMateria']))
 
 if __name__ == '__main__':
     db.init_app(app)
     app.run(debug=True)
+

@@ -10,12 +10,19 @@
         <a data-toggle="modal" data-target="#imagen" id="imgn"><span class="glyphicon glyphicon-eye-open"><b> Visualizar</b></span></a>
     </div>
     <br/>
+    {%if current_user.is_authenticated and current_user.is_administrador()%}
     <label for="idUsuario">idUsuario: </label>
     <input type="number" name="idUsuario" id="idUsuario" value="{{usuario.idUsuario}}" readonly/>
     <br/><br/>
+    {%endif%}
+    {%if current_user.is_authenticated and current_user.is_staff()%}
+    <input type="hidden" name="idUsuario" value="{{usuario.idUsuario}}" readonly/>
+    {%endif%}
     <label for="nombre">Nombre: </label>
     <input type="text" name="nombre" id="nombre" value="{{usuario.nombre}}" maxlength="100" size="60px" required/>
-    <br/><br/>
+    <br/>
+    {%if current_user.is_authenticated and current_user.is_administrador()%}
+    <br/>
     <div class="dropdown">
         <label for="sexo">Sexo: </label>
         <select id="sexo" name="sexo">
@@ -28,6 +35,10 @@
             {% endif %}
         </select>
     </div>
+    {%endif%}
+    {%if current_user.is_authenticated and current_user.is_staff()%}
+    <input type="hidden" name="sexo" value="{{usuario.sexo}}" readonly/>
+    {%endif%}
     <br/>
     <label for="telefono">Teléfono: </label>
     <input type="tel" name="telefono" id="telefono" value="{{usuario.telefono}}" maxlength="12" size="12" required/>
@@ -35,10 +46,11 @@
     <label for="domicilio">Domicilio: </label>
     <input type="text" name="domicilio" id="domicilio" value="{{usuario.domicilio}}" maxlength="50" size="50px" required/>
     <br/><br/>
+    {%if current_user.is_authenticated and current_user.is_administrador()%}
     <div class="dropdown">
         <label for="tipo">Tipo: </label>
         <select id="tipo" name="tipo">
-            {% if usuario.sexo== 'A' %}
+            {% if usuario.tipo== 'A' %}
                 <option value="A" selected>Administrador</option>
                 <option value="S" >Staff Administrativo</option>
             {% else %}
@@ -58,15 +70,24 @@
         {% endif %}
     </div>
     <br/>
+    {%endif%}
+    {%if current_user.is_authenticated and current_user.is_staff()%}
+    <input type="hidden" name="tipo" value="{{usuario.tipo}}" readonly/>
+    <input type="hidden" name="estatus" value="{{usuario.estatus}}" readonly/>
+    {%endif%}
     <label for="email">E-mail: </label>
     <input type="email" name="email" id="email" value="{{usuario.email}}" maxlength="50" size="50px" required/>
     <br/><br/>
     <label for="clave">Contraseña: </label>
     <input type="password" name="clave" id="clave" value="{{usuario.clave}}" maxlength="10" required/>
     <br/><br/>
+    {%if current_user.is_authenticated and current_user.is_administrador()%}
     <a class="btn btn-dark" href="/administrativos"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    {%endif%}
     <button type="submit" class="btn btn-info">Guardar</button>
+    {%if current_user.is_authenticated and current_user.is_administrador()%}
     <a data-toggle="modal" data-target="#eliminarUs" id="elimin" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
+    {%endif%}
     {% if get_flashed_messages() %}
     {% for m in get_flashed_messages()%}
     <div class="alert alert-success alert-dismissible">

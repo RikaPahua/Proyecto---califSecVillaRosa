@@ -10,12 +10,18 @@
             <a data-toggle="modal" data-target="#imagen" id="imgn"><span class="glyphicon glyphicon-eye-open"><b> Visualizar</b></span></a>
         </div>
         <br/>
+        {%if current_user.is_authenticated and current_user.is_administrador()%}
         <label for="idUsuario">idUsuario: </label>
         <input type="number" name="idUsuario" id="idUsuario" value="{{usuario.idUsuario}}" readonly/>
         <br/><br/>
+        {%endif%}
+        {%if current_user.is_authenticated and current_user.is_profesor()%}
+        <input type="hidden" name="idUsuario" value="{{usuario.idUsuario}}" readonly/>
+        {%endif%}
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" id="nombre" value="{{usuario.nombre}}" maxlength="100" size="60px" required/>
         <br/><br/>
+        {%if current_user.is_authenticated and current_user.is_administrador()%}
         <div class="dropdown">
             <label for="sexo">Sexo: </label>
             <select id="sexo" name="sexo">
@@ -29,12 +35,17 @@
             </select>
         </div>
         <br/>
+        {%endif%}
+        {%if current_user.is_authenticated and current_user.is_profesor()%}
+        <input type="hidden" name="sexo" value="{{usuario.sexo}}" readonly/>
+        {%endif%}
         <label for="telefono">Teléfono: </label>
         <input type="tel" name="telefono" id="telefono" value="{{usuario.telefono}}" maxlength="12" size="12" required/>
         <br/><br/>
         <label for="domicilio">Domicilio: </label>
         <input type="text" name="domicilio" id="domicilio" value="{{usuario.domicilio}}" maxlength="50" size="50" required/>
         <br/><br/>
+        {%if current_user.is_authenticated and current_user.is_administrador()%}
         <div>
             {% if usuario.estatus==True%}
             <label>Estatus:</label>
@@ -45,6 +56,10 @@
             {% endif %}
         </div>
         <br/>
+        {%endif%}
+        {%if current_user.is_authenticated and current_user.is_profesor()%}
+        <input type="hidden" name="estatus" value="{{usuario.estatus}}" readonly/>
+        {%endif%}
         <label for="email">E-mail: </label>
         <input type="email" name="email" id="email" value="{{usuario.email}}" maxlength="50" size="50px" required/>
         <br/><br/>
@@ -56,21 +71,44 @@
                 <label for="idProfesor">idProfesor: </label>
                 <input type="number" name="idProfesor" id="idProfesor" value="{{p.idProfesor}}" readonly/>
                 <br/><br/>
+                {%if current_user.is_authenticated and current_user.is_administrador()%}
                 <label for="especialidad">Especialidad: </label>
                 <input type="text" name="especialidad" id="especialidad" value="{{p.especialidad}}" maxlength="50" size="50px" required/>
                 <br/><br/>
+                {%endif%}
+                {%if current_user.is_authenticated and current_user.is_profesor()%}
+                <input type="hidden" name="especialidad" value="{{p.especialidad}}" readonly/>
+                {%endif%}
+                {%if current_user.is_authenticated and current_user.is_profesor()%}
+                <label for="especialidad">Especialidad: </label>
+                <input type="text" name="especialidad"  value="{{p.especialidad}}" maxlength="50" size="50px" readonly/>
+                <br/><br/>
+                {%endif%}
+                {%if current_user.is_authenticated and current_user.is_administrador()%}
                 <label for="fechaContratacion">Fecha de contratación: </label>
                 <input type="date" name="fechaContratacion" id="fechaContratacion" value="{{p.fechaContratacion}}"  required/>
                 <br/><br/>
                 <label for="cedula">Cédula: </label>
                 <input type="text" name="cedula" id="cedula" value="{{p.cedula}}" maxlength="8" required/>
+                {%endif%}
+                {%if current_user.is_authenticated and current_user.is_profesor()%}
+                <label for="fechaContratacion">Fecha de contratación: </label>
+                <input type="date" name="fechaContratacion" value="{{p.fechaContratacion}}" readonly/>
+                <br/><br/>
+                <label for="cedula">Cédula: </label>
+                <input type="text" name="cedula" value="{{p.cedula}}" maxlength="8" readonly/>
+                {%endif%}
             {% else %}
             {% endif %}
         {% endfor %}
         <br/><br/>
+        {%if current_user.is_authenticated and current_user.is_administrador()%}
         <a class="btn btn-dark" href="/profesores"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        {%endif%}
         <button type="submit" class="btn btn-info">Guardar</button>
+        {%if current_user.is_authenticated and current_user.is_administrador()%}
         <a data-toggle="modal" data-target="#eliminarUs" id="elimin" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
+        {%endif%}
         {% if get_flashed_messages() %}
         {% for m in get_flashed_messages()%}
         <div class="alert alert-success alert-dismissible">

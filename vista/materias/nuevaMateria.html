@@ -1,0 +1,30 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+<form  action="/registrarMateria" method="post" class="formularioInscripciones" enctype="multipart/form-data">
+    <h1>REGISTRO DE UNA MATERIA</h1>
+    <label for="nombre">Nombre: </label>
+    <input type="text" name="nombre" id="nombre" placeholder="Nombre" maxlength="20"   required/>
+    <br/> <br/>
+    <div class="dropdown">
+        <label for="grado">Grado: </label>
+        <select id="grado" name="grado">
+            <option disabled selected>Seleccionar</option>
+            <option value="1" >1°</option>
+            <option value="2" >2°</option>
+            <option value="3" >3°</option>
+        </select>
+    </div>
+    <br/> <br/>
+    <a class="btn btn-dark" href="/materiasListado"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <button type="submit" class="btn btn-info">Registrar grupo</button>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+</form>
+{%endblock content%}

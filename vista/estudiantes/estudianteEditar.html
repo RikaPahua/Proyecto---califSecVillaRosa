@@ -9,13 +9,20 @@
                 <br/>
                 <a data-toggle="modal" data-target="#imagen" id="imgn"><span class="glyphicon glyphicon-eye-open"><b> Visualizar</b></span></a>
             </div>
+            {%if current_user.is_authenticated and current_user.is_administrador()%}
             <br/>
             <label for="idUsuario">idUsuario: </label>
             <input type="number" name="idUsuario" id="idUsuario" value="{{usuario.idUsuario}}" readonly/>
             <br/><br/>
+            {%endif%}
+            {%if current_user.is_authenticated and current_user.is_estudiante()%}
+            <input type="hidden" name="idUsuario" value="{{usuario.idUsuario}}" readonly/>
+            {%endif%}
             <label for="nombre">Nombre: </label>
             <input type="text" name="nombre" id="nombre" value="{{usuario.nombre}}" maxlength="100" required/>
-            <br/><br/>
+            <br/>
+            {%if current_user.is_authenticated and current_user.is_administrador()%}
+            <br/>
             <div class="dropdown">
                 <label for="sexo">Sexo: </label>
                 <select id="sexo" name="sexo">
@@ -28,13 +35,19 @@
                     {% endif %}
                 </select>
             </div>
+            {%endif%}
+            {%if current_user.is_authenticated and current_user.is_estudiante()%}
+            <input type="hidden" name="sexo" value="{{usuario.sexo}}" readonly/>
+            {%endif%}
             <br/>
             <label for="telefono">Teléfono: </label>
             <input type="tel" name="telefono" id="telefono" value="{{usuario.telefono}}" maxlength="12" size="12" required/>
             <br/><br/>
             <label for="domicilio">Domicilio: </label>
             <input type="text" name="domicilio" id="domicilio" value="{{usuario.domicilio}}" maxlength="50" size="50px" required/>
-            <br/><br/>
+            <br/>
+            {%if current_user.is_authenticated and current_user.is_administrador()%}
+            <br/>
             <div>
                 {% if usuario.estatus==True%}
                 <label>Estatus:</label>
@@ -44,6 +57,10 @@
                 <input type="checkbox" name="estatus" value="True">
                 {% endif %}
             </div>
+            {%endif%}
+            {%if current_user.is_authenticated and current_user.is_estudiante()%}
+            <input type="hidden" name="estatus" value="{{usuario.estatus}}" readonly/>
+            {%endif%}
             <br/>
             <label for="email">E-mail: </label>
             <input type="email" name="email" id="email" value="{{usuario.email}}" maxlength="50" size="50px" required/>
@@ -55,6 +72,7 @@
                 {% if e.idUsuario == usuario.idUsuario %}
                     <label for="noControl">noControl: </label>
                     <input type="text" name="noControl" id="noControl" value="{{e.noControl}}" maxlength="8" readonly/>
+                    {%if current_user.is_authenticated and current_user.is_administrador()%}
                     <br/><br/>
                     <label for="fechaNacimiento">Fecha de Nacimiento: </label>
                     <input type="date" name="fechaNacimiento" id="fechaNacimiento" value="{{e.fechaNacimiento}}" required/>
@@ -64,13 +82,29 @@
                     <br/><br/>
                     <label for="promedioGeneral">Promedio general: </label>
                     <input type="number" name="promedioGeneral" id="promedioGeneral" value="{{e.promedioGeneral}}" required/>
+                    {%endif%}
+                    {%if current_user.is_authenticated and current_user.is_estudiante()%}
+                    <br/><br/>
+                    <label for="fechaNacimiento">Fecha de Nacimiento: </label>
+                    <input type="date" name="fechaNacimiento" value="{{e.fechaNacimiento}}" readonly/>
+                    <br/><br/>
+                    <label for="fechaIngreso">Fecha de ingreso: </label>
+                    <input type="date" name="fechaIngreso" value="{{e.fechaIngreso}}" readonly/>
+                    <br/><br/>
+                    <label for="promedioGeneral">Promedio general: </label>
+                    <input type="number" name="promedioGeneral" value="{{e.promedioGeneral}}" readonly/>
+                    {%endif%}
                     <br/><br/>
                 {% else %}
                 {% endif %}
             {% endfor %}
+            {%if current_user.is_authenticated and current_user.is_administrador()%}
             <a class="btn btn-dark" href="/estudiantes"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            {%endif%}
             <button type="submit" class="btn btn-info">Guardar</button>
+            {%if current_user.is_authenticated and current_user.is_administrador()%}
             <a data-toggle="modal" data-target="#eliminarUs" id="elimin" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
+            {%endif%}
             {% if get_flashed_messages() %}
             {% for m in get_flashed_messages()%}
             <div class="alert alert-success alert-dismissible">
