@@ -1,6 +1,6 @@
 from flask import Flask,render_template, request, flash,redirect, url_for,abort
 from flask_bootstrap import Bootstrap
-from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos, Inscripciones, Materias
+from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos, Inscripciones, Materias, cicloEscolar
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 app = Flask(__name__, template_folder='../vista',static_folder='../static')
@@ -499,9 +499,30 @@ def inscripciones():
     if current_user.is_authenticated and (current_user.is_estudiante() or current_user.is_staff()):
         g = Grupos()
         grup = g.consultaGeneral()
-        return render_template('inscripciones/inscripciones.html', grupos=grup)
+        c= cicloEscolar()
+        ciclos = c.consultaGeneral()
+        act = 0;
+        for idc in ciclos:
+            act = idc.idCiclo
+        e= Estudiantes ()
+        est= e.consultaGeneral()
+        i = Inscripciones()
+        noControl = '';
+        for ee in est:
+            if current_user.idUsuario == ee.idUsuario:
+                noControl=ee.noControl
+        gpAC = 0;
+        grado = 0;
+        for a in i.consultaGeneral():
+            if a.noControl == noControl:
+                gpAC = a.idGrupo
+        for gg in grup:
+            if gg.idGrupo == gpAC:
+                grado = gg.grado
+        return render_template('inscripciones/inscripciones.html', grupos=grup, ciclos=ciclos,actual = act, estudiantes = est, gpActual = gpAC, grado = grado)
     else:
         abort(404)
+
 
 @app.route('/registrarInscripcion', methods=['post'])
 @login_required
@@ -510,10 +531,10 @@ def registrarInscripcion():
         ins = Inscripciones()
         ins.noControl = request.form['noControl']
         ins.idGrupo = request.form['idGrupo']
-        ins.idCiclo = 4
+        ins.idCiclo = request.form['idCiclo']
         ins.insertar()
         flash('Se ha registrado la inscripción con éxito!!')
-        return render_template('inscripciones/inscripciones.html')
+        return redirect(url_for('inscripciones'))
     else:
         abort(404)
 #################################################################################

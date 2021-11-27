@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Boolean, BLOB, Date
+from sqlalchemy import Column, Integer, String, Boolean, BLOB, Date, ForeignKey
 from flask_login import UserMixin
+from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
@@ -82,10 +83,11 @@ class Usuarios(UserMixin,db.Model):
 class Estudiantes(db.Model):
     __tablename__='Estudiantes'
     noControl=Column(String(8), primary_key=True)
-    idUsuario=Column(Integer)
+    idUsuario=Column(Integer,ForeignKey('Usuarios.idUsuario'))
     fechaNacimiento=Column(Date)
     fechaIngreso=Column(Date)
     promedioGeneral=Column(Integer)
+    usuario=relationship('Usuarios',backref='estudiantes', lazy="select")
 
     def consultaGeneral (self):
         return self.query.all()
@@ -109,10 +111,10 @@ class Estudiantes(db.Model):
 class Profesores(db.Model):
     __tablename__='Profesores'
     idProfesor=Column(Integer, primary_key=True)
-    idUsuario=Column(Integer)
+    idUsuario=Column(Integer,  ForeignKey('Usuarios.idUsuario'))
     especialidad=Column(String(50),nullable=True)
     fechaContratacion=Column(Date, nullable=True)
-    cedula=Column(String(8),nullable=True,unique=True)
+    usuario=relationship('Usuarios',backref='profesores', lazy="select")
 
     def consultaGeneral (self):
         return self.query.all()
@@ -159,17 +161,28 @@ class Grupos (db.Model):
         db.session.delete(objeto)
         db.session.commit()
 
+class cicloEscolar(db.Model):
+    __tablename__ = 'cicloEscolar'
+    idCiclo=Column(Integer, primary_key=True)
+    nombre=Column(String(9), unique=True)
+
+    def consultaGeneral (self):
+        return self.query.all()
+
 class Inscripciones(db.Model):
     __tablename__ = 'Inscripciones'
     idInscripciones=Column(Integer, primary_key=True)
-    noControl=Column(String(8), unique=True)
-    idGrupo=Column(Integer, nullable=False)
-    idCiclo=Column(Integer, nullable=False)
+    noControl=Column(String(8),ForeignKey('Estudiantes.noControl'))
+    idGrupo=Column(Integer, ForeignKey('Grupos.idGrupo'))
+    idCiclo=Column(Integer, ForeignKey('cicloEscolar.idCiclo'))
+    Estudiante=relationship('Estudiantes',backref='inscripciones', lazy="select")
 
     def insertar (self):
         db.session.add(self)
         db.session.commit()
 
+    def consultaGeneral (self):
+        return self.query.all()
 
 class Materias (db.Model):
     __tablename__ = 'Materias'

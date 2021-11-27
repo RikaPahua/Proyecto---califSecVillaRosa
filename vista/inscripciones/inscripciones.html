@@ -2,32 +2,64 @@
 {% block content %}
 {{super()}}
 
-          <form  action="/registrarInscripcion" method="post" class="formularioInscripciones" enctype="multipart/form-data">
-            <h1>INSCRIPCIONES</h1>
-            <label for="noControl">Numero de Control: </label>
-            <input type="text" name="noControl" id="noControl" placeholder="Numero de control" maxlength="8"   required/>
-            <br/><br/>
+<form  action="/registrarInscripcion" method="post" class="formularioInscripciones" enctype="multipart/form-data">
+    <h1>INSCRIPCIONES</h1>
+    <label for="noControl">Numero de Control: </label>
+    {%if current_user.is_authenticated and current_user.is_staff()%}
+        <input type="text" name="noControl" id="noControl" placeholder="Numero de control" maxlength="8"   required/>
+    {%endif%}
+    {%if current_user.is_authenticated and current_user.is_estudiante()%}
+        {%for e in estudiantes%}
+            {%if current_user.idUsuario == e.idUsuario%}
+                <input type="text" name="noControl" value="{{e.noControl}}" maxlength="8" readonly/>
+            {%endif%}
+        {%endfor%}
+    {%endif%}
+    <br/><br/>
+    {%for cicl in ciclos%}
+        {%if cicl.idCiclo == actual%}
             <label for="nombreCiclo">Ciclo: </label>
-            <input type="text" name="nombreCiclo" id="nombreCiclo" value="2021-2022" disabled/>
-            <br/>
-              <br/>
-            <div class="dropdown">
-                <label for="idGrupo">Grupos: </label>
-                <select id="idGrupo" name="idGrupo">
-                    {% for gp in grupos %}
-                        <option value={{gp.idGrupo}}>{{gp.nombre}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <br/>
-            <button type="submit" id="registro">Realizar inscripción</button>
-            {% if get_flashed_messages() %}
-            {% for m in get_flashed_messages()%}
-            <div class="alert alert-success alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>{{m}}</strong>
-            </div>
+            <input type="text" name="nombreCiclo" id="nombreCiclo" value="{{cicl.nombre}}" readonly/>
+            <input type="hidden" name="idCiclo" id="idCiclo" value="{{cicl.idCiclo}}"/>
+        {%endif%}
+    {%endfor%}
+    <br/>
+    <br/>
+    {% if current_user.is_authenticated and current_user.is_staff() %}
+    <div class="dropdown">
+        <label for="idGrupo">Grupos: </label>
+        <select id="idGrupo" name="idGrupo">
+            {% for gp in grupos %}
+                <option value={{gp.idGrupo}}>{{gp.nombre}}</option>
             {% endfor %}
-            {% endif %}
-        </form>
+        </select>
+    </div>
+    {%endif%}
+    {% if current_user.is_authenticated and current_user.is_estudiante() %}
+    <div class="dropdown">
+        <label for="idGrupo">Grupos: </label>
+        <select name="idGrupo">
+            {% for gp in grupos %}
+                {%if gp.idGrupo == gpActual %}
+                    <option value={{gp.idGrupo}} selected disabled>{{gp.nombre}}</option>
+                {%else%}
+                    {%if gp.idGrupo >= gpActual and gp.grado > grado%}
+                        <option value={{gp.idGrupo}}>{{gp.nombre}}</option>
+                    {%endif%}
+                {%endif%}
+            {% endfor %}
+        </select>
+    </div>
+    {%endif%}
+    <br/>
+    <button type="submit" id="registro">Realizar inscripción</button>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+</form>
 {%endblock content%}
