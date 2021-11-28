@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Boolean, BLOB, Date, ForeignKey, Time
+from sqlalchemy import Column, Integer, String, Boolean, BLOB, Date, ForeignKey, Time, Float
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
 
@@ -241,3 +241,15 @@ class Horarios(db.Model):
         return self.query.get(id)
 
 
+class Calificaciones(db.Model):
+    __tablename__ = 'Calificaciones'
+    idDetalleCalificacion=Column(Integer, primary_key=True)
+    noControl = Column(String(8), unique=True)
+    idMateria = Column(Integer, nullable=False)
+    bimestre = Column(Integer, nullable=True)
+    calificacion = Column(Float)
+    idCiclo = Column(Integer, nullable=False)
+
+    def insertar (self):
+        db.session.add(self)
+        db.session.commit()

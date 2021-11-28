@@ -1,6 +1,6 @@
 from flask import Flask,render_template, request, flash,redirect, url_for,abort
 from flask_bootstrap import Bootstrap
-from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos, Inscripciones, Materias, cicloEscolar, Horarios
+from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos, Inscripciones, Materias, cicloEscolar, Horarios,Calificaciones
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 app = Flask(__name__, template_folder='../vista',static_folder='../static')
@@ -74,8 +74,15 @@ def administrativosNuevo():
 @login_required
 def administrativosEditar(id):
     if current_user.is_authenticated and (current_user.is_administrador() or current_user.is_staff()):
-        u=Usuarios()
-        return render_template('administrativos/administrativoEditar.html', usuario=u.consultaIndividual(id))
+        if current_user.is_administrador():
+            u=Usuarios()
+            return render_template('administrativos/administrativoEditar.html', usuario=u.consultaIndividual(id))
+        else:
+            if current_user.is_staff() and (current_user.idUsuario==id):
+                u=Usuarios()
+                return render_template('administrativos/administrativoEditar.html', usuario=u.consultaIndividual(id))
+            else:
+                abort(404)
     else:
         abort(404)
 
@@ -174,9 +181,17 @@ def estudiantesNuevo(id):
 @login_required
 def estudiantesEditar(id):
     if current_user.is_authenticated and (current_user.is_administrador() or current_user.is_estudiante()):
-        u = Usuarios()
-        e = Estudiantes()
-        return render_template('estudiantes/estudianteEditar.html',usuario=u.consultaIndividual(id),estudiante=e.consultaGeneral())
+        if current_user.is_administrador():
+            u = Usuarios()
+            e = Estudiantes()
+            return render_template('estudiantes/estudianteEditar.html',usuario=u.consultaIndividual(id),estudiante=e.consultaGeneral())
+        else:
+            if current_user.is_estudiante() and (current_user.idUsuario==id):
+                u = Usuarios()
+                e = Estudiantes()
+                return render_template('estudiantes/estudianteEditar.html',usuario=u.consultaIndividual(id),estudiante=e.consultaGeneral())
+            else:
+                abort(404)
     else:
         abort(404)
 
@@ -287,9 +302,17 @@ def profesoresNuevo(id):
 @login_required
 def profesoresEditar(id):
     if current_user.is_authenticated and (current_user.is_administrador() or current_user.is_profesor()):
-        u = Usuarios()
-        p = Profesores()
-        return render_template('profesores/profesorEditar.html',usuario=u.consultaIndividual(id),profesor=p.consultaGeneral())
+        if current_user.is_administrador():
+            u = Usuarios()
+            p = Profesores()
+            return render_template('profesores/profesorEditar.html',usuario=u.consultaIndividual(id),profesor=p.consultaGeneral())
+        else:
+            if current_user.is_profesor() and (current_user.idUsuario == id):
+                u = Usuarios()
+                p = Profesores()
+                return render_template('profesores/profesorEditar.html',usuario=u.consultaIndividual(id),profesor=p.consultaGeneral())
+            else:
+                abort(404)
     else:
         abort(404)
 
@@ -390,9 +413,56 @@ def calificacionesKardex():
 @login_required
 def materiasImpartidas():
     if current_user.is_authenticated and current_user.is_profesor():
-        return render_template('materias/materiasImpartidas.html')
+        m = Materias()
+        p = Profesores()
+        h = Horarios()
+        g = Grupos()
+        u = Usuarios()
+        return render_template('materias/materiasImpartidas.html', materias=m.consultaGeneral(),
+                               profesores=p.consultaGeneral(), horarios=h.consultaGeneral(), grupos=g.consultaGeneral(),
+                               usuario=u.consultaGeneral())
+
+    else:
+            abort(404)
+
+
+@app.route('/obtenerGrupo/<int:id>')
+@login_required
+def obtenerGrupo(id):
+    if current_user.is_authenticated and current_user.is_profesor():
+        m = Materias()
+        mat = m.consultaGeneral()
+        p = Profesores()
+        h = Horarios()
+        g = Grupos()
+        u = Usuarios()
+        nombreGrupo = 1
+        nombreH = []
+        grupoSi = []
+        materiaSi = []
+        idUs = u.consultaIndividual(id)
+        hora = h.consultaGeneral()
+        pr = p.consultaGeneral()
+        for pi in pr:
+            if pi.idUsuario == idUs.idUsuario:
+                for m in mat:
+                    for hh in hora:
+                        if m.idMateria == hh.idMateria:
+                            if hh.idProfesor == pi.idProfesor:
+                                materiaSi.append(hh.idMateria)
+                                grupoSi.append(hh.idGrupo)
+                                nombreH.append(hh.idHorario)
+                                break
+
+        return render_template('materias/materiasImpartidas.html', materias=m.consultaGeneral(),
+                               profesores=p.consultaGeneral(), horarios=h.consultaGeneral(),
+                               grupos=g.consultaGeneral(),
+                               usuario=u.consultaGeneral(), grupoSi=grupoSi, materiaSi=materiaSi, nombreH=nombreH)
     else:
         abort(404)
+
+
+
 ###################################################################################
 @app.route('/gruposListado')
 @login_required
@@ -462,11 +532,59 @@ def gruposObtenerDatos():
     else:
         abort(404)
 
-@app.route('/grupoCalificaciones')
+@app.route('/grupCalificaciones/<int:id>,<int:idh>')
 @login_required
-def grupoCalificaciones():
+def grupoCalificaciones(id,idh):
     if current_user.is_authenticated and current_user.is_profesor():
-        return render_template('grupos/grupoCalificaciones.html')
+        g = Grupos()
+        i = Inscripciones()
+        e = Estudiantes()
+        u = Usuarios()
+        h = Horarios()
+        ci = cicloEscolar()
+        c = Calificaciones()
+
+        ciclos = ci.consultaGeneral()
+        act = 0;
+        for idc in ciclos:
+            act = idc.idCiclo
+
+        return render_template('grupos/grupoCalificaciones.html', grupos=g.consultaIndividual(id),
+                               inscripciones=i.consultaGeneral(), estudiantes=e.consultaGeneral(),actual=act,
+                               cicl=ci.consultaGeneral(),usuario=u.consultaGeneral(), horarios=h.consultaIndividual(idh))
+    else:
+        abort(404)
+
+@app.route('/grupoCalificacionesRe', methods=['post'])
+@login_required
+def grupoCalificacionesRegistrar():
+    if current_user.is_authenticated and current_user.is_profesor():
+        g = Grupos()
+        i = Inscripciones()
+        e = Estudiantes()
+        u = Usuarios()
+        h = Horarios()
+
+        ci = cicloEscolar()
+        ciclos = ci.consultaGeneral()
+        act = 0;
+        for idc in ciclos:
+            act = idc.idCiclo
+
+        c = Calificaciones()
+        c.noControl = request.form['noControl']
+        c.idMateria = request.form['idMateria']
+        c.bimestre = request.form['bimestre']
+        c.calificacion = request.form['calificacion']
+        c.idCiclo = request.form['idCiclo']
+
+
+        c.insertar()
+        flash('¡Se ha registrado la calificación con éxito!')
+
+        return render_template('grupos/grupoCalificaciones.html',grupos=g.consultaIndividual(request.form['idGrupo']),
+                               inscripciones=i.consultaGeneral(), estudiantes=e.consultaGeneral(), actual=act,
+                               cicl=ci.consultaGeneral(),usuario=u.consultaGeneral(), horarios=h.consultaIndividual(request.form['idHorario']))
     else:
         abort(404)
 ###################################################################################

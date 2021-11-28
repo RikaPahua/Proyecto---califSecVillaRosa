@@ -18,9 +18,17 @@
         {%if current_user.is_authenticated and current_user.is_profesor()%}
         <input type="hidden" name="idUsuario" value="{{usuario.idUsuario}}" readonly/>
         {%endif%}
+        {%if current_user.is_authenticated and current_user.is_administrador()%}
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" id="nombre" value="{{usuario.nombre}}" maxlength="100" size="60px" required/>
         <br/><br/>
+        {%endif%}
+        {%if current_user.is_authenticated and current_user.is_profesor()%}
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre"  value="{{usuario.nombre}}" maxlength="100" size="60px" required disabled/>
+        <input type="hidden" name="nombre"  value="{{usuario.nombre}}" maxlength="100" size="60px" required/>
+        <br/><br/>
+        {%endif%}
         {%if current_user.is_authenticated and current_user.is_administrador()%}
         <div class="dropdown">
             <label for="sexo">Sexo: </label>

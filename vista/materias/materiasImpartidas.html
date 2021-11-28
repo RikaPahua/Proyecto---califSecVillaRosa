@@ -4,16 +4,41 @@
     <br/>
         <h1>MATERIAS IMPARTIDAS</h1>
     <br/>
+{% if get_flashed_messages() %}
+{% for m in get_flashed_messages()%}
+<div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{m}}</strong>
+</div>
+{% endfor %}
+{% endif %}
 
     <div class="Tab">
           <table class="table table-bordered">
                <tr>
                  <th>Nombre</th>
-                 <td>Alejandro Ortega Casillas</td>
+                   {%for p in profesores%}
+                    {%if current_user.idUsuario ==  p.idUsuario%}
+                        {%for u in usuario%}
+                            {%if p.idUsuario == u.idUsuario%}
+                                <td>{{u.nombre}}</td>
+                            {%else%}
+                            {%endif%}
+                        {%endfor%}
+                    {%else%}
+                    {%endif%}
+                   {%endfor%}
                </tr>
                 <tr>
-                 <th>cédula</th>
-                 <td>19232456123</td>
+
+                 <th>cédila</th>
+                    {%for p in profesores%}
+                    {%if current_user.idUsuario ==  p.idUsuario%}
+                       <td>{{p.cedula}}</td>
+                    {%else%}
+                    {%endif%}
+                   {%endfor%}
+
                </tr>
           </table>
     </div>
@@ -24,83 +49,40 @@
         <thead class="table-dark">
         <tr>
 
-            <th>Id</th>
+
             <th>Nombre</th>
-            <th>Ciclo escolar</th>
+            <th>Grupo</th>
             <th>Opciones</th>
 
         </tr>
         </thead>
-        <tr>
-            <td>1</td>
-            <td>Matematicas I 1A</td>
-            <td>2020-2021</td>
-            <td><a href="/grupoCalificaciones" class="btn btn-dark">Lista de alumnos</a> </td>
 
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Fisica 3B</td>
-            <td>2020-2021</td>
-            <td><a href="/grupoCalificaciones" class="btn btn-dark">Lista de alumnos</a> </td>
+            {%for m in materiaSi%}
 
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Taller de Comptacion 2C</td>
-            <td>2020-2021</td>
-            <td><a href="/grupoCalificaciones" class="btn btn-dark">Lista de alumnos</a> </td>
+                <tr>
+                     {%for mm in materias%}
+                        {%if mm.idMateria == m%}
+                                <td>{{mm.nombre}}</td>
 
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Ciencias1B</td>
-            <td>2020-2021</td>
-            <td><a href="/grupoCalificaciones" class="btn btn-dark">Lista de alumnos</a> </td>
+                                {%for nom in nombreH%}
+                                    {%for h in horarios%}
+                                        {%if nom == h.idHorario%}
+                                            {%for g in grupos%}
+                                                {%if g.idGrupo == h.idGrupo and h.idMateria ==m%}
+                                                 <td>{{g.nombre}}</td>
 
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Matematicas I 1C</td>
-            <td>2020-2021</td>
-            <td><a href="/grupoCalificaciones" class="btn btn-dark">Lista de alumnos</a> </td>
+                                                <td><a href="/grupCalificaciones/{{g.idGrupo}},{{h.idHorario}}" class="btn btn-dark">Lista de alumnos</a> </td>
+                                                {%endif%}
+                                            {%endfor%}
+                                        {%endif%}
+                                    {%endfor%}
+                                {%endfor%}
 
-        </tr>
-            <tr>
-            <td>1</td>
-            <td>Matematicas I 1B</td>
-            <td>2020-2021</td>
-            <td><a href="/grupoCalificaciones" class="btn btn-dark">Lista de alumnos</a> </td>
+                        {%endif%}
+                     {%endfor%}
+                </tr>
+            {%endfor%}
 
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Fisica 3A</td>
-            <td>2020-2021</td>
-            <td><a href="/grupoCalificaciones" class="btn btn-dark">Lista de alumnos</a> </td>
-
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Taller de Comptacion 2B</td>
-            <td>2020-2021</td>
-            <td><a href="/grupoCalificaciones" class="btn btn-dark">Lista de alumnos</a> </td>
-
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Ciencias1C</td>
-            <td>2020-2021</td>
-            <td><a href="/grupoCalificaciones" class="btn btn-dark">Lista de alumnos</a> </td>
-
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Matematicas I 1B</td>
-            <td>2020-2021</td>
-            <td><a href="/grupoCalificaciones" class="btn btn-dark">Lista de alumnos</a> </td>
-
-        </tr>
         </table>
     </div>
 {%endblock content%}

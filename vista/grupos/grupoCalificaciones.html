@@ -1,114 +1,85 @@
 {% extends 'comunes/base.html'%}
 {% block content %}
 {{super()}}
+{% if get_flashed_messages() %}
+{% for m in get_flashed_messages()%}
+<div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{m}}</strong>
+</div>
+{% endfor %}
+{% endif %}
+
 <H1>LISTADO DE ALUMNOS</H1>
-<form  action="/registroCalificaciones" method="post" class="row g-3">
+
+<div class="Tab">
+          <table class="table table-bordered">
+               <tr>
+                 <th>Grupo</th>
+                   <td>{{grupos.nombre}}</td>
+
+               </tr>
+
+          </table>
+    </div>
+<br/><br/>
+
+<form  action="/grupoCalificacionesRe" method="post" class="formularioCalifGrup" enctype="multipart/form-data">
+    <input type="hidden" name="idHorario" value="{{horarios.idHorario}}"/>
     <div class="Tab">
-        <a id="obtenerGrup" class="btn btn-primary" href="/materiasImpartidas"><span class="glyphicon glyphicon-menu-left"> Atras</span></a>
+        <a id="obtenerGrup" class="btn btn-primary" href="/obtenerGrupo/{{current_user.idUsuario}}"><span class="glyphicon glyphicon-menu-left"> Atras</span></a>
         <br/><br/>
     <table class="table table-bordered">
         <thead class="table-dark">
         <tr>
-            <th>ID</th>
+
             <th>ALUMNO</th>
             <th>BIMESTRE</th>
             <th>CALIFICACIÓN</th>
+            <th>GUARDAR</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>Luis </td>
-            <td><select >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select></td>
-            <td><input type="number" name="calificacion"  ></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Ricado </td>
-            <td><select >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
 
-                </select></td>
-            <td><input type="number" name="calificacion" ></td>
-
-        </tr>
         <tr>
-            <td>3</td>
-            <td>Erandi </td>
-            <td><select >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+            {%for i in inscripciones%}
+                {%if i.idGrupo == grupos.idGrupo%}
 
-                </select></td>
-            <td><input type="number" name="calificacion" ></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Sebastian </td>
-            <td><select >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                        <input type="hidden" name="idGrupo" value="{{grupos.idGrupo}}"/>
+                    {%for e in estudiantes%}
+                        {%if e.noControl == i.noControl%}
+                            {%for u in usuario%}
+                                {%if u.idUsuario == e.idUsuario%}
+                                    <tr>
+                                    <td>{{u.nombre}} </td>
+                                        <input type="hidden" name="noControl" value="{{e.noControl}}"/>
 
-                </select></td>
-            <td><input type="number" name="calificacion" ></td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Alberto </td>
-            <td><select >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                                        <input type="hidden" name="idMateria" value="{{horarios.idMateria}}"/>
+                                    <td><select name="bimestre">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select></td>
+                                    <td><input type="number" name="calificacion"  ></td>
 
-                </select></td>
-            <td><input type="number" name="calificacion" ></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>Leticia </td>
-            <td><select >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                                            <input type="hidden" name="idCiclo"  value="{{actual}}" />
+                                            <td> <button type="submit"><span  class="glyphicon glyphicon-check"> </span></button></td>
 
-                </select></td>
-            <td><input type="number" name="calificacion" ></td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>Antonio </td>
-            <td><select >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                                    </tr>
+                                {%else%}
+                                {%endif%}
+                            {%endfor%}
+                        {%else%}
+                        {%endif%}
+                    {%endfor%}
+                {%else%}
+                {%endif%}
+            {%endfor%}
 
-                </select></td>
-            <td><input type="number" name="calificacion" ></td>
-        </tr>
         </thead>
     </table>
         <br/>
-        <button id="guardarCal" type="submit"><span class="glyphicon glyphicon-floppy-disk"> Guardar</span></button>
+
     </div>
 </form>
 {%endblock content%}
