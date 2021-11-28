@@ -530,7 +530,6 @@ def inscripciones():
     else:
         abort(404)
 
-
 @app.route('/registrarInscripcion', methods=['post'])
 @login_required
 def registrarInscripcion():
@@ -542,6 +541,77 @@ def registrarInscripcion():
         ins.insertar()
         flash('Se ha registrado la inscripción con éxito!!')
         return redirect(url_for('inscripciones'))
+    else:
+        abort(404)
+
+@app.route('/inscripcionesListado')
+@login_required
+def consultarInscripciones():
+    if current_user.is_authenticated and current_user.is_staff():
+        i = Inscripciones()
+        ins = i.consultaGeneral()
+        e = Estudiantes()
+        est = e.consultaGeneral()
+        u=Usuarios ()
+        us= u.consultaGeneral()
+        g=Grupos()
+        grup=g.consultaGeneral()
+        c = cicloEscolar()
+        cic = c.consultaGeneral()
+        return render_template('inscripciones/inscripcionesListado.html', inscripciones = ins, estudiantes = est, usuarios = us, grupos=grup, ciclos=cic)
+    else:
+        abort(404)
+
+@app.route('/edicionInscripciones/<int:id>')
+@login_required
+def Edicioninscripciones(id):
+    if current_user.is_authenticated and current_user.is_staff():
+        g = Grupos()
+        grup = g.consultaGeneral()
+        c= cicloEscolar()
+        ciclos = c.consultaGeneral()
+        e= Estudiantes ()
+        est= e.consultaGeneral()
+        i = Inscripciones()
+        ins=i.consultaIndividual(id)
+        u=Usuarios()
+        us=u.consultaGeneral()
+        return render_template('inscripciones/inscripcionEdicion.html', grupos=grup, ciclos=ciclos, estudiantes=est, inscripcion=ins, usuarios=us)
+    else:
+        abort(404)
+@app.route('/datosEdicionInscripcion', methods=['post'])
+@login_required
+def datosEdicionInscripcion():
+    if current_user.is_authenticated and current_user.is_staff():
+        ins = Inscripciones()
+        ins.idInscripciones=request.form['idInscripciones']
+        ins.noControl = request.form['noControl']
+        ins.idGrupo = request.form['idGrupo']
+        ins.idCiclo = request.form['idCiclo']
+        ins.actualizar()
+        g = Grupos()
+        grup = g.consultaGeneral()
+        c= cicloEscolar()
+        ciclos = c.consultaGeneral()
+        e= Estudiantes ()
+        est= e.consultaGeneral()
+        i = Inscripciones()
+        ins=i.consultaIndividual(request.form['idInscripciones'])
+        u=Usuarios()
+        us=u.consultaGeneral()
+        flash('Se han guardado los cambios con éxito!!')
+        return render_template('inscripciones/inscripcionEdicion.html', grupos=grup, ciclos=ciclos, estudiantes=est, inscripcion=ins, usuarios=us)
+    else:
+        abort(404)
+
+@app.route('/eliminarInscripcion/<int:id>')
+@login_required
+def inscripcionesEliminar(id):
+    if current_user.is_authenticated and current_user.is_staff():
+        i= Inscripciones()
+        i.eliminar(id)
+        flash('Se ha eliminado la inscripción con éxito!!')
+        return redirect(url_for('consultarInscripciones'))
     else:
         abort(404)
 #################################################################################

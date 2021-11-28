@@ -185,6 +185,18 @@ class Inscripciones(db.Model):
     def consultaGeneral (self):
         return self.query.all()
 
+    def consultaIndividual (self,id):
+        return self.query.get(id)
+
+    def actualizar (self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        objeto= self.consultaIndividual(id)
+        db.session.delete(objeto)
+        db.session.commit()
+
 class Materias (db.Model):
     __tablename__ = 'Materias'
     idMateria=Column(Integer, primary_key=True)

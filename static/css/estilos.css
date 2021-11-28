@@ -78,7 +78,7 @@ table, th tr, td{
    font-family: Arial Narrow;
    font-size:15px;
 }
-#registro, #registro1, #guardarCal, #obtenerGrup{
+#registro, #registro1, #guardarCal, #obtenerGrup, #con{
     font-size 10px;
     background: #303130;
     color: white;

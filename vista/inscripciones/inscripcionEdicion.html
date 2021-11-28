@@ -1,0 +1,75 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+
+<form  action="/datosEdicionInscripcion" method="post" class="formularioInscripciones" enctype="multipart/form-data">
+    <h1>MODIFICACIÓN DE LA INSCRIPCIÓN</h1>
+    <br/>
+    {%for e in estudiantes%}
+        {%if e.noControl == inscripcion.noControl%}
+            {%for u in usuarios%}
+                {%if e.idUsuario == u.idUsuario%}
+                    <label>Nombre: </label>
+                    <input type="text" name="nombre" value="{{u.nombre}}" size="30" readonly/>
+                    <br/><br/>
+                {%endif%}
+            {%endfor%}
+        {%endif%}
+    {%endfor%}
+    <input type="hidden" name="idInscripciones" value="{{inscripcion.idInscripciones}}" required/>
+    <label for="noControl">Numero de Control: </label>
+    <input type="text" name="noControl" id="noControl" value="{{inscripcion.noControl}}" maxlength="8"   required/>
+    <br/><br/>
+    {%for cicl in ciclos%}
+        {%if cicl.idCiclo == inscripcion.idCiclo%}
+            <label for="nombreCiclo">Ciclo: </label>
+            <input type="text" name="nombreCiclo" id="nombreCiclo" value="{{cicl.nombre}}" readonly/>
+            <input type="hidden" name="idCiclo" id="idCiclo" value="{{cicl.idCiclo}}"/>
+        {%endif%}
+    {%endfor%}
+    <br/>
+    <br/>
+    <div class="dropdown">
+        <label for="idGrupo">Grupos: </label>
+        <select id="idGrupo" name="idGrupo">
+            {% for gp in grupos %}
+                {%if gp.idGrupo == inscripcion.idGrupo%}
+                    <option value={{gp.idGrupo}} selected>{{gp.nombre}}</option>
+                {%else%}
+                    <option value={{gp.idGrupo}}>{{gp.nombre}}</option>
+                {%endif%}
+            {% endfor %}
+        </select>
+    </div>
+    <br/>
+    <a class="btn btn-dark" href="/inscripcionesListado"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <button type="submit" class="btn btn-info" >Guardar los cambios</button>
+    <a data-toggle="modal" data-target="#eliminarUs" id="elimin" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+</form>
+<!--ELIMINAR Inscrición-->
+<div id="eliminarUs"  class="modal fade" role="dialog">
+    <div class="modal-dialog" role="eliminar">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Eliminación de la inscripción</h4>
+            </div>
+            <div class="modal-body">
+                <p>¿ Esta seguro de que quiere eliminar esta inscripción ?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="/eliminarInscripcion/{{inscripcion.idInscripciones}}" class="btn btn-info">Si</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock content%}

@@ -1,0 +1,53 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+    <h1>LISTADO DE INSCRIPCIONES</h1>
+<div>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <table class="table table-bordered" >
+        <thead class="table-dark">
+        <tr>
+            <th>ID INSCRIPCIÓN</th>
+            <th>NOMBRE DEL ESTUDIANTE</th>
+            <th>NÚMERO DE CONTROL</th>
+            <th>GRUPO</th>
+            <th>CICLO</th>
+            <th>EDITAR</th>
+        </tr>
+        </thead>
+        {% for i in inscripciones %}
+        <tr>
+            <td>{{i.idInscripciones}}</td>
+            {% for e in estudiantes %}
+                {%if e.noControl == i.noControl%}
+                    {%for u in usuarios%}
+                        {%if e.idUsuario == u.idUsuario%}
+                            <td>{{u.nombre}}</td>
+                        {%endif%}
+                    {%endfor%}
+                    <td>{{i.noControl}}</td>
+                    {%for g in grupos%}
+                        {%if g.idGrupo == i.idGrupo%}
+                            <td>{{g.nombre}}</td>
+                        {%endif%}
+                    {%endfor%}
+                    {%for c in ciclos%}
+                        {%if c.idCiclo == i.idCiclo%}
+                            <td>{{c.nombre}}</td>
+                        {%endif%}
+                    {%endfor%}
+                {%endif%}
+            {%endfor%}
+            <td><a href="/edicionInscripciones/{{i.idInscripciones}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{%endblock content%}

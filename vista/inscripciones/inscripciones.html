@@ -4,13 +4,16 @@
 
 <form  action="/registrarInscripcion" method="post" class="formularioInscripciones" enctype="multipart/form-data">
     <h1>INSCRIPCIONES</h1>
-    <label for="noControl">Numero de Control: </label>
     {%if current_user.is_authenticated and current_user.is_staff()%}
+        <a class="btn btn-info" href="/inscripcionesListado">Consultar</a>
+        <br/><br/>
+        <label for="noControl">Numero de Control: </label>
         <input type="text" name="noControl" id="noControl" placeholder="Numero de control" maxlength="8"   required/>
     {%endif%}
     {%if current_user.is_authenticated and current_user.is_estudiante()%}
         {%for e in estudiantes%}
             {%if current_user.idUsuario == e.idUsuario%}
+                <label for="noControl">Numero de Control: </label>
                 <input type="text" name="noControl" value="{{e.noControl}}" maxlength="8" readonly/>
             {%endif%}
         {%endfor%}
@@ -52,7 +55,7 @@
     </div>
     {%endif%}
     <br/>
-    <button type="submit" id="registro">Realizar inscripción</button>
+    <button type="submit" class="btn btn-info" >Realizar inscripción</button>
     {% if get_flashed_messages() %}
     {% for m in get_flashed_messages()%}
     <div class="alert alert-success alert-dismissible">
