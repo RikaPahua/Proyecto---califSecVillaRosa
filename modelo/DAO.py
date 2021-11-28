@@ -114,6 +114,7 @@ class Profesores(db.Model):
     idUsuario=Column(Integer,  ForeignKey('Usuarios.idUsuario'))
     especialidad=Column(String(50),nullable=True)
     fechaContratacion=Column(Date, nullable=True)
+    cedula = Column(String(50), unique=True)
     usuario=relationship('Usuarios',backref='profesores', lazy="select")
 
     def consultaGeneral (self):
