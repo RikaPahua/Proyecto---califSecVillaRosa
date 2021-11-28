@@ -12,11 +12,11 @@
                         <option value="1A">1A</option>
                         <option value="1B">1B</option>
                         <option value="1C">1C</option>
-                        <option value="2A">2A</option>
+                        <option value="2A" selected>2A</option>
                         <option value="2B">2B</option>
                         <option value="2C">2C</option>
                         <option value="3A">3A</option>
-                        <option value="3B">3B</option>
+                        <option value="3B" >3B</option>
                         <option value="3C">3C</option>
                     </select>
 
@@ -36,7 +36,8 @@
 
         <tr>
 
-            <th>Horas</th>
+            <th>Materia</th>
+            <th>Docente</th>
             <th>Lunes</th>
             <th>Martes</th>
             <th>Miercoles</th>
@@ -44,55 +45,86 @@
             <th>Viernes</th>
         </tr>
         </thead>
-        <tr>
-            <td>7:00-8:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>8:00-9:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
 
-        <tr>
-            <td>9:30-100</td>
-            <td>Receso</td>
-            <td>Receso</td>
-            <td>Receso</td>
-            <td>Receso</td>
-            <td>Receso</td>
-        </tr>
-        <tr>
-            <td>10:00-11:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>11:00-12:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>12:00-1:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        {%for g in grupos%}
+            {%if g.nombre ==  '2A'%}
+                    {% for m in materias%}
+                        <tr>
+                        {%for h in horarios%}
+                            {%if g.idGrupo == h.idGrupo%}
+
+                                            {%if m.idMateria == h.idMateria%}
+
+                                                 {%if h.dia == 'Lunes'%}
+
+                                                                 <td>{{m.nombre}}</td>
+
+                                                        {%for p in profesores%}
+                                                            {%if p.idProfesor == h.idProfesor%}
+                                                                {%for u in usuario%}
+                                                                    {%if u.idUsuario == p.idUsuario%}
+                                                                        <td>{{u.nombre}}</td>
+                                                                    {%else%}
+                                                                {%endif%}
+                                                                {%endfor%}
+                                                            {%else%}
+                                                            {%endif%}
+                                                        {%endfor%}
+
+
+
+                                                                <td>{{h.horarioInicio}} - {{h.horarioFin}}</td>
+                                                                {%for h2 in horarios%}
+                                                                {%if g.idGrupo == h2.idGrupo and  h2.dia == 'Martes' and h.idMateria == h2.idMateria%}
+                                                                    <td>{{h2.horarioInicio}} - {{h2.horarioFin}}</td>
+                                                                {%else%}
+
+                                                                {%endif%}
+                                                            {%endfor%}
+                                                            {%for h2 in horarios%}
+                                                                {%if g.idGrupo == h2.idGrupo and  h2.dia == 'Miercoles' and h.idMateria == h2.idMateria%}
+                                                                    <td>{{h2.horarioInicio}} - {{h2.horarioFin}}</td>
+                                                                {%else%}
+                                                                {%endif%}
+                                                            {%endfor%}
+                                                            {%for h2 in horarios%}
+                                                                {%if g.idGrupo == h2.idGrupo and  h2.dia == 'Jueves' and h.idMateria == h2.idMateria%}
+                                                                    <td>{{h2.horarioInicio}} - {{h2.horarioFin}}</td>
+                                                                {%else%}
+                                                                {%endif%}
+                                                            {%endfor%}
+                                                            {%for h2 in horarios%}
+                                                                {%if g.idGrupo == h2.idGrupo and  h2.dia == 'Viernes' and h.idMateria == h2.idMateria%}
+                                                                    <td>{{h2.horarioInicio}} - {{h2.horarioFin}}</td>
+                                                                {%else%}
+                                                                {%endif%}
+                                                            {%endfor%}
+
+                                                  {%else%}
+
+                                                  {%endif%}
+
+
+                                            {%else%}
+                                            {%endif%}
+
+                            {%else%}
+                            {%endif%}
+                        {%endfor%}
+                        </tr>
+
+                    {%endfor%}
+
+
+            {%else%}
+            {%endif%}
+            {%endfor%}
+
+
+
+
+
+
         </table>
           <br/>
          <div id="selec2">

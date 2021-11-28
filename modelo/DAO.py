@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Boolean, BLOB, Date, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, BLOB, Date, ForeignKey, Time
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
 
@@ -208,4 +208,23 @@ class Materias (db.Model):
         objeto= self.consultaIndividual(id)
         db.session.delete(objeto)
         db.session.commit()
+
+class Horarios(db.Model):
+    __tablename__ = 'Horarios'
+    idHorario = Column(Integer, primary_key=True)
+    idMateria = Column(Integer, nullable=True)
+    idProfesor=Column(Integer, nullable=True)
+    idGrupo = Column(Integer, nullable=True)
+    idCiclo = Column(Integer, nullable=True)
+    dia = Column(String(10), nullable=True)
+    horarioInicio = Column(Time, nullable=True)
+    horarioFin = Column(Time, nullable=True)
+    noSalon = Column(Integer, nullable=True)
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
 

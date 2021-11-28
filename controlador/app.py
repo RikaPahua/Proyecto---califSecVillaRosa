@@ -1,6 +1,6 @@
 from flask import Flask,render_template, request, flash,redirect, url_for,abort
 from flask_bootstrap import Bootstrap
-from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos, Inscripciones, Materias, cicloEscolar
+from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos, Inscripciones, Materias, cicloEscolar, Horarios
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 app = Flask(__name__, template_folder='../vista',static_folder='../static')
@@ -474,7 +474,14 @@ def grupoCalificaciones():
 @login_required
 def horarios():
     if current_user.is_authenticated and (current_user.is_administrador() or current_user.is_staff()):
-        return render_template('horarios/horarios.html')
+        m = Materias()
+        p = Profesores()
+        h = Horarios()
+        g = Grupos()
+        u = Usuarios()
+        return render_template('horarios/horarios.html', materias=m.consultaGeneral(),
+                               profesores=p.consultaGeneral(), horarios=h.consultaGeneral(), grupos=g.consultaGeneral(),
+                               usuario=u.consultaGeneral())
     else:
         abort(404)
 @app.route('/generarHorario',methods=['post'])
