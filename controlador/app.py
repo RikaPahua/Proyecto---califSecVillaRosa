@@ -799,6 +799,76 @@ def materiasObtenerDatos():
     else:
         abort(404)
 
+#################################################################################
+@app.route('/ciclos')
+@login_required
+def ciclos():
+    if current_user.is_authenticated and current_user.is_administrador():
+        c = cicloEscolar()
+        ciclos = c.consultaGeneral()
+        return render_template('ciclos/ciclosListado.html', ciclos=ciclos)
+    else:
+        abort(404)
+
+@app.route('/cicloNuevo')
+@login_required
+def cicloNuevo():
+    if current_user.is_authenticated and current_user.is_administrador():
+        return render_template('ciclos/cicloNuevo.html')
+    else:
+        abort(404)
+
+@app.route('/registrarCiclo',methods=['post'])
+@login_required
+def registrarCiclo():
+    if current_user.is_authenticated and current_user.is_administrador():
+        c = cicloEscolar ()
+        c.nombre=request.form['nombre']
+        c.insertar()
+        flash('Se ha registrado una nuevo ciclo con éxito!!')
+        return render_template('ciclos/cicloNuevo.html')
+    else:
+        abort(404)
+
+@app.route('/ciclosEditar/<int:id>')
+@login_required
+def ciclosEditar(id):
+    if current_user.is_authenticated and current_user.is_administrador():
+        c= cicloEscolar()
+        return render_template('ciclos/cicloEditar.html', ciclo = c.consultaIndividual(id))
+    else:
+        abort(404)
+
+@app.route('/ciclosEliminar/<int:id>')
+@login_required
+def ciclosEliminar(id):
+    if current_user.is_authenticated and current_user.is_administrador():
+        c= cicloEscolar()
+        c.eliminar(id)
+        cic = c.consultaGeneral()
+        flash('Se ha eliminado un ciclo con éxito!!')
+        return render_template('ciclos/ciclosListado.html', ciclos=cic)
+    else:
+        abort(404)
+
+@app.route('/ciclosObtenerDatos',methods=['post'])
+@login_required
+def ciclosObtenerDatos():
+    if current_user.is_authenticated and current_user.is_administrador():
+        c= cicloEscolar()
+        c.idCiclo=request.form['idCiclo']
+        c.nombre=request.form['nombre']
+        estatus =request.values.get('estatus',False)
+        if estatus=="True":
+            c.estatus=True
+        else:
+            c.estatus=False
+        c.actualizar()
+        flash('Se han gruardado los cambios con éxito!!')
+        return render_template('ciclos/cicloEditar.html', ciclo = c.consultaIndividual(request.form['idCiclo']))
+    else:
+        abort(404)
+
 @app.errorhandler(404)
 def error404(e):
     return render_template('comunes/paginaError.html'),404

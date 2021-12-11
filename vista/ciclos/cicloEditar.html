@@ -1,0 +1,50 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+<form  action="/ciclosObtenerDatos" method="post" class="formularioInscripciones" enctype="multipart/form-data">
+    <h1>MODIFICACIÓN DE DATOS DE UN CICLO</h1>
+    <input type="hidden" name="idCiclo" id="idCiclo" value="{{ciclo.idCiclo}}" readonly/>
+    <label for="nombre">Nombre: </label>
+    <input type="text" name="nombre" id="nombre" value="{{ciclo.nombre}}" maxlength="9"   required/>
+    <br/><br/>
+    <div>
+        {% if ciclo.estatus==True%}
+        <label>Estatus:</label>
+        <input type="checkbox" name="estatus" checked value="True">
+        {% else %}
+        <label>Estatus:</label>
+        <input type="checkbox" name="estatus" value="True">
+        {% endif %}
+    </div>
+    <br/>
+    <a class="btn btn-dark" href="/ciclos"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <button type="submit" class="btn btn-info">Guardar Cambios</button>
+    <a data-toggle="modal" data-target="#eliminarMat" id="elimin" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+</form>
+<!--ELIMINAR USUARIO-->
+<div id="eliminarMat"  class="modal fade" role="dialog">
+    <div class="modal-dialog" role="eliminar">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Eliminación de la materia: {{ciclo.nombre}}</h4>
+            </div>
+            <div class="modal-body">
+                <p>¿ Esta seguro de que quiere eliminar este ciclo ?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="/ciclosEliminar/{{ciclo.idCiclo}}" class="btn btn-info">Si</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock content%}

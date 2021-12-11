@@ -20,11 +20,12 @@
     {%endif%}
     {%if current_user.is_authenticated and current_user.is_administrador()%}
     <label for="nombre">Nombre: </label>
-    <input type="text" name="nombre" id="nombre" value="{{usuario.nombre}}" maxlength="100" size="60px" required/>
+    <input type="text" name="nombre" id="nombre" value="{{usuario.nombre}}" maxlength="100" size="60px" readonly/>
     <br/>
     {%endif%}
     {%if current_user.is_authenticated and current_user.is_staff()%}
     <label for="nombre">Nombre: </label>
+    <input type="text" name="nombre"  value="{{usuario.nombre}}" maxlength="100" size="60px" readonly/>
     <input type="hidden" name="nombre"  value="{{usuario.nombre}}" maxlength="100" size="60px" required/>
     <br/>
     {%endif%}

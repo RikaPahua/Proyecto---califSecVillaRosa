@@ -166,9 +166,26 @@ class cicloEscolar(db.Model):
     __tablename__ = 'cicloEscolar'
     idCiclo=Column(Integer, primary_key=True)
     nombre=Column(String(9), unique=True)
+    estatus=Column(Boolean, default=True)
 
     def consultaGeneral (self):
         return self.query.all()
+
+    def insertar (self):
+        db.session.add(self)
+        db.session.commit()
+
+    def consultaIndividual (self,id):
+        return self.query.get(id)
+
+    def actualizar (self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        objeto= self.consultaIndividual(id)
+        db.session.delete(objeto)
+        db.session.commit()
 
 class Inscripciones(db.Model):
     __tablename__ = 'Inscripciones'

@@ -1,0 +1,39 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+<h1>LISTADO DE CICLOS</h1>
+<div>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <a href="/cicloNuevo" class="btn btn-success" id="nuevo1"> Registrar nuevo </a>
+    <br/><br/>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>ID CICLO</th>
+            <th>NOMBRE</th>
+            <th>ESTATUS</th>
+            <th>EDITAR</th>
+        </tr>
+        </thead>
+        {% for c in ciclos %}
+        <tr>
+            <td>{{c.idCiclo}}</td>
+            <td>{{c.nombre}}</td>
+            {%if c.estatus == 1%}
+                <td>ACTIVO</td>
+            {%else%}
+                <td>INACTIVO</td>
+            {%endif%}
+            <td><a href="/ciclosEditar/{{c.idCiclo}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{%endblock content%}

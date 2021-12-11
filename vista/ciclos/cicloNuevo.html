@@ -1,0 +1,20 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+<form  action="/registrarCiclo" method="post" class="formularioInscripciones" enctype="multipart/form-data">
+    <h1>REGISTRO DE UNA CICLO</h1>
+    <label for="nombre">Nombre: </label>
+    <input type="text" name="nombre" id="nombre" placeholder="Nombre" maxlength="20"   required/>
+    <br/> <br/>
+    <a class="btn btn-dark" href="/ciclos"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <button type="submit" class="btn btn-info">Registrar ciclo</button>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+</form>
+{%endblock content%}
