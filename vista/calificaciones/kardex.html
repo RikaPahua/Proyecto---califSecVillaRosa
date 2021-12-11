@@ -5,12 +5,24 @@
     <div class="Tab">
       <table class="table table-bordered">
            <tr>
-             <th>Nombre</th>
-             <td>José López Mares</td>
+             <th>NOMBRE COMPLETO</th>
+             <td>{{current_user.nombre}}</td>
            </tr>
+          <tr>
+              <th>NÚMERO DE CONTROL</th>
+              {%for e in estudiantes%}
+                  {%if e.noControl == noControl%}
+                    <td>{{e.noControl}}</td>
+                  {%endif%}
+              {%endfor%}
+          </tr>
             <tr>
-             <th>Grupo</th>
-             <td>6A</td>
+             <th>GRUPO</th>
+              {%for g in grupos%}
+                  {%if g.idGrupo == grupo%}
+                        <td>{{g.nombre}}</td>
+                  {%endif%}
+              {%endfor%}
            </tr>
       </table>
     </div>
@@ -19,109 +31,26 @@
         <table class="table table-bordered">
             <thead class="table-dark">
               <tr>
-                <th>Materia</th>
-                <th>Bimestre 1</th>
-                <th>Bimestre 2</th>
-                <th>Bimestre 3</th>
-                <th>Bimestre 4</th>
-                <th>Bimestre 5</th>
-               
-                <th>Promedio</th>
-                <th>Clico Escolar</th>
-
-                
+                <th>MATERIA</th>
+                <th>PROMEDIO</th>
+                <th>CICLO ESCOLAR</th>
               </tr>
             </thead>
-            
-              <tr>
-                <td>Español</td>
-                <td>9</td>
-                <td>8</td>
-                <td>8</td>
-                <td>9</td>
-                <td>7</td>
-                
-                <td>8</td>
-                <td>2020-2021</td>
-                
-              </tr>
-              <tr>
-                <td>Matematicas</td>
-                <td>10</td>
-                <td>8</td>
-                <td>8</td>
-                <td>8</td>
-                <td>7</td>
-                
-                <td>8.3</td>
-                <td>2020-2021</td>
-              </tr>
-              <tr>
-                <td>Historia</td>
-                <td>6</td>
-                <td>7</td>
-                <td>9</td>
-                <td>6</td>
-                <td>10</td>
-                
-                <td>7.2</td>
-                <td>2020-2021</td>
-              </tr>
-              <tr>
-                <td>Quimica</td>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td>10</td>
-                <td>6</td>
-                
-                <td>8.7</td>
-                <td>2020-2021</td>
-              </tr>
-              <tr>
-                <td>Geografia</td>
-                <td>10</td>
-                <td>9</td>
-                <td>7</td>
-                <td>7</td>
-                <td>6</td>
-                
-                <td>8.5</td>
-                <td>2020-2021</td>
-              </tr>
-              <tr>
-                <td>Ciencias Naturales</td>
-                <td>9</td>
-                <td>10</td>
-                <td>10</td>
-                <td>9</td>
-                <td>7</td>
-                
-                <td>9.2</td>
-                <td>2020-2021</td>
-              </tr>
-              <tr>
-                <td>Civica y Etica</td>
-                <td>9</td>
-                <td>8</td>
-                <td>8</td>
-                <td>9</td>
-                <td>7</td>
-                
-                <td>8</td>
-                <td>2020-2021</td>
-              </tr>
-              <tr>
-                <td>Ed. Fisica</td>
-                <td>9</td>
-                <td>10</td>
-                <td>10</td>
-                <td>9</td>
-                <td>10</td>
-               
-                <td>9.6</td>
-                <td>2020-2021</td>
-              </tr>
+            {%for c in calificaciones%}
+            <tr>
+                {%for m in materias%}
+                    {%if m.idMateria == c.idMateria and c.idCiclo != cicloActual%}
+                        <td>{{m.nombre}}</td>
+                        <td>{{c.calificacionFinal}}</td>
+                        {%for cic in ciclos%}
+                            {%if cic.idCiclo == c.idCiclo%}
+                                <td>{{cic.nombre}}</td>
+                            {%endif%}
+                        {%endfor%}
+                    {%endif%}
+                {%endfor%}
+            </tr>
+            {%endfor%}
           </table>
     </div>
 {%endblock content%}

@@ -8,10 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controlador/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modelo/DAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/DAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/administrativos/administrativoEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/administrativos/administrativoEditar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/comunes/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/comunes/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/materias/materiaEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/materias/materiaEditar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/materias/nuevaMateria.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/materias/nuevaMateria.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/calificaciones/kardex.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/calificaciones/kardex.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

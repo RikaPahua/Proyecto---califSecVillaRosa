@@ -260,12 +260,19 @@ class Horarios(db.Model):
 
 class Calificaciones(db.Model):
     __tablename__ = 'Calificaciones'
-    idDetalleCalificacion=Column(Integer, primary_key=True)
+    idCalificacion=Column(Integer, primary_key=True)
     noControl = Column(String(8), unique=True)
     idMateria = Column(Integer, nullable=False)
-    bimestre = Column(Integer, nullable=True)
-    calificacion = Column(Float)
     idCiclo = Column(Integer, nullable=False)
+    calificacionFinal = Column(Float)
+
+    def consultaGeneral (self):
+        return self.query.all()
+
+    def consultaIndividual (self, noControl):
+        calificaciones =None
+        calificaciones =self.query.filter(Calificaciones.noControl == noControl).all()
+        return calificaciones
 
     def insertar (self):
         db.session.add(self)

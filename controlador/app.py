@@ -405,7 +405,34 @@ def calificacionesEncurso():
 @login_required
 def calificacionesKardex():
     if current_user.is_authenticated and current_user.is_estudiante():
-        return render_template('calificaciones/kardex.html')
+        g=Grupos()
+        grupos = g.consultaGeneral()
+        i = Inscripciones()
+        inscrip = i.consultaGeneral()
+        e = Estudiantes()
+        est = e.consultaGeneral()
+        noControl = ''
+        for es in est:
+            if es.idUsuario == current_user.idUsuario:
+                noControl = es.noControl
+        idGrup=0
+        for ins in inscrip:
+            if ins.noControl==noControl:
+                idGrup=ins.idGrupo
+
+        c = Calificaciones()
+        calificaciones = c.consultaIndividual(noControl)
+        cicl = cicloEscolar()
+        ciclos = cicl.consultaGeneral()
+        m = Materias()
+        materias = m.consultaGeneral()
+
+        cicloActual=0
+        for cc in ciclos:
+            cicloActual = cc.idCiclo
+        return render_template('calificaciones/kardex.html', grupos = grupos, inscripciones= inscrip,grupo=idGrup,
+                               noControl=noControl, estudiantes=est, calificaciones= calificaciones, ciclos=ciclos,
+                               materias=materias, cicloActual=cicloActual)
     else:
         abort(404)
 ###################################################################################
