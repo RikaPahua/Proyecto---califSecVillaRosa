@@ -277,3 +277,19 @@ class Calificaciones(db.Model):
     def insertar (self):
         db.session.add(self)
         db.session.commit()
+
+    def actualizar (self):
+        db.session.merge(self)
+        db.session.commit()
+
+class DetalleCalificaciones(db.Model):
+    __tablename__ = 'DetalleCalificaciones'
+    idDetalleCalificacion=Column(Integer, primary_key=True)
+    bimestre = Column(Integer,nullable=False)
+    calificacion = Column(Float, nullable=False)
+    idCalificacion = Column(Integer, ForeignKey('Calificaciones.idCalificacion'))
+    Calificacion=relationship('Calificaciones',backref='DetalleCalificaciones', lazy="select")
+
+    def insertar (self):
+        db.session.add(self)
+        db.session.commit()

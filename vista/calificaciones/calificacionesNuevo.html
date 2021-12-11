@@ -1,0 +1,42 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+<form  action="/grupoCalificacionesRe" method="post" class="formularioInscripciones" enctype="multipart/form-data">
+    <h1>REGISTRO DE CALIFICACIONES</h1>
+    <input type="hidden" name="idCalificacion" id="idCalificacion" value="{{idCalificacion}}"/>
+    <label for="materia">Materia: </label>
+    <input type="text" name="materia" id="materia" value="{{materia}}" maxlength="100" size="30" readonly/>
+    <input type="hidden" name="materia" value="{{materia}}"/>
+    <input type="hidden" name="idMateria" id="idMateria" value="{{idMateria}}"/>
+    <br/><br/>
+    <label for="nombre">Estudiante: </label>
+    <input type="text" name="nombre" id="nombre" value="{{estudiante}}" maxlength="100" size="50" readonly/>
+    <input type="hidden" name="noControl" id="noControl" value="{{noControl}}"/>
+    <br/><br/>
+    <label for="bimestre">Bimestre: </label>
+    <select name="bimestre" id="bimestre">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br/><br/>
+    <label for="calificacion">Calificación: </label>
+    <input type="number" name="calificacion" id="calificacion" placeholder="Calificación" required/>
+    <input type="hidden" name="idCiclo" id="idCiclo" value="{{idCiclo}}"/>
+    <input type="hidden" name="idGrupo"  value="{{idGrupo}}"/>
+    <input type="hidden" name="idHorario"  value="{{idHorario}}"/>
+    <br/><br/>
+    <a class="btn btn-dark" href="/grupCalificaciones/{{idGrupo}},{{idHorario}},{{materia}}"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <button type="submit" class="btn btn-info" >Registrar calificación</button>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+</form>
+{%endblock content%}

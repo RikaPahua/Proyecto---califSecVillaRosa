@@ -16,29 +16,17 @@
     <div class="Tab">
           <table class="table table-bordered">
                <tr>
-                 <th>Nombre</th>
-                   {%for p in profesores%}
-                    {%if current_user.idUsuario ==  p.idUsuario%}
-                        {%for u in usuario%}
-                            {%if p.idUsuario == u.idUsuario%}
-                                <td>{{u.nombre}}</td>
-                            {%else%}
-                            {%endif%}
-                        {%endfor%}
-                    {%else%}
-                    {%endif%}
-                   {%endfor%}
+                 <th>NOMBRE</th>
+                 <td>{{current_user.nombre}}</td>
                </tr>
                 <tr>
-
-                 <th>cédila</th>
+                 <th>CÉDULA</th>
                     {%for p in profesores%}
                     {%if current_user.idUsuario ==  p.idUsuario%}
                        <td>{{p.cedula}}</td>
                     {%else%}
                     {%endif%}
                    {%endfor%}
-
                </tr>
           </table>
     </div>
@@ -48,41 +36,32 @@
         <table class="table table-bordered">
         <thead class="table-dark">
         <tr>
-
-
-            <th>Nombre</th>
-            <th>Grupo</th>
-            <th>Opciones</th>
-
+            <th>NOMBRE</th>
+            <th>GRUPOS</th>
+            <th>OPCIONES</th>
         </tr>
         </thead>
-
             {%for m in materiaSi%}
-
                 <tr>
                      {%for mm in materias%}
                         {%if mm.idMateria == m%}
                                 <td>{{mm.nombre}}</td>
-
                                 {%for nom in nombreH%}
                                     {%for h in horarios%}
                                         {%if nom == h.idHorario%}
                                             {%for g in grupos%}
                                                 {%if g.idGrupo == h.idGrupo and h.idMateria ==m%}
                                                  <td>{{g.nombre}}</td>
-
-                                                <td><a href="/grupCalificaciones/{{g.idGrupo}},{{h.idHorario}}" class="btn btn-dark">Lista de alumnos</a> </td>
+                                                <td><a href="/grupCalificaciones/{{g.idGrupo}},{{h.idHorario}},{{mm.nombre}}" class="btn btn-dark">Lista de alumnos</a></td>
                                                 {%endif%}
                                             {%endfor%}
                                         {%endif%}
                                     {%endfor%}
                                 {%endfor%}
-
                         {%endif%}
                      {%endfor%}
                 </tr>
             {%endfor%}
-
         </table>
     </div>
 {%endblock content%}

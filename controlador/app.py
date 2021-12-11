@@ -1,6 +1,6 @@
 from flask import Flask,render_template, request, flash,redirect, url_for,abort
 from flask_bootstrap import Bootstrap
-from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos, Inscripciones, Materias, cicloEscolar, Horarios,Calificaciones
+from modelo.DAO import db, Usuarios, Estudiantes, Profesores, Grupos, Inscripciones, Materias, cicloEscolar, Horarios,Calificaciones, DetalleCalificaciones
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 app = Flask(__name__, template_folder='../vista',static_folder='../static')
@@ -559,9 +559,9 @@ def gruposObtenerDatos():
     else:
         abort(404)
 
-@app.route('/grupCalificaciones/<int:id>,<int:idh>')
+@app.route('/grupCalificaciones/<int:id>,<int:idh>,<string:materia>')
 @login_required
-def grupoCalificaciones(id,idh):
+def grupoCalificaciones(id,idh,materia):
     if current_user.is_authenticated and current_user.is_profesor():
         g = Grupos()
         i = Inscripciones()
@@ -578,40 +578,71 @@ def grupoCalificaciones(id,idh):
 
         return render_template('grupos/grupoCalificaciones.html', grupos=g.consultaIndividual(id),
                                inscripciones=i.consultaGeneral(), estudiantes=e.consultaGeneral(),actual=act,
-                               cicl=ci.consultaGeneral(),usuario=u.consultaGeneral(), horarios=h.consultaIndividual(idh))
+                               cicl=ci.consultaGeneral(),usuario=u.consultaGeneral(), horarios=h.consultaIndividual(idh), materia=materia)
     else:
         abort(404)
+
+
+
+@app.route('/registroCalif/<int:idM>,<string:materia>,<string:estudiante>,<string:noControl>,<int:idC>,<int:idGrupo>,<int:idHorario>')
+@login_required
+def registroCalif(idM,materia,estudiante,noControl,idC,idGrupo,idHorario):
+    if current_user.is_authenticated and current_user.is_profesor():
+        c = Calificaciones()
+        idCalificacion =0
+        for calif in c.consultaGeneral():
+            idCalificacion =calif.idCalificacion
+        return render_template('calificaciones/calificacionesNuevo.html', idMateria=idM,idCiclo=idC,materia=materia,estudiante=estudiante,
+                               noControl=noControl,idGrupo=idGrupo,idHorario=idHorario,idCalificacion=idCalificacion)
+    else:
+        abort(404)
+
+
 
 @app.route('/grupoCalificacionesRe', methods=['post'])
 @login_required
 def grupoCalificacionesRegistrar():
     if current_user.is_authenticated and current_user.is_profesor():
-        g = Grupos()
-        i = Inscripciones()
-        e = Estudiantes()
-        u = Usuarios()
-        h = Horarios()
-
-        ci = cicloEscolar()
-        ciclos = ci.consultaGeneral()
-        act = 0;
-        for idc in ciclos:
-            act = idc.idCiclo
-
         c = Calificaciones()
-        c.noControl = request.form['noControl']
-        c.idMateria = request.form['idMateria']
-        c.bimestre = request.form['bimestre']
-        c.calificacion = request.form['calificacion']
-        c.idCiclo = request.form['idCiclo']
-
-
-        c.insertar()
+        con = c.consultaGeneral()
+        existe = 0;
+        idCalificacion=0;
+        ciclo=0;
+        for calif in con:
+            if calif.idMateria == int (request.form['idMateria']) and calif.noControl == request.form['noControl']:
+                existe=1;
+                idCalificacion=calif.idCalificacion
+                ciclo= calif.idCiclo
+        if existe==1:
+            print('hola')
+            d = DetalleCalificaciones()
+            d.bimestre=request.form['bimestre']
+            d.calificacion=request.form['calificacion']
+            d.idCalificacion=idCalificacion
+            d.insertar()
+            c.idCalificacion=idCalificacion
+            c.noControl=request.form['noControl']
+            c.idMateria=request.form['idMateria']
+            c.idCiclo=ciclo
+            c.calificacionFinal=(calif.calificacionFinal+int(request.form['calificacion']))/2
+            c.actualizar()
+        else:
+            print('ssss')
+            c.noControl = request.form['noControl']
+            c.idMateria = request.form['idMateria']
+            c.idCiclo = request.form['idCiclo']
+            c.calificacionFinal = request.form['calificacion']
+            c.insertar()
+            d = DetalleCalificaciones()
+            d.bimestre=request.form['bimestre']
+            d.calificacion=request.form['calificacion']
+            d.idCalificacion=(1+int(request.form['idCalificacion']))
+            d.insertar()
         flash('¡Se ha registrado la calificación con éxito!')
-
-        return render_template('grupos/grupoCalificaciones.html',grupos=g.consultaIndividual(request.form['idGrupo']),
-                               inscripciones=i.consultaGeneral(), estudiantes=e.consultaGeneral(), actual=act,
-                               cicl=ci.consultaGeneral(),usuario=u.consultaGeneral(), horarios=h.consultaIndividual(request.form['idHorario']))
+        return render_template('calificaciones/calificacionesNuevo.html', idMateria=request.form['idMateria'],idCiclo=request.form['idCiclo'],
+                               materia=request.form['materia'],estudiante=request.form['nombre'],
+                               noControl=request.form['noControl'],idGrupo=request.form['idGrupo'],idHorario=request.form['idHorario'],
+                               idCalificacion=c.idCalificacion)
     else:
         abort(404)
 ###################################################################################

@@ -9,40 +9,32 @@
 </div>
 {% endfor %}
 {% endif %}
-
 <H1>LISTADO DE ALUMNOS</H1>
-
 <div class="Tab">
           <table class="table table-bordered">
                <tr>
-                 <th>Grupo</th>
-                   <td>{{grupos.nombre}}</td>
-
+                 <th>MATERIA</th>
+                   <td>{{materia}}</td>
                </tr>
-
+              <tr>
+                  <th>GRUPO</th>
+                  <td>{{grupos.nombre}}</td>
+              </tr>
           </table>
     </div>
 <br/><br/>
-
-<form  action="/grupoCalificacionesRe" method="post" class="formularioCalifGrup" enctype="multipart/form-data">
     <input type="hidden" name="idHorario" value="{{horarios.idHorario}}"/>
     <div class="Tab">
-        <a id="obtenerGrup" class="btn btn-primary" href="/obtenerGrupo/{{current_user.idUsuario}}"><span class="glyphicon glyphicon-menu-left"> Atras</span></a>
-        <br/><br/>
     <table class="table table-bordered">
         <thead class="table-dark">
         <tr>
 
             <th>ALUMNO</th>
-            <th>BIMESTRE</th>
-            <th>CALIFICACIÓN</th>
-            <th>GUARDAR</th>
+            <th>REGISTRAR CALIFICACIÓN</th>
         </tr>
-
         <tr>
             {%for i in inscripciones%}
                 {%if i.idGrupo == grupos.idGrupo%}
-
                         <input type="hidden" name="idGrupo" value="{{grupos.idGrupo}}"/>
                     {%for e in estudiantes%}
                         {%if e.noControl == i.noControl%}
@@ -51,20 +43,9 @@
                                     <tr>
                                     <td>{{u.nombre}} </td>
                                         <input type="hidden" name="noControl" value="{{e.noControl}}"/>
-
                                         <input type="hidden" name="idMateria" value="{{horarios.idMateria}}"/>
-                                    <td><select name="bimestre">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select></td>
-                                    <td><input type="number" name="calificacion"  ></td>
-
-                                            <input type="hidden" name="idCiclo"  value="{{actual}}" />
-                                            <td> <button type="submit"><span  class="glyphicon glyphicon-check"> </span></button></td>
-
+                                        <input type="hidden" name="idCiclo"  value="{{actual}}"/>
+                                        <td> <a href="/registroCalif/{{horarios.idMateria}},{{materia}},{{u.nombre}},{{e.noControl}},{{actual}},{{grupos.idGrupo}},{{horarios.idHorario}}"><span  class="glyphicon glyphicon-check"> </span></a></td>
                                     </tr>
                                 {%else%}
                                 {%endif%}
@@ -75,11 +56,9 @@
                 {%else%}
                 {%endif%}
             {%endfor%}
-
         </thead>
     </table>
         <br/>
-
+        <a id="obtenerGrup" class="btn btn-primary" href="/obtenerGrupo/{{current_user.idUsuario}}"><span class="glyphicon glyphicon-menu-left"></span></a>
     </div>
-</form>
 {%endblock content%}
