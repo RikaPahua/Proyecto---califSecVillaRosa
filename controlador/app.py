@@ -5,6 +5,7 @@ from flask_login import LoginManager, current_user, login_required, login_user, 
 
 app = Flask(__name__, template_folder='../vista',static_folder='../static')
 Bootstrap(app)
+import json
 app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://userCalifSecVillaRosa:Hola.123@localhost/CalifSecVillaRosa'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.secret_key='cl4v3'
@@ -392,6 +393,26 @@ def profesoresDatosEdicion():
         return render_template('profesores/profesorEditar.html',usuario=u.consultaIndividual(u.idUsuario),profesor=p.consultaGeneral())
     else:
         abort(404)
+
+@app.route('/usuarios/email/<string:email>', methods=['get'])
+def consultarEmail(email):
+        usuario = Usuarios()
+        return json.dumps(usuario.consultarEmail(email))
+
+@app.route('/estudiantes/noControl/<string:noControl>', methods=['get'])
+def consultarnoControl(noControl):
+        estudiantes = Estudiantes()
+        return json.dumps(estudiantes.consultarNoCont(noControl))
+
+@app.route('/usuarios/telefono/<string:telefono>', methods=['get'])
+def consultarTelefono(telefono):
+        usuario = Usuarios()
+        return json.dumps(usuario.consultarTelefono(telefono))
+
+@app.route('/usuarios/nombre/<string:nombre>', methods=['get'])
+def consultarNombre(nombre):
+        usuario = Usuarios()
+        return json.dumps(usuario.consultarNombre(nombre))
 ###################################################################################
 @app.route('/calificacionesEncurso')
 @login_required

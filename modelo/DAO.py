@@ -43,6 +43,43 @@ class Usuarios(UserMixin,db.Model):
         usuarios=self.query.filter(Usuarios.email==email, Usuarios.clave==clave, Usuarios.estatus ==True).first()
         return usuarios
 
+
+    def consultarEmail(self,email):
+        salida={"estatus":"","mensaje":""}
+        usuario=None
+        usuario=self.query.filter(Usuarios.email==email).first()
+        if usuario!=None:
+            salida["estatus"]="Error"
+            salida["mensaje"]="El correo "+email+" ya se encuentra registrado."
+        else:
+            salida["estatus"]="Ok"
+            salida["mensaje"]="El correo "+email+" esta libre."
+        return salida
+
+    def consultarTelefono(self,telefono):
+        salida={"estatus":"","mensaje":""}
+        usuario=None
+        usuario=self.query.filter(Usuarios.telefono==telefono).first()
+        if usuario!=None:
+            salida["estatus"]="Error"
+            salida["mensaje"]="El telefono "+telefono+" ya se encuentra registrado."
+        else:
+            salida["estatus"]="Ok"
+            salida["mensaje"]="El telefono "+telefono+" esta libre."
+        return salida
+
+    def consultarNombre(self,nombre):
+        salida={"estatus":"","mensaje":""}
+        usuario=None
+        usuario=self.query.filter(Usuarios.nombre==nombre).first()
+        if usuario!=None:
+            salida["estatus"]="Error"
+            salida["mensaje"]="El nombre "+nombre+" ya se encuentra registrado."
+        else:
+            salida["estatus"]="Ok"
+            salida["mensaje"]="El nombre "+nombre+" esta libre."
+        return salida
+
 #MÉTODOS PARA CUESTIONES DE PERFILAMIENTO
     def is_authenticated(self):
         return True
@@ -108,6 +145,18 @@ class Estudiantes(db.Model):
         db.session.delete(objeto)
         db.session.commit()
 
+    def consultarNoCont(self,noControl):
+        salida={"estatus":"","mensaje":""}
+        estudiantes=None
+        estudiantes=self.query.filter(Estudiantes.noControl==noControl).first()
+        if estudiantes!=None:
+            salida["estatus"]="Error"
+            salida["mensaje"]="El noControl "+noControl+" ya se encuentra registrado."
+        else:
+            salida["estatus"]="Ok"
+            salida["mensaje"]="El noControl "+noControl+" esta libre."
+        return salida
+
 class Profesores(db.Model):
     __tablename__='Profesores'
     idProfesor=Column(Integer, primary_key=True)
@@ -161,6 +210,7 @@ class Grupos (db.Model):
         objeto= self.consultaIndividual(id)
         db.session.delete(objeto)
         db.session.commit()
+
 
 class cicloEscolar(db.Model):
     __tablename__ = 'cicloEscolar'

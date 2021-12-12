@@ -1,7 +1,11 @@
 {% extends 'comunes/base.html'%}
 {% block content %}
+{% block scripts %}
+    {{super()}}
+    <script src="{{url_for('static',filename='js/usuarios.js')}}"></script>
+{% endblock %}
 {{super()}}
-        <form action="/estudiantesDatosNuevo" method="post" class="FormularioUsuarios" enctype="multipart/form-data">
+        <form action="/estudiantesDatosNuevo" method="post" class="FormularioUsuarios" enctype="multipart/form-data" onsubmit="return validar(this)">
             <h1>REGISTRO DE UN NUEVO ESTUDIANTE</h1>
             <div>
                 <label for="foto">Fotografía: </label>
@@ -10,8 +14,9 @@
             <br/>
             <input type="hidden" name="idUsuario" id="idUsuario" value="{{usuario.idUsuario}}" maxlength="100" required/>
             <label for="nombre">Nombre: </label>
-            <input type="text" name="nombre" id="nombre" placeholder="Nombre" maxlength="100" required/>
-            <br/><br/>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" maxlength="100" onblur="consultarNombre()" required/>
+            <div id="notificacionesNom" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
+            <br/>
             <div class="dropdown">
                 <label for="sexo">Sexo: </label>
                 <select id="sexo" name="sexo">
@@ -22,20 +27,23 @@
             </div>
             <br/>
             <label for="telefono">Teléfono: </label>
-            <input type="tel" name="telefono" id="telefono" placeholder="Teléfono" maxlength="12" size="12" required/>
-            <br/><br/>
+            <input type="tel" name="telefono" id="telefono" placeholder="Teléfono" maxlength="12" size="12" required onblur="consultarTelefono()"/>
+            <div id="notificacionesTel" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
+            <br/>
             <label for="domicilio">Domicilio: </label>
             <input type="text" name="domicilio" id="domicilio" placeholder="Domicilio" maxlength="50" size="50px" required/>
             <br/><br/>
             <label for="email">E-mail: </label>
-            <input type="email" name="email" id="email" placeholder="email" maxlength="50" size="50px" required/>
-            <br/><br/>
+            <input type="email" name="email" id="email" placeholder="email" maxlength="50" size="50px" required onblur="consultarEmail()"   />
+            <div id="notificacionesEm" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
+            <br/>
             <label for="clave">Contraseña: </label>
             <input type="password" name="clave" id="clave" placeholder="Contraseña" maxlength="10" required/>
             <br/><br/>
             <label for="noControl">noControl: </label>
-            <input type="text" name="noControl" id="noControl" placeholder="noControl" maxlength="8" required/>
-            <br/><br/>
+            <input type="text" name="noControl" id="noControl" placeholder="noControl" maxlength="8" required onblur="consultarnoControl()"/>
+            <div id="notificacionesNoC" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
+            <br/>
             <label for="fechaNacimiento">Fecha de Nacimiento: </label>
             <input type="date" name="fechaNacimiento" id="fechaNacimiento" placeholder="Fecha" required/>
             <br/><br/>
@@ -43,7 +51,8 @@
             <input type="date" name="fechaIngreso" id="fechaIngreso" required/>
             <br/><br/>
             <a class="btn btn-dark" href="/estudiantes"><span class="glyphicon glyphicon-chevron-left"></span></a>
-            <button type="submit" class="btn btn-info btn-lg">Registrar</button>
+            <button type="submit"  id="registrar" class="btn btn-info btn-lg" >Registrar</button>
+            <div id="notificaciones" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
             {% if get_flashed_messages() %}
             {% for m in get_flashed_messages()%}
             <div class="alert alert-success alert-dismissible">
@@ -53,4 +62,8 @@
             {% endfor %}
             {% endif %}
         </form>
+
+
+
+
 {%endblock content%}
