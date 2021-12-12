@@ -18,8 +18,8 @@ class Usuarios(UserMixin,db.Model):
     email=Column(String(50), unique=True)
     clave=Column(String(50), nullable=False)
 
-#MÉTODOS PARA CUESTIONES DE 
-#CRUD
+#MÉTODOS PARA CUESTIONES DE CRUD
+
     def insertar (self):
         db.session.add(self)
         db.session.commit()
