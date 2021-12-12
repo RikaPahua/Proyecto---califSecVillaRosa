@@ -82,6 +82,7 @@
         {% endif %}
     </div>
     <br/>
+    <!--Fin-->
     {%endif%}
     {%if current_user.is_authenticated and current_user.is_staff()%}
     <input type="hidden" name="tipo" value="{{usuario.tipo}}" readonly/>
