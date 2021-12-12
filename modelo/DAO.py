@@ -18,7 +18,8 @@ class Usuarios(UserMixin,db.Model):
     email=Column(String(50), unique=True)
     clave=Column(String(50), nullable=False)
 
-#MÉTODOS PARA CUESTIONES DE CRUD
+#MÉTODOS PARA CUESTIONES DE CRUD.
+
 
     def insertar (self):
         db.session.add(self)
@@ -81,7 +82,7 @@ class Usuarios(UserMixin,db.Model):
             salida["mensaje"]="El nombre "+nombre+" esta libre."
         return salida
 
-#MÉTODOS PARA CUESTIONES DE PERFILAMIENTO
+#MÉTODOS PARA CUESTIONES DE PERFILAMIENTO.
     def is_authenticated(self):
         return True
 
