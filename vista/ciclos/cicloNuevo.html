@@ -1,13 +1,19 @@
 {% extends 'comunes/base.html'%}
 {% block content %}
+{% block scripts %}
+    {{super()}}
+    <script src="{{url_for('static',filename='js/validaciones.js')}}"></script>
+{% endblock %}
 {{super()}}
-<form  action="/registrarCiclo" method="post" class="formularioInscripciones" enctype="multipart/form-data">
+<form  action="/registrarCiclo" method="post" class="formularioInscripciones" enctype="multipart/form-data" onsubmit="return validarC(this)">
     <h1>REGISTRO DE UNA CICLO</h1>
     <label for="nombre">Nombre: </label>
-    <input type="text" name="nombre" id="nombre" placeholder="Nombre" maxlength="20"   required/>
-    <br/> <br/>
+    <input type="text" name="nombre" id="nombre" placeholder="Nombre" maxlength="20"   required onblur="consultarCiclos()"/>
+    <div id="notificacionesNom" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
+    <br/>
     <a class="btn btn-dark" href="/ciclos"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    <button type="submit" class="btn btn-info">Registrar ciclo</button>
+    <button type="submit" id="registrar" class="btn btn-info">Registrar ciclo</button>
+    <div id="notificaciones" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
     {% if get_flashed_messages() %}
     {% for m in get_flashed_messages()%}
     <div class="alert alert-success alert-dismissible">
@@ -17,4 +23,6 @@
     {% endfor %}
     {% endif %}
 </form>
+
+
 {%endblock content%}

@@ -418,6 +418,17 @@ def consultarNombre(nombre):
 def consultarGrupo(nombre):
     grupo=Grupos()
     return json.dumps(grupo.consultarGrupos(nombre))
+
+@app.route('/cicloEsc/nombre/<string:nombre>',methods=['get'])
+def consultarCiclo(nombre):
+    cicloEsc=cicloEscolar()
+    return json.dumps(cicloEsc.consultarCiclos(nombre))
+
+@app.route('/materia/nombre/<string:nombre>',methods=['get'])
+def consultarMateria(nombre):
+    materia=Materias()
+    return json.dumps(materia.consultarMaterias(nombre))
+
 ###################################################################################
 @app.route('/calificacionesEncurso')
 @login_required

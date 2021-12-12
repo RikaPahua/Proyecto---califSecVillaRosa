@@ -247,6 +247,18 @@ class cicloEscolar(db.Model):
         db.session.delete(objeto)
         db.session.commit()
 
+    def consultarCiclos(self,nombre):
+        salida={"estatus":"","mensaje":""}
+        cicloEsc=None
+        cicloEsc=self.query.filter(cicloEscolar.nombre==nombre).first()
+        if cicloEsc!=None:
+            salida["estatus"]="Error"
+            salida["mensaje"]="El nombre "+nombre+" ya se encuentra registrado."
+        else:
+            salida["estatus"]="Ok"
+            salida["mensaje"]="El nombre "+nombre+" esta libre."
+        return salida
+
 class Inscripciones(db.Model):
     __tablename__ = 'Inscripciones'
     idInscripciones=Column(Integer, primary_key=True)
@@ -298,6 +310,18 @@ class Materias (db.Model):
         objeto= self.consultaIndividual(id)
         db.session.delete(objeto)
         db.session.commit()
+
+    def consultarMaterias(self,nombre):
+        salida={"estatus":"","mensaje":""}
+        materia=None
+        materia=self.query.filter(Materias.nombre==nombre).first()
+        if materia!=None:
+            salida["estatus"]="Error"
+            salida["mensaje"]="El nombre "+nombre+" ya se encuentra registrado."
+        else:
+            salida["estatus"]="Ok"
+            salida["mensaje"]="El nombre "+nombre+" esta libre."
+        return salida
 
 class Horarios(db.Model):
     __tablename__ = 'Horarios'
