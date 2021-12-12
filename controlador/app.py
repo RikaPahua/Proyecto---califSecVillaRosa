@@ -413,6 +413,11 @@ def consultarTelefono(telefono):
 def consultarNombre(nombre):
         usuario = Usuarios()
         return json.dumps(usuario.consultarNombre(nombre))
+
+@app.route('/grupo/nombre/<string:nombre>',methods=['get'])
+def consultarGrupo(nombre):
+    grupo=Grupos()
+    return json.dumps(grupo.consultarGrupos(nombre))
 ###################################################################################
 @app.route('/calificacionesEncurso')
 @login_required

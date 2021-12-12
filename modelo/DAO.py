@@ -210,7 +210,17 @@ class Grupos (db.Model):
         objeto= self.consultaIndividual(id)
         db.session.delete(objeto)
         db.session.commit()
-
+    def consultarGrupos(self,nombre):
+        salida={"estatus":"","mensaje":""}
+        grupo=None
+        grupo=self.query.filter(Grupos.nombre==nombre).first()
+        if grupo!=None:
+            salida["estatus"]="Error"
+            salida["mensaje"]="El nombre "+nombre+" ya se encuentra registrado."
+        else:
+            salida["estatus"]="Ok"
+            salida["mensaje"]="El nombre "+nombre+" esta libre."
+        return salida
 
 class cicloEscolar(db.Model):
     __tablename__ = 'cicloEscolar'

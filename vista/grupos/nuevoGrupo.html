@@ -1,11 +1,16 @@
 {% extends 'comunes/base.html'%}
 {% block content %}
+{% block scripts %}
+    {{super()}}
+    <script src="{{url_for('static',filename='js/grupos.js')}}"></script>
+{% endblock %}
 {{super()}}
-    <form  action="/registrarGrupo" method="post" class="formularioInscripciones" enctype="multipart/form-data">
+    <form  action="/registrarGrupo" method="post" class="formularioInscripciones" enctype="multipart/form-data" onsubmit="return validar(this)">
         <h1>REGISTRO DE UN GRUPO</h1>
         <label for="nombre">Nombre: </label>
-        <input type="text" name="nombre" id="nombre" placeholder="Nombre" maxlength="2"   required/>
-        <br/> <br/>
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre" maxlength="2" onblur="consultarGrupo()"  required/>
+        <div id="notificacionesNom" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
+        <br/>
         <div class="dropdown">
             <label for="grado">Grado: </label>
             <select id="grado" name="grado">
@@ -15,12 +20,13 @@
                 <option value="3" >3°</option>
             </select>
         </div>
-        <br/> <br/>
+        <br/>
         <label for="capacidad">Capacidad: </label>
         <input type="number" name="capacidad" id="capacidad" value="Capacidad" required/>
         <br/> <br/>
         <a class="btn btn-dark" href="/gruposListado"><span class="glyphicon glyphicon-chevron-left"></span></a>
-        <button type="submit" class="btn btn-info">Registrar grupo</button>
+        <button type="submit" id="registrar" class="btn btn-info">Registrar grupo</button>
+        <div id="notificaciones" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
         {% if get_flashed_messages() %}
         {% for m in get_flashed_messages()%}
         <div class="alert alert-success alert-dismissible">
