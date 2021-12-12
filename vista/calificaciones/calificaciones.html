@@ -1,0 +1,43 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+<h1>INSPECCIÓN DE CALIFICACIONES</h1>
+<a href="/detallecalificaciones" class="btn btn-info" id="obtenerGrup">Consultar por bimestre</a>
+<br/><br/>
+<div class="Tab">
+    <table class="table table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>ESTUDIANTE</th>
+            <th>MATERIA</th>
+            <th>PROMEDIO</th>
+            <th>CICLO ESCOLAR</th>
+        </tr>
+        </thead>
+        {%for c in calificaciones%}
+        <tr>
+            {%for u in usuarios%}
+                {%for e in estudiantes%}
+                    {%if e.idUsuario == u.idUsuario and e.noControl == c.noControl%}
+                    <td>{{u.nombre}}</td>
+            {%for m in materias%}
+                {%if m.idMateria == c.idMateria%}
+                    <td>{{m.nombre}}</td>
+                    <td>{{c.calificacionFinal}}</td>
+                    {%for cic in ciclos%}
+                        {%if cic.idCiclo == c.idCiclo%}
+                            <td>{{cic.nombre}}</td>
+                        {%endif%}
+                    {%endfor%}
+                {%endif%}
+            {%endfor%}
+
+            {%endif%}
+            {%endfor%}
+            {%endfor%}
+
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+{%endblock content%}

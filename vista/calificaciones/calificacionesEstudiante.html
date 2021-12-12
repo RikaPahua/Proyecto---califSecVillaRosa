@@ -10,11 +10,15 @@
            </tr>
             <tr>
              <th>Ciclo escolar</th>
-             <td>2021- 2023</td>
+             <td>{{ciclo}}</td>
            </tr>
             <tr>
-             <th>Grupo</th>
-             <td>6A</td>
+                {%for g in grupos%}
+                    {%if g.idGrupo == idGrupo%}
+                        <th>Grupo</th>
+                        <td>{{g.nombre}}</td>
+                    {%endif%}
+                {%endfor%}
            </tr>
       </table>
     </div>
@@ -31,70 +35,22 @@
                 <th>Bimestre 5</th>
               </tr>
             </thead>
-              <tr>
-                <td>Español II</td>
-                <td>9</td>
-                <td>8</td>
-                <td>8</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Matematicas II</td>
-                <td>10</td>
-                <td>8</td>
-                <td>8</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Historia II</td>
-                <td>6</td>
-                <td>7</td>
-                <td>9</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Quimica II</td>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Geografia II</td>
-                <td>10</td>
-                <td>9</td>
-                <td>7</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Ciencias Naturales II</td>
-                <td>9</td>
-                <td>10</td>
-                <td>10</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Civica y Etica II</td>
-                <td>9</td>
-                <td>8</td>
-                <td>8</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Ed. Fisica II</td>
-                <td>9</td>
-                <td>10</td>
-                <td>10</td>
-                <td></td>
-                <td></td>
-              </tr>
+            {%for c in calificaciones%}
+                <tr>
+                {%if c.idCiclo == idCiclo%}
+                        {%for m in materias%}
+                            {%if m.idMateria == c.idMateria%}
+                                <td>{{m.nombre}}</td>
+                                {%for d in detalle%}
+                                    {%if d.idCalificacion == c.idCalificacion and m.idMateria == c.idMateria%}
+                                        <td>{{d.calificacion}}</td>
+                                    {%endif%}
+                                {%endfor%}
+                            {%endif%}
+                        {%endfor%}
+                {%endif%}
+                </tr>
+            {%endfor%}
           </table>
     </div>
 {%endblock content%}

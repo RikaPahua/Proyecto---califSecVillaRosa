@@ -1,0 +1,78 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+<form  action="/EditarCalificaciones" method="post" class="formularioInscripciones" enctype="multipart/form-data">
+    <h1>MODIFICACIÓN DE CALIFICACIÓN</h1>
+    <input type="hidden" name="idCalificacion" id="idCalificacion" value="{{idCalificacion}}"/>
+    <input type="hidden" name="idDetalleCalificacion" id="idDetalleCalificacion" value="{{idDetalleCalificacion}}"/>
+    <label for="materia">Materia: </label>
+    <input type="text" name="materia" id="materia" value="{{materia}}" maxlength="100" size="30" readonly/>
+    <input type="hidden" name="materia" value="{{materia}}"/>
+    <input type="hidden" name="idMateria" id="idMateria" value="{{idMateria}}"/>
+    <br/><br/>
+    <label for="estudiante">Estudiante: </label>
+    <input type="text" name="estudiante" id="estudiante" value="{{estudiante}}" maxlength="100" size="50" readonly/>
+    <input type="hidden" name="noControl" id="noControl" value="{{noControl}}"/>
+    <br/><br/>
+    <label for="bimestre">Bimestre: </label>
+    <select name="bimestre" id="bimestre">
+        {%if bimestre == 1%}
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        {%else%}
+            {%if bimestre == 2%}
+                <option value="1">1</option>
+                <option value="2"selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            {%else%}
+                {%if bimestre == 3%}
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3"selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                {%else%}
+                    {%if bimestre == 4%}
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4"selected>4</option>
+                        <option value="5">5</option>
+                    {%else%}
+                        {%if bimestre == 5%}
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5"selected>5</option>
+                        {%endif%}
+                    {%endif%}
+                {%endif%}
+            {%endif%}
+        {%endif%}
+    </select>
+    <br/><br/>
+    <label for="calificacion">Calificación: </label>
+    <input type="number" name="calificacion" id="calificacion" value="{{calificacion}}" required/>
+    <input type="hidden" name="idCiclo" id="idCiclo" value="{{idCiclo}}"/>
+    <input type="hidden" name="idGrupo" id="idGrupo" value="{{idGrupo}}"/>
+    <input type="hidden" name="grupo" id="grupo" value="{{grupo}}"/>
+    <input type="hidden" name="idHorario" id="idHorario" value="{{idHorario}}"/>
+    <br/><br/>
+    <a class="btn btn-dark" href="/consultaCalificaciones/{{estudiante}},{{noControl}},{{idMateria}},{{materia}},{{idGrupo}},{{idHorario}},{{idCiclo}}"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <button type="submit" class="btn btn-info" >Guardar los cambios</button>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+</form>
+{%endblock content%}

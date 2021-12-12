@@ -397,7 +397,34 @@ def profesoresDatosEdicion():
 @login_required
 def calificacionesEncurso():
     if current_user.is_authenticated and current_user.is_estudiante():
-        return render_template('calificaciones/calificacionesEstudiante.html')
+        g=Grupos()
+        grupos = g.consultaGeneral()
+        i = Inscripciones()
+        inscrip = i.consultaGeneral()
+        e = Estudiantes()
+        est = e.consultaGeneral()
+        noControl = ''
+        for es in est:
+            if es.idUsuario == current_user.idUsuario:
+                noControl = es.noControl
+        idGrupo=0
+        for ins in inscrip:
+            if ins.noControl==noControl:
+                idGrupo=ins.idGrupo
+        c= cicloEscolar()
+        idCiclo=0
+        nombreciclo=''
+        for cc in c.consultaGeneral():
+            idCiclo = cc.idCiclo
+            nombreciclo = cc.nombre
+
+        c = Calificaciones()
+        d = DetalleCalificaciones()
+        calificaciones = c.consultaIndividual(noControl)
+        detalle = d.consultaGeneral()
+        m = Materias()
+        return render_template('calificaciones/calificacionesEstudiante.html',ciclo=nombreciclo,idGrupo=idGrupo, grupos=grupos,
+                               calificaciones=calificaciones, idCiclo=idCiclo, materias=m.consultaGeneral(), detalle=detalle)
     else:
         abort(404)
 
@@ -435,6 +462,55 @@ def calificacionesKardex():
                                materias=materias, cicloActual=cicloActual)
     else:
         abort(404)
+
+
+@app.route('/calificaciones')
+@login_required
+def calificaciones():
+    if current_user.is_authenticated and current_user.is_staff():
+        g=Grupos()
+        grupos = g.consultaGeneral()
+        i = Inscripciones()
+        inscrip = i.consultaGeneral()
+        e = Estudiantes()
+        est = e.consultaGeneral()
+        c = Calificaciones()
+        calificaciones = c.consultaGeneral()
+        cicl = cicloEscolar()
+        ciclos = cicl.consultaGeneral()
+        m = Materias()
+        materias = m.consultaGeneral()
+        u = Usuarios()
+        return render_template('calificaciones/calificaciones.html', grupos = grupos, inscripciones= inscrip,
+                                estudiantes=est, calificaciones= calificaciones, ciclos=ciclos,
+                               materias=materias, usuarios=u.consultaGeneral())
+    else:
+        abort(404)
+
+@app.route('/detallecalificaciones')
+@login_required
+def detallecalificaciones():
+    if current_user.is_authenticated and current_user.is_staff():
+        g=Grupos()
+        grupos = g.consultaGeneral()
+        i = Inscripciones()
+        inscrip = i.consultaGeneral()
+        e = Estudiantes()
+        est = e.consultaGeneral()
+        c = Calificaciones()
+        calificaciones = c.consultaGeneral()
+        cicl = cicloEscolar()
+        ciclos = cicl.consultaGeneral()
+        m = Materias()
+        materias = m.consultaGeneral()
+        u = Usuarios()
+        d = DetalleCalificaciones()
+        detalle = d.consultaGeneral()
+        return render_template('calificaciones/detalleCalificaciones.html', grupos = grupos, inscripciones= inscrip,
+                               estudiantes=est, calificaciones= calificaciones, ciclos=ciclos,
+                               materias=materias, usuarios=u.consultaGeneral(),detalle=detalle)
+    else:
+        abort(404)
 ###################################################################################
 @app.route('/materiasImpartidas')
 @login_required
@@ -448,10 +524,8 @@ def materiasImpartidas():
         return render_template('materias/materiasImpartidas.html', materias=m.consultaGeneral(),
                                profesores=p.consultaGeneral(), horarios=h.consultaGeneral(), grupos=g.consultaGeneral(),
                                usuario=u.consultaGeneral())
-
     else:
             abort(404)
-
 
 @app.route('/obtenerGrupo/<int:id>')
 @login_required
@@ -480,15 +554,12 @@ def obtenerGrupo(id):
                                 grupoSi.append(hh.idGrupo)
                                 nombreH.append(hh.idHorario)
                                 break
-
         return render_template('materias/materiasImpartidas.html', materias=m.consultaGeneral(),
                                profesores=p.consultaGeneral(), horarios=h.consultaGeneral(),
                                grupos=g.consultaGeneral(),
                                usuario=u.consultaGeneral(), grupoSi=grupoSi, materiaSi=materiaSi, nombreH=nombreH)
     else:
         abort(404)
-
-
 
 ###################################################################################
 @app.route('/gruposListado')
@@ -582,8 +653,6 @@ def grupoCalificaciones(id,idh,materia):
     else:
         abort(404)
 
-
-
 @app.route('/registroCalif/<int:idM>,<string:materia>,<string:estudiante>,<string:noControl>,<int:idC>,<int:idGrupo>,<int:idHorario>')
 @login_required
 def registroCalif(idM,materia,estudiante,noControl,idC,idGrupo,idHorario):
@@ -596,8 +665,6 @@ def registroCalif(idM,materia,estudiante,noControl,idC,idGrupo,idHorario):
                                noControl=noControl,idGrupo=idGrupo,idHorario=idHorario,idCalificacion=idCalificacion)
     else:
         abort(404)
-
-
 
 @app.route('/grupoCalificacionesRe', methods=['post'])
 @login_required
@@ -614,7 +681,6 @@ def grupoCalificacionesRegistrar():
                 idCalificacion=calif.idCalificacion
                 ciclo= calif.idCiclo
         if existe==1:
-            print('hola')
             d = DetalleCalificaciones()
             d.bimestre=request.form['bimestre']
             d.calificacion=request.form['calificacion']
@@ -627,7 +693,6 @@ def grupoCalificacionesRegistrar():
             c.calificacionFinal=(calif.calificacionFinal+int(request.form['calificacion']))/2
             c.actualizar()
         else:
-            print('ssss')
             c.noControl = request.form['noControl']
             c.idMateria = request.form['idMateria']
             c.idCiclo = request.form['idCiclo']
@@ -645,6 +710,102 @@ def grupoCalificacionesRegistrar():
                                idCalificacion=c.idCalificacion)
     else:
         abort(404)
+
+@app.route('/consultaCalificaciones/<string:estudiante>,<string:noControl>,<int:idMateria>,<string:materia>,<int:idGrupo>,<int:idHorario>,<int:idCiclo>')
+@login_required
+def consultaCalificaciones(estudiante,noControl,idMateria,materia,idGrupo,idHorario,idCiclo):
+    if current_user.is_authenticated and current_user.is_profesor():
+        c = Calificaciones()
+        d = DetalleCalificaciones()
+        calificaciones = c.consultaIndividual(noControl)
+        idCalificacion = 0;
+        for cal in calificaciones:
+            if cal.idMateria == idMateria:
+                idCalificacion = cal.idCalificacion
+        detalleCalificaciones = d.consultaIndividual(idCalificacion)
+        g = Grupos()
+        grupo = g.consultaIndividual(idGrupo)
+        return render_template('calificaciones/listadoCalificaciones.html', idMateria=idMateria,idCiclo=idCiclo,materia=materia,estudiante=estudiante,
+                               noControl=noControl,idGrupo=idGrupo,idHorario=idHorario, detalleCalificaciones=detalleCalificaciones,
+                               idCalificacion=idCalificacion, grupo=grupo)
+    else:
+        abort(404)
+
+
+@app.route('/editarCalificacionEst/<int:idCalificacion>,<string:estudiante>,<string:noControl>,<int:idMateria>,<string:materia>,<int:idCiclo>,<int:idDetalleCalificacion>,<string:grupo>,<int:idGrupo>,<int:idHorario>')
+@login_required
+def CalifEditar(idCalificacion,estudiante,noControl,idMateria,materia,idCiclo,idDetalleCalificacion,grupo,idGrupo,idHorario):
+    if current_user.is_authenticated and current_user.is_profesor():
+        d = DetalleCalificaciones()
+        bimestre = 0;
+        calificacion = 0.0;
+        for detalle in d.consultaGeneral():
+            if detalle.idDetalleCalificacion == idDetalleCalificacion:
+                bimestre=detalle.bimestre
+                calificacion=detalle.calificacion
+        return render_template('calificaciones/calificacionesEditar.html', idMateria=idMateria,idCiclo=idCiclo,materia=materia,estudiante=estudiante,
+                               noControl=noControl,idCalificacion=idCalificacion,idDetalleCalificacion=idDetalleCalificacion, grupo=grupo,
+                               bimestre = bimestre,calificacion=calificacion,idHorario=idHorario,idGrupo=idGrupo)
+    else:
+        abort(404)
+
+@app.route('/EditarCalificaciones', methods=['post'])
+@login_required
+def EditarCalificaciones():
+    if current_user.is_authenticated and current_user.is_profesor():
+        d = DetalleCalificaciones()
+        d.idDetalleCalificacion=request.form['idDetalleCalificacion']
+        d.bimestre=request.form['bimestre']
+        d.calificacion=request.form['calificacion']
+        d.idCalificacion=request.form['idCalificacion']
+        d.actualizar()
+        c = Calificaciones()
+        c.idCalificacion=request.form['idCalificacion']
+        c.noControl = request.form['noControl']
+        c.idMateria = request.form['idMateria']
+        c.idCiclo = request.form['idCiclo']
+        calificacionFinal=0;
+        cont=0;
+        for detalle in d.consultaGeneral():
+            if detalle.idCalificacion == int(request.form['idCalificacion']):
+                calificacionFinal+=detalle.calificacion
+                cont+=1;
+        calificacionFinal/=cont;
+        c.calificacionFinal = calificacionFinal
+        c.actualizar()
+
+        flash('¡Se han guardado los cambios con éxito!')
+        return render_template('calificaciones/calificacionesEditar.html', idMateria=request.form['idMateria'],idCiclo=request.form['idCiclo'],
+                               materia=request.form['materia'],estudiante=request.form['estudiante'], noControl=request.form['noControl'],
+                               idCalificacion=request.form['idCalificacion'],idDetalleCalificacion=request.form['idDetalleCalificacion'],
+                               grupo=request.form['grupo'],bimestre = request.form['bimestre'],calificacion=request.form['calificacion'],
+                               idHorario=request.form['idHorario'],idGrupo=request.form['idGrupo'])
+    else:
+        abort(404)
+
+@app.route('/EliminarCalificacion/<int:idDetalleCalificacion>,<string:estudiante>,<string:noControl>,<int:idMateria>,<string:materia>,<int:idGrupo>,<int:idHorario>,<int:idCiclo>')
+@login_required
+def EliminarCalificacion(idDetalleCalificacion,estudiante,noControl,idMateria,materia,idGrupo,idHorario,idCiclo):
+    if current_user.is_authenticated and current_user.is_profesor():
+        d = DetalleCalificaciones()
+        d.eliminar(idDetalleCalificacion)
+
+        c = Calificaciones()
+        calificaciones = c.consultaIndividual(noControl)
+        idCalificacion = 0;
+        for cal in calificaciones:
+            if cal.idMateria == idMateria:
+                idCalificacion = cal.idCalificacion
+        detalleCalificaciones = d.consultaIndividual(idCalificacion)
+        g = Grupos()
+        grupo = g.consultaIndividual(idGrupo)
+        flash ('Calificación eliminada con éxito!!')
+        return render_template('calificaciones/listadoCalificaciones.html', idMateria=idMateria,idCiclo=idCiclo,materia=materia,estudiante=estudiante,
+                               noControl=noControl,idGrupo=idGrupo,idHorario=idHorario, detalleCalificaciones=detalleCalificaciones,
+                               idCalificacion=idCalificacion, grupo=grupo)
+    else:
+        abort(404)
+
 ###################################################################################
 @app.route('/horarios')
 @login_required
@@ -667,14 +828,7 @@ def horarioGenerar():
         return 'GESTIÓN DE HORARIOS'
     else:
         abort(404)
-###################################################################################
-@app.route('/registroCalificaciones',methods=['post'])
-@login_required
-def registroCalificaciones():
-    if current_user.is_authenticated and current_user.is_profesor():
-        return 'SE HAN REGISTRADO LAS CALIFICACIONES'
-    else:
-        abort(404)
+
 ###################################################################################
 @app.route('/inscripciones')
 @login_required

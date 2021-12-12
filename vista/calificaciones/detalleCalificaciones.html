@@ -1,0 +1,49 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+<h1>INSPECCIÓN A DETALLE DE LAS CALIFICACIONES</h1>
+<a id="obtenerGrup" class="btn btn-primary" href="/calificaciones"><span class="glyphicon glyphicon-chevron-left"></span></a>
+<br/><br/>
+<div class="Tab">
+    <table class="table table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>ESTUDIANTE</th>
+            <th>MATERIA</th>
+            <th>BIMESTRE</th>
+            <th>CALIFICACIÓN</th>
+            <th>CICLO ESCOLAR</th>
+        </tr>
+        </thead>
+        {%for c in calificaciones%}
+            {%for d in detalle%}
+                {%if d.idCalificacion == c.idCalificacion%}
+
+                    <tr>
+                        {%for u in usuarios%}
+                            {%for e in estudiantes%}
+                                {%if e.idUsuario == u.idUsuario and e.noControl == c.noControl%}
+                                    <td>{{u.nombre}}</td>
+                                    {%for m in materias%}
+                                        {%if m.idMateria == c.idMateria%}
+                                            <td>{{m.nombre}}</td>
+                                            <td>{{d.bimestre}}</td>
+                                            <td>{{d.calificacion}}</td>
+                                            {%for cic in ciclos%}
+                                                {%if cic.idCiclo == c.idCiclo%}
+                                                <td>{{cic.nombre}}</td>
+                                                {%endif%}
+                                            {%endfor%}
+                                        {%endif%}
+                                    {%endfor%}
+                                {%endif%}
+                            {%endfor%}
+                        {%endfor%}
+                    </tr>
+
+                {%endif%}
+            {%endfor%}
+        {%endfor%}
+    </table>
+</div>
+{%endblock content%}

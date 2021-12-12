@@ -48,6 +48,11 @@
                         <a class="nav-link" href="/materiasListado">Materias</a>
                     </li>
                 {%endif%}
+                {%if current_user.is_authenticated and current_user.is_staff()%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/calificaciones">Inspección de calificaciones</a>
+                    </li>
+                {%endif%}
                 {%if current_user.is_authenticated and (current_user.is_staff() or current_user.is_estudiante())%}
                     <li class="nav-item">
                         <a class="nav-link" href="/inscripciones">Inscripciones</a>

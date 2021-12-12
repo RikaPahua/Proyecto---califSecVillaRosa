@@ -1,0 +1,53 @@
+{% extends 'comunes/base.html'%}
+{% block content %}
+{{super()}}
+<div class="Tab">
+    <h1>DETALLE DE CALIFICACIONES DEL ESTUDIANTE</h1>
+    {% if get_flashed_messages() %}
+    {% for m in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{m}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <table class="table table-bordered">
+        <tr>
+            <th>MATERIA</th>
+            <td>{{materia}}</td>
+        </tr>
+        <tr>
+            <th>NOMBRE</th>
+            <td>{{estudiante}}</td>
+        </tr>
+        <tr>
+            <th>GRUPO</th>
+            <td>{{grupo.nombre}}</td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<div class="Tab">
+    <table class="table table-bordered">
+        <thead class="table-dark">
+        <tr>
+        <th>BIMESTRE</th>
+        <th>CALIFICACIÓN</th>
+        <th>MODIFICAR</th>
+        <th>ELIMINAR</th>
+        </tr>
+
+        {%for d in detalleCalificaciones%}
+        <tr>
+            <th>{{d.bimestre}}</th>
+            <td>{{d.calificacion}}</td>
+            <td><a href="/editarCalificacionEst/{{idCalificacion}},{{estudiante}},{{noControl}},{{idMateria}},{{materia}},{{idCiclo}},{{d.idDetalleCalificacion}},{{grupo.nombre}},{{idGrupo}},{{idHorario}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+            <td><a href="/EliminarCalificacion/{{d.idDetalleCalificacion}},{{estudiante}},{{noControl}},{{idMateria}},{{materia}},{{idGrupo}},{{idHorario}},{{idCiclo}}"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+        {%endfor%}
+        </thead>
+    </table>
+    <br/>
+    <a id="obtenerGrup" class="btn btn-primary" href="/grupCalificaciones/{{idGrupo}},{{idHorario}},{{materia}}"><span class="glyphicon glyphicon-chevron-left"></span></a>
+</div>
+{%endblock content%}

@@ -1,14 +1,6 @@
 {% extends 'comunes/base.html'%}
 {% block content %}
 {{super()}}
-{% if get_flashed_messages() %}
-{% for m in get_flashed_messages()%}
-<div class="alert alert-success alert-dismissible">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>{{m}}</strong>
-</div>
-{% endfor %}
-{% endif %}
 <H1>LISTADO DE ALUMNOS</H1>
 <div class="Tab">
           <table class="table table-bordered">
@@ -21,7 +13,7 @@
                   <td>{{grupos.nombre}}</td>
               </tr>
           </table>
-    </div>
+</div>
 <br/><br/>
     <input type="hidden" name="idHorario" value="{{horarios.idHorario}}"/>
     <div class="Tab">
@@ -31,6 +23,7 @@
 
             <th>ALUMNO</th>
             <th>REGISTRAR CALIFICACIÓN</th>
+            <th>MODIFICAR CALIFICACIONES</th>
         </tr>
         <tr>
             {%for i in inscripciones%}
@@ -46,6 +39,7 @@
                                         <input type="hidden" name="idMateria" value="{{horarios.idMateria}}"/>
                                         <input type="hidden" name="idCiclo"  value="{{actual}}"/>
                                         <td> <a href="/registroCalif/{{horarios.idMateria}},{{materia}},{{u.nombre}},{{e.noControl}},{{actual}},{{grupos.idGrupo}},{{horarios.idHorario}}"><span  class="glyphicon glyphicon-check"> </span></a></td>
+                                        <td><a href="/consultaCalificaciones/{{u.nombre}},{{e.noControl}},{{horarios.idMateria}},{{materia}},{{grupos.idGrupo}},{{horarios.idHorario}},{{actual}}"><span class="glyphicon glyphicon-edit"></span></a></td>
                                     </tr>
                                 {%else%}
                                 {%endif%}

@@ -282,14 +282,35 @@ class Calificaciones(db.Model):
         db.session.merge(self)
         db.session.commit()
 
+    def eliminar(self,id):
+        objeto= self.consultaIndividual(id)
+        db.session.delete(objeto)
+        db.session.commit()
+
 class DetalleCalificaciones(db.Model):
     __tablename__ = 'DetalleCalificaciones'
-    idDetalleCalificacion=Column(Integer, primary_key=True)
+    idDetalleCalificacion = Column(Integer, primary_key=True)
     bimestre = Column(Integer,nullable=False)
     calificacion = Column(Float, nullable=False)
-    idCalificacion = Column(Integer, ForeignKey('Calificaciones.idCalificacion'))
-    Calificacion=relationship('Calificaciones',backref='DetalleCalificaciones', lazy="select")
+    idCalificacion = Column(Integer,nullable=False)
 
     def insertar (self):
         db.session.add(self)
+        db.session.commit()
+
+    def eliminar(self,idDetalleCalificacion):
+        objeto= self.consultaIndividual(idDetalleCalificacion)
+        db.session.delete(objeto)
+        db.session.commit()
+
+    def consultaIndividual (self, idCalificacion):
+        detalleCalificaciones =None
+        detalleCalificaciones =self.query.filter(DetalleCalificaciones.idCalificacion == idCalificacion).all()
+        return detalleCalificaciones
+
+    def consultaGeneral (self):
+        return self.query.all()
+
+    def actualizar (self):
+        db.session.merge(self)
         db.session.commit()

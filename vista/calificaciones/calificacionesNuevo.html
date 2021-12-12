@@ -29,7 +29,7 @@
     <input type="hidden" name="idHorario"  value="{{idHorario}}"/>
     <br/><br/>
     <a class="btn btn-dark" href="/grupCalificaciones/{{idGrupo}},{{idHorario}},{{materia}}"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    <button type="submit" class="btn btn-info" >Registrar calificación</button>
+    <button type="submit" class="btn btn-info">Registrar calificación</button>
     {% if get_flashed_messages() %}
     {% for m in get_flashed_messages()%}
     <div class="alert alert-success alert-dismissible">
