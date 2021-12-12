@@ -709,6 +709,8 @@ def grupoCalificacionesRegistrar():
     if current_user.is_authenticated and current_user.is_profesor():
         c = Calificaciones()
         con = c.consultaGeneral()
+        det =DetalleCalificaciones()
+
         existe = 0;
         idCalificacion=0;
         ciclo=0;
@@ -727,7 +729,16 @@ def grupoCalificacionesRegistrar():
             c.noControl=request.form['noControl']
             c.idMateria=request.form['idMateria']
             c.idCiclo=ciclo
-            c.calificacionFinal=(calif.calificacionFinal+int(request.form['calificacion']))/2
+
+            calificacionFin=0;
+            cont=0
+            for detalles in det.consultaGeneral():
+                if detalles.idCalificacion == idCalificacion:
+                    calificacionFin+=detalles.calificacion
+                    cont+=1
+                    calificacionFin/=cont
+
+            c.calificacionFinal=calificacionFin
             c.actualizar()
         else:
             c.noControl = request.form['noControl']
@@ -815,7 +826,7 @@ def EditarCalificaciones():
         return render_template('calificaciones/calificacionesEditar.html', idMateria=request.form['idMateria'],idCiclo=request.form['idCiclo'],
                                materia=request.form['materia'],estudiante=request.form['estudiante'], noControl=request.form['noControl'],
                                idCalificacion=request.form['idCalificacion'],idDetalleCalificacion=request.form['idDetalleCalificacion'],
-                               grupo=request.form['grupo'],bimestre = request.form['bimestre'],calificacion=request.form['calificacion'],
+                               grupo=request.form['grupo'],bimestre = int(request.form['bimestre']),calificacion=request.form['calificacion'],
                                idHorario=request.form['idHorario'],idGrupo=request.form['idGrupo'])
     else:
         abort(404)
@@ -825,9 +836,27 @@ def EditarCalificaciones():
 def EliminarCalificacion(idDetalleCalificacion,estudiante,noControl,idMateria,materia,idGrupo,idHorario,idCiclo):
     if current_user.is_authenticated and current_user.is_profesor():
         d = DetalleCalificaciones()
+        detalleAeliminar = d.consultaIndividualC(idDetalleCalificacion)
+        idCalificacion = detalleAeliminar.idCalificacion
         d.eliminar(idDetalleCalificacion)
 
+        calificacionFin=0;
+        cont=0
+        for detalles in d.consultaGeneral():
+            if detalles.idCalificacion == idCalificacion:
+                calificacionFin+=detalles.calificacion
+                cont+=1
+        calificacionFin/=cont
+
         c = Calificaciones()
+        Amodificar=c.consultaIndividualC(idCalificacion)
+        Amodificar.idCalificacion=idCalificacion
+        Amodificar.noControl = noControl
+        Amodificar.idMateria = idMateria
+        Amodificar.idCiclo = idCiclo
+        Amodificar.calificacionFinal=calificacionFin
+        Amodificar.actualizar()
+
         calificaciones = c.consultaIndividual(noControl)
         idCalificacion = 0;
         for cal in calificaciones:
@@ -843,6 +872,23 @@ def EliminarCalificacion(idDetalleCalificacion,estudiante,noControl,idMateria,ma
     else:
         abort(404)
 
+@app.route('/eliminarCalificaciones/<int:idCalificacion>')
+@login_required
+def eliminarCalificaciones(idCalificacion):
+    if current_user.is_authenticated and current_user.is_staff():
+        c = Calificaciones()
+        d = DetalleCalificaciones()
+        for calif in c.consultaGeneral():
+            if calif.idCalificacion == idCalificacion:
+                for detalle in d.consultaGeneral():
+                    if detalle.idCalificacion == calif.idCalificacion:
+                        detalle.eliminar(detalle.idDetalleCalificacion)
+        c.eliminar(idCalificacion)
+        flash ('Calificaciones eliminada con éxito!!')
+        return redirect(url_for('calificaciones'))
+
+    else:
+        abort(404)
 ###################################################################################
 @app.route('/horarios')
 @login_required

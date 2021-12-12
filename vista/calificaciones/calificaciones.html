@@ -2,6 +2,14 @@
 {% block content %}
 {{super()}}
 <h1>INSPECCIÓN DE CALIFICACIONES</h1>
+{% if get_flashed_messages() %}
+{% for m in get_flashed_messages()%}
+<div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{m}}</strong>
+</div>
+{% endfor %}
+{% endif %}
 <a href="/detallecalificaciones" class="btn btn-info" id="obtenerGrup">Consultar por bimestre</a>
 <br/><br/>
 <div class="Tab">
@@ -12,6 +20,7 @@
             <th>MATERIA</th>
             <th>PROMEDIO</th>
             <th>CICLO ESCOLAR</th>
+            <th>ELIMINAR</th>
         </tr>
         </thead>
         {%for c in calificaciones%}
@@ -27,6 +36,7 @@
                     {%for cic in ciclos%}
                         {%if cic.idCiclo == c.idCiclo%}
                             <td>{{cic.nombre}}</td>
+                            <td><a href="/eliminarCalificaciones/{{c.idCalificacion}}"><span class="glyphicon glyphicon-trash"></span></a></td>
                         {%endif%}
                     {%endfor%}
                 {%endif%}

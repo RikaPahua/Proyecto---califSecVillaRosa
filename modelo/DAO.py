@@ -123,7 +123,7 @@ class Estudiantes(db.Model):
     idUsuario=Column(Integer,ForeignKey('Usuarios.idUsuario'))
     fechaNacimiento=Column(Date)
     fechaIngreso=Column(Date)
-    promedioGeneral=Column(Integer)
+    promedioGeneral=Column(Integer,default=10)
     usuario=relationship('Usuarios',backref='estudiantes', lazy="select")
 
     def consultaGeneral (self):
@@ -353,6 +353,9 @@ class Calificaciones(db.Model):
     def consultaGeneral (self):
         return self.query.all()
 
+    def consultaIndividualC (self,idCalificacion):
+        return self.query.get(idCalificacion)
+
     def consultaIndividual (self, noControl):
         calificaciones =None
         calificaciones =self.query.filter(Calificaciones.noControl == noControl).all()
@@ -367,7 +370,7 @@ class Calificaciones(db.Model):
         db.session.commit()
 
     def eliminar(self,id):
-        objeto= self.consultaIndividual(id)
+        objeto= self.consultaIndividualC(id)
         db.session.delete(objeto)
         db.session.commit()
 
@@ -382,11 +385,6 @@ class DetalleCalificaciones(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def eliminar(self,idDetalleCalificacion):
-        objeto= self.consultaIndividual(idDetalleCalificacion)
-        db.session.delete(objeto)
-        db.session.commit()
-
     def consultaIndividual (self, idCalificacion):
         detalleCalificaciones =None
         detalleCalificaciones =self.query.filter(DetalleCalificaciones.idCalificacion == idCalificacion).all()
@@ -398,3 +396,12 @@ class DetalleCalificaciones(db.Model):
     def actualizar (self):
         db.session.merge(self)
         db.session.commit()
+
+    def consultaIndividualC (self,idDetalleCalificacion):
+        return self.query.get(idDetalleCalificacion)
+
+    def eliminar(self,idDetalleCalificacion):
+        objeto= self.consultaIndividualC(idDetalleCalificacion)
+        db.session.delete(objeto)
+        db.session.commit()
+
