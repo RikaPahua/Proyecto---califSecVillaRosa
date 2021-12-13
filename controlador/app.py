@@ -434,7 +434,10 @@ def consultarDetalleC(bimestre,idCalificacion):
     detalleCalifica=DetalleCalificaciones()
     return json.dumps(detalleCalifica.consultarDetalleCal(bimestre,idCalificacion))
 
-
+@app.route('/profesores/cedula/<string:cedula>', methods=['get'])
+def consultarnoCedula(cedula):
+        profesores = Profesores()
+        return json.dumps(profesores.consultarCedula(cedula))
 ###################################################################################
 @app.route('/calificacionesEncurso')
 @login_required

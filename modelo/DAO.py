@@ -187,6 +187,19 @@ class Profesores(db.Model):
         db.session.delete(objeto)
         db.session.commit()
 
+
+    def consultarCedula(self,cedula):
+        salida={"estatus":"","mensaje":""}
+        profesores=None
+        profesores=self.query.filter(Profesores.cedula==cedula).first()
+        if profesores!=None:
+            salida["estatus"]="Error"
+            salida["mensaje"]="El noControl "+cedula+" ya se encuentra registrado."
+        else:
+            salida["estatus"]="Ok"
+            salida["mensaje"]="El noControl "+cedula+" esta libre."
+        return salida
+
 class Grupos (db.Model):
     __tablename__='Grupos'
     idGrupo=Column(Integer, primary_key=True)

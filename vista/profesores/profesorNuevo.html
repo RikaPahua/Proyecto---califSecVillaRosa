@@ -1,17 +1,22 @@
 {% extends 'comunes/base.html'%}
 {% block content %}
+{% block scripts %}
+    {{super()}}
+    <script src="{{url_for('static',filename='js/usuariosP.js')}}"></script>
+{% endblock %}
 {{super()}}
-        <form action="/profesoresDatosNuevo" method="post" class="FormularioUsuarios" enctype="multipart/form-data">
+        <form action="/profesoresDatosNuevo" method="post" class="FormularioUsuarios" enctype="multipart/form-data" onsubmit="return validar(this)">
             <h1>REGISTRO DE UN NUEVO PROFESOR</h1>
-            <input type="hidden" name="idUsuario" id="idUsuario" value="{{usuario.idUsuario}}" maxlength="100" required/>
             <div>
                 <label for="foto">Fotografía: </label>
                 <input type="file" name="foto" id="foto" value="Selecciona la imagen" accept="image/png, .jpeg, .jpg, image/gif">
             </div>
             <br/>
+            <input type="hidden" name="idUsuario" id="idUsuario" value="{{usuario.idUsuario}}" maxlength="100" required/>
             <label for="nombre">Nombre: </label>
-            <input type="text" name="nombre" id="nombre" placeholder="Nombre" maxlength="100" size="60px" required/>
-            <br/><br/>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" maxlength="100" size="60px" onblur="consultarNombre()" required />
+            <div id="notificacionesNom" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
+            <br/>
             <div class="dropdown">
                 <label for="sexo">Sexo: </label>
                 <select id="sexo" name="sexo">
@@ -22,19 +27,16 @@
             </div>
             <br/>
             <label for="telefono">Teléfono: </label>
-            <input type="tel" name="telefono" id="telefono" placeholder="Teléfono" maxlength="12" size="12" required/>
-            <br/><br/>
+            <input type="tel" name="telefono" id="telefono" placeholder="Teléfono" maxlength="12" size="12" required onblur="consultarTelefono()" />
+            <div id="notificacionesTel" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
+            <br/>
             <label for="domicilio">Domicilio: </label>
-            <input type="text" name="domicilio" id="domicilio" placeholder="Domicilio" maxlength="50" size="50px" required/>
+            <input type="text" name="domicilio" id="domicilio" placeholder="Domicilio" maxlength="50" size="50px" required />
             <br/><br/>
-            <!--<div class="mb-3 mt-3">
-            <label for="estatus">Estatus:</label>
-            <input type="checkbox" name="estatus" id="estatus" checked>
-            </div>
-            <br/>-->
             <label for="email">E-mail: </label>
-            <input type="email" name="email" id="email" placeholder="email" maxlength="50" size="50px" required/>
-            <br/><br/>
+            <input type="email" name="email" id="email" placeholder="email" maxlength="50" size="50px" required onblur="consultarEmail()"  />
+            <div id="notificacionesEm" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
+            <br/>
             <label for="clave">Contraseña: </label>
             <input type="password" name="clave" id="clave" placeholder="Contraseña" maxlength="10" required/>
             <br/><br/>
@@ -45,9 +47,21 @@
             <input type="date" name="fechaContratacion" id="fechaContratacion"  required/>
             <br/><br/>
             <label for="cedula">Cédula: </label>
-            <input type="text" name="cedula" id="cedula" placeholder="Cedula" maxlength="8" required/>
-            <br/><br/>
+            <input type="text" name="cedula" id="cedula" placeholder="Cedula" maxlength="8" required onblur="consultarnoCedula()"/>
+            <div id="notificacionesNo" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
+            <br/>
             <a class="btn btn-dark" href="/profesores"><span class="glyphicon glyphicon-chevron-left"></span></a>
-            <button type="submit" class="btn btn-info btn-lg">Registrar</button>
+            <button type="submit"  id="registrar" class="btn btn-info btn-lg">Registrar</button>
+            <div id="notificaciones" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
+            {% if get_flashed_messages() %}
+            {% for m in get_flashed_messages()%}
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>{{m}}</strong>
+            </div>
+            {% endfor %}
+            {% endif %}
         </form>
+
+
 {%endblock content%}
