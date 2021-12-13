@@ -1,9 +1,13 @@
 {% extends 'comunes/base.html'%}
 {% block content %}
+{% block scripts %}
+    {{super()}}
+    <script src="{{url_for('static',filename='js/calificacion.js')}}"></script>
+{% endblock %}
 {{super()}}
-<form  action="/grupoCalificacionesRe" method="post" class="formularioInscripciones" enctype="multipart/form-data">
+<form  action="/grupoCalificacionesRe" method="post" class="formularioInscripciones" onsubmit="return validar(this)" enctype="multipart/form-data">
     <h1>REGISTRO DE CALIFICACIONES</h1>
-    <input type="hidden" name="idCalificacion" id="idCalificacion" value="{{idCalificacion}}"/>
+    <input type="hidden" name="idCalificacion" id="idCalificacion"  value="{{idCalificacion}}"/>
     <label for="materia">Materia: </label>
     <input type="text" name="materia" id="materia" value="{{materia}}" maxlength="100" size="30" readonly/>
     <input type="hidden" name="materia" value="{{materia}}"/>
@@ -14,7 +18,8 @@
     <input type="hidden" name="noControl" id="noControl" value="{{noControl}}"/>
     <br/><br/>
     <label for="bimestre">Bimestre: </label>
-    <select name="bimestre" id="bimestre">
+    <select name="bimestre" id="bimestre" onblur="consultarCal()" >
+        <option disabled selected>Seleccionar</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -29,7 +34,8 @@
     <input type="hidden" name="idHorario"  value="{{idHorario}}"/>
     <br/><br/>
     <a class="btn btn-dark" href="/grupCalificaciones/{{idGrupo}},{{idHorario}},{{materia}}"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    <button type="submit" class="btn btn-info">Registrar calificación</button>
+    <button type="submit" id="registrar" class="btn btn-info">Registrar calificación</button>
+    <div id="notificaciones" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
     {% if get_flashed_messages() %}
     {% for m in get_flashed_messages()%}
     <div class="alert alert-success alert-dismissible">

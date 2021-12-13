@@ -429,6 +429,12 @@ def consultarMateria(nombre):
     materia=Materias()
     return json.dumps(materia.consultarMaterias(nombre))
 
+@app.route('/detalleCal/bimestre/<int:bimestre>,<int:idCalificacion>',methods=['get'])
+def consultarDetalleC(bimestre,idCalificacion):
+    detalleCalifica=DetalleCalificaciones()
+    return json.dumps(detalleCalifica.consultarDetalleCal(bimestre,idCalificacion))
+
+
 ###################################################################################
 @app.route('/calificacionesEncurso')
 @login_required

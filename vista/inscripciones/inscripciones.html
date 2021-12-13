@@ -1,8 +1,12 @@
 {% extends 'comunes/base.html'%}
 {% block content %}
+{% block scripts %}
+    {{super()}}
+    <script src="{{url_for('static',filename='js/inscripcion.js')}}"></script>
+{% endblock %}
 {{super()}}
 
-<form  action="/registrarInscripcion" method="post" class="formularioInscripciones" enctype="multipart/form-data">
+<form  action="/registrarInscripcion" method="post" class="formularioInscripciones" enctype="multipart/form-data" onsubmit="return validar(this)">
     <h1>INSCRIPCIONES</h1>
     {%if current_user.is_authenticated and current_user.is_staff()%}
         <a class="btn btn-info" href="/inscripcionesListado">Consultar</a>
@@ -22,8 +26,8 @@
     {%for cicl in ciclos%}
         {%if cicl.idCiclo == actual%}
             <label for="nombreCiclo">Ciclo: </label>
-            <input type="text" name="nombreCiclo" id="nombreCiclo" value="{{cicl.nombre}}" readonly/>
-            <input type="hidden" name="idCiclo" id="idCiclo" value="{{cicl.idCiclo}}"/>
+            <input type="text" name="nombreCiclo" id="nombreCiclo" value="{{cicl.nombre}}" onsubmit="return validar(this)" readonly/>
+            <input type="hidden" name="idCiclo" id="idCiclo"  value="{{cicl.idCiclo}}"/>
         {%endif%}
     {%endfor%}
     <br/>
@@ -55,7 +59,8 @@
     </div>
     {%endif%}
     <br/>
-    <button type="submit" class="btn btn-info" >Realizar inscripción</button>
+    <button type="submit" id="registrar" class="btn btn-info"  >Realizar inscripción</button>
+    <div id="notificaciones" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
     {% if get_flashed_messages() %}
     {% for m in get_flashed_messages()%}
     <div class="alert alert-success alert-dismissible">
@@ -65,4 +70,13 @@
     {% endfor %}
     {% endif %}
 </form>
+
+        {% if get_flashed_messages()%}
+        {% for m in get_flashed_messages()%}
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{m}}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
 {%endblock content%}

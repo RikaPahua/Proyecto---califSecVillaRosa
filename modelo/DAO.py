@@ -419,3 +419,15 @@ class DetalleCalificaciones(db.Model):
         db.session.delete(objeto)
         db.session.commit()
 
+    def consultarDetalleCal(self,bimestre,idCalificacion):
+        salida={"estatus":"","mensaje":""}
+        detalleCal=None
+        detalleCal=self.query.filter((DetalleCalificaciones.bimestre==bimestre) , (DetalleCalificaciones.idCalificacion==idCalificacion)).first()
+        if detalleCal!=None:
+            salida["estatus"]="Error"
+            salida["mensaje"]="Ya existe una calificacion asignada en el bimestre."
+        else:
+            salida["estatus"]="Ok"
+            salida["mensaje"]="El bimestre esta libre."
+        return salida
+
