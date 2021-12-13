@@ -14,7 +14,7 @@ function validarC(form){
     return ban;
 }
 function validarNombre(cadena){
-    var patron=/[0-9]-[0-9]/
+    var patron=/[0-9]{4}-[0-9]{4}/
     var ban=patron.test(cadena);
     var salida="";
     if(ban==false){
