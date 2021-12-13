@@ -369,6 +369,18 @@ class Horarios(db.Model):
         db.session.delete(objeto)
         db.session.commit()
 
+    def consultarHorario(self,dia,horarioInicio,idProfesor):
+        salida={"estatus":"","mensaje":""}
+        horar=None
+        horar=self.query.filter((Horarios.dia==dia) , (Horarios.horarioInicio==horarioInicio)  , (Horarios.idProfesor==idProfesor)).first()
+        if horar!=None:
+            salida["estatus"]="Error"
+            salida["mensaje"]="El profesor ya tiene una clase asignada en ese horario."
+        else:
+            salida["estatus"]="Ok"
+            salida["mensaje"]="El horario esta libre."
+        return salida
+
 class Calificaciones(db.Model):
     __tablename__ = 'Calificaciones'
     idCalificacion=Column(Integer, primary_key=True)

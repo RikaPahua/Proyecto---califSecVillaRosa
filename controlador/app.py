@@ -438,6 +438,11 @@ def consultarDetalleC(bimestre,idCalificacion):
 def consultarnoCedula(cedula):
         profesores = Profesores()
         return json.dumps(profesores.consultarCedula(cedula))
+
+@app.route('/horario/dia/<string:dia>,<string:horarioInicio>,<int:idProfesor>',methods=['get'])
+def consultarHoraq(dia,horarioInicio,idProfesor):
+    horario=Horarios()
+    return json.dumps(horario.consultarHorario(dia,horarioInicio,idProfesor))
 ###################################################################################
 @app.route('/calificacionesEncurso')
 @login_required

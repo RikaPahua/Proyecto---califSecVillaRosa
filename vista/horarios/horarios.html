@@ -1,5 +1,9 @@
 {% extends 'comunes/base.html'%}
 {% block content %}
+{% block scripts %}
+    {{super()}}
+    <script src="{{url_for('static',filename='js/horario.js')}}"></script>
+{% endblock %}
 {{super()}}
 <H1>HORARIO</H1>
 {% if get_flashed_messages() %}
@@ -239,7 +243,7 @@
     <div id="selec2">
         <a>
             <label for="profesor">Profesor:  </label>
-            <select id="profesor" name="idProfesor">
+            <select id="idProfesor" name="idProfesor">
                 <option selected disabled>Seleccionar</option>
                 {%for u in usuario%}
                     {%for p in profesores%}
@@ -267,7 +271,7 @@
                 <option value="Viernes">Viernes</option>
             </select>
             <label for="horarioInicio"> Hora inicio: </label>
-            <input type="time"  name="horarioInicio" id="horarioInicio">
+            <input type="time"  name="horarioInicio" id="horarioInicio" onblur="consultarCal()">
             <label for="horarioIFin"> &nbsp Hora fin: </label>
             <input type="time" name="horarioFin" id="horarioIFin">
             {%for g in grupos%}
@@ -281,10 +285,12 @@
             <input type="hidden" name="banderaRegistrar" value="{{banderaRegistrar}}">
             <input type="hidden" name="banderaModificar" value="{{banderaModificar}}">
             <input type="hidden" name="banderaEliminar" value="{{banderaEliminar}}">
-            <button type="submit"  class="btn btn-info">Registrar clase</button>
+            <button type="submit" id="registrar" class="btn btn-info">Registrar clase</button>
+            <div id="notificaciones" style="background-color:rgba(179, 11, 11, 0.452);color:white"></div>
         </a>
     </div>
     </div>
+    
 </form>
 {%endif%}
 
