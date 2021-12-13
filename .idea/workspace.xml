@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="36fc3775-c90d-4d7b-80d0-a10504f1c85e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/static/js/validaciones.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/validaciones.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/administrativos/administrativoEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/administrativos/administrativoEditar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/ciclos/cicloEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/ciclos/cicloEditar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/estudiantes/estudianteEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/estudiantes/estudianteEditar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/grupos/grupoEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/grupos/grupoEditar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/profesores/profesorEditar.html" beforeDir="false" afterPath="$PROJECT_DIR$/vista/profesores/profesorEditar.html" afterDir="false" />
-    </list>
+    <list default="true" id="36fc3775-c90d-4d7b-80d0-a10504f1c85e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/js/usuariosA.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
-              <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+              <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -64,10 +57,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vista/grupos/grupoEditar.html">
+        <entry file="file://$PROJECT_DIR$/vista/materias/materiaEditar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="45" column="97" selection-start-line="45" selection-start-column="97" selection-end-line="45" selection-end-column="97" />
+            <state relative-caret-position="288">
+              <caret line="41" column="98" selection-start-line="41" selection-start-column="98" selection-end-line="41" selection-end-column="98" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#form#0;n#!!top" expanded="true" />
               </folding>
@@ -76,15 +69,20 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/js/grupos.js">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/vista/materias/nuevaMateria.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="93">
+              <caret line="25" column="97" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="97" />
+              <folding>
+                <element signature="n#style#0;n#div#2;n#form#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/materias.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-90" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -125,7 +123,6 @@
       <list>
         <option value="$PROJECT_DIR$/static/css/estilos.css" />
         <option value="$PROJECT_DIR$/vista/grupos/gruposListado.html" />
-        <option value="$PROJECT_DIR$/vista/materias/materiaEditar.html" />
         <option value="$PROJECT_DIR$/vista/materias/materiasListado.html" />
         <option value="$PROJECT_DIR$/static/css/estiloError.css" />
         <option value="$PROJECT_DIR$/vista/comunes/paginaError.html" />
@@ -155,10 +152,11 @@
         <option value="$PROJECT_DIR$/vista/ciclos/cicloEditar.html" />
         <option value="$PROJECT_DIR$/static/js/validaciones.js" />
         <option value="$PROJECT_DIR$/vista/grupos/grupoEditar.html" />
+        <option value="$PROJECT_DIR$/vista/materias/materiaEditar.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="660" />
     <option name="width" value="713" />
     <option name="height" value="735" />
@@ -347,12 +345,12 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17019667" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17019667" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4969743" visible="true" weight="0.29787233" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4969743" visible="true" weight="0.29787233" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -417,13 +415,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vista/materias/materiaEditar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="11" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vista/profesores/profesoresListado.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -470,13 +461,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vista/materias/materiasImpartidas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vista/comunes/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1156">
@@ -496,13 +480,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vista/materias/nuevaMateria.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -544,13 +521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="188" column="54" selection-start-line="188" selection-start-column="37" selection-end-line="188" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/usuariosA.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -665,13 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/usuariosP.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="42" lean-forward="true" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vista/grupos/nuevoGrupo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
@@ -681,6 +644,19 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/materias.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vista/materias/materiasImpartidas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/grupos.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/vista/grupos/grupoEditar.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -692,12 +668,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/grupos.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/materias.js">
+    <entry file="file://$PROJECT_DIR$/static/js/usuariosP.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90" />
+        <state relative-caret-position="90">
+          <caret line="5" column="42" lean-forward="true" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vista/materias/nuevaMateria.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="25" column="97" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="97" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#form#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vista/materias/materiaEditar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="41" column="98" selection-start-line="41" selection-start-column="98" selection-end-line="41" selection-end-column="98" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#form#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/usuariosA.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        </state>
       </provider>
     </entry>
   </component>
