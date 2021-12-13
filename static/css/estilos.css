@@ -52,7 +52,7 @@ table, th tr, td{
 .table td{
     text-align: center;
 }
-#nuevo, #nuevo1, #nuevo2, #regresarAmaterias, #guardarCal, #selec, #selec2, #obtenerGrup{
+#nuevo, #nuevo1, #nuevo2, #regresarAmaterias, #guardarCal, #selec, #selec2, #selec3,#selec4,#selec5, #obtenerGrup{
     margin-left: 5%;
 }
 
@@ -105,7 +105,7 @@ form h1, #foto{
     color: white;
 
 }
-#generarHorarios{
+#generarHorarios, #agregarclase,#EliminarClase, #modificarClase{
     border-radius: 30px;
     background-color: #316796;
     color: white;
@@ -115,7 +115,7 @@ form h1, #foto{
     padding-top: 20px;
     padding-bottom: 20px;
 }
-#generarHorarios h1, #titg, #imgn{
+#generarHorarios, #modificarClase, #agregarclase, #EliminarClase, #titg, #imgn{
     color: white;
 }
 footer{

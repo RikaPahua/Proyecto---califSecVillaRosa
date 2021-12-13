@@ -893,22 +893,198 @@ def eliminarCalificaciones(idCalificacion):
 @app.route('/horarios')
 @login_required
 def horarios():
-    if current_user.is_authenticated and (current_user.is_administrador() or current_user.is_staff()):
+    if current_user.is_authenticated and current_user.is_staff():
         m = Materias()
         p = Profesores()
         h = Horarios()
         g = Grupos()
         u = Usuarios()
+        c = cicloEscolar()
+        ciclos = c.consultaGeneral()
+        actual=0
+        for cic in ciclos:
+            actual=cic.idCiclo
+        grupoSeleccionado='1A'
+        banderaRegistrar=0
+        banderaModificar=0
+        banderaEliminar=0
         return render_template('horarios/horarios.html', materias=m.consultaGeneral(),
                                profesores=p.consultaGeneral(), horarios=h.consultaGeneral(), grupos=g.consultaGeneral(),
-                               usuario=u.consultaGeneral())
+                               usuario=u.consultaGeneral(), grupoSeleccionado = grupoSeleccionado, ciclo = actual,
+                               banderaRegistrar=banderaRegistrar,banderaModificar=banderaModificar,banderaEliminar=banderaEliminar)
     else:
         abort(404)
-@app.route('/generarHorario',methods=['post'])
+
+@app.route('/consultarHorario',methods=['post'])
 @login_required
-def horarioGenerar():
+def consultarHorario():
     if current_user.is_authenticated and current_user.is_staff():
-        return 'GESTIÓN DE HORARIOS'
+        m = Materias()
+        p = Profesores()
+        h = Horarios()
+        g = Grupos()
+        u = Usuarios()
+        c = cicloEscolar()
+        ciclos = c.consultaGeneral()
+        actual=0
+        for cic in ciclos:
+            actual=cic.idCiclo
+        grupoSeleccionado=request.form['grupoSeleccionado']
+        banderaRegistrar=0
+        banderaModificar=0
+        banderaEliminar=0
+        return render_template('horarios/horarios.html', materias=m.consultaGeneral(),
+                               profesores=p.consultaGeneral(), horarios=h.consultaGeneral(), grupos=g.consultaGeneral(),
+                               usuario=u.consultaGeneral(), grupoSeleccionado = grupoSeleccionado, ciclo = actual,
+                               banderaRegistrar=banderaRegistrar,banderaModificar=banderaModificar,banderaEliminar=banderaEliminar)
+    else:
+        abort(404)
+
+@app.route('/registrarClase',methods=['post'])
+@login_required
+def registrarClase():
+    if current_user.is_authenticated and current_user.is_staff():
+        m = Materias()
+        p = Profesores()
+        h = Horarios()
+        g = Grupos()
+        u = Usuarios()
+        c = cicloEscolar()
+        ciclos = c.consultaGeneral()
+        actual=0
+        for cic in ciclos:
+            actual=cic.idCiclo
+        grupoSeleccionado=request.form['grupoSeleccionado']
+
+        h.idCiclo=request.form['idCiclo']
+        h.idMateria=request.form['idMateria']
+        h.idProfesor=request.form['idProfesor']
+        h.idGrupo=request.form['idGrupo']
+        h.dia=request.form['dia']
+        h.horarioInicio=request.form['horarioInicio']
+        h.horarioFin=request.form['horarioFin']
+        h.noSalon=request.form['noSalon']
+        h.insertar()
+        banderaRegistrar=request.form['banderaRegistrar']
+        banderaModificar=request.form['banderaModificar']
+        banderaEliminar=request.form['banderaEliminar']
+        flash ('Se ha registrado una clase con éxito!!')
+        return render_template('horarios/horarios.html', materias=m.consultaGeneral(),
+                               profesores=p.consultaGeneral(), horarios=h.consultaGeneral(), grupos=g.consultaGeneral(),
+                               usuario=u.consultaGeneral(), grupoSeleccionado = grupoSeleccionado, ciclo = actual,
+                               banderaRegistrar=banderaRegistrar,banderaModificar=banderaModificar,banderaEliminar=banderaEliminar)
+    else:
+        abort(404)
+
+@app.route('/modificarClase',methods=['post'])
+@login_required
+def modificarClase():
+    if current_user.is_authenticated and current_user.is_staff():
+        m = Materias()
+        p = Profesores()
+        h = Horarios()
+        g = Grupos()
+        u = Usuarios()
+        c = cicloEscolar()
+        ciclos = c.consultaGeneral()
+        actual=0
+        for cic in ciclos:
+            actual=cic.idCiclo
+        grupoSeleccionado=request.form['grupoSeleccionado']
+
+        for hh in h.consultaGeneral():
+            if hh.idGrupo==int(request.form['idGrupo']):
+                if hh.idProfesor==int(request.form['idProfesor']):
+                    if hh.idMateria == int(request.form['idMateria']):
+                        if hh.dia == request.form['dia']:
+                            h.idHorario=hh.idHorario
+                            h.idCiclo=request.form['idCiclo']
+                            h.idMateria=request.form['idMateria']
+                            h.idProfesor=request.form['idProfesor']
+                            h.idGrupo=request.form['idGrupo']
+                            h.dia=request.form['dia']
+                            h.horarioInicio=request.form['horarioInicio']
+                            h.horarioFin=request.form['horarioFin']
+                            h.noSalon=request.form['noSalon']
+                            h.actualizar()
+        banderaRegistrar=request.form['banderaRegistrar']
+        banderaModificar=request.form['banderaModificar']
+        banderaEliminar=request.form['banderaEliminar']
+        flash ('Se ha modificado la clase con éxito!!')
+        return render_template('horarios/horarios.html', materias=m.consultaGeneral(),
+                               profesores=p.consultaGeneral(), horarios=h.consultaGeneral(), grupos=g.consultaGeneral(),
+                               usuario=u.consultaGeneral(), grupoSeleccionado = grupoSeleccionado, ciclo = actual,
+                               banderaRegistrar=banderaRegistrar,banderaModificar=banderaModificar,banderaEliminar=banderaEliminar)
+    else:
+        abort(404)
+
+@app.route('/eliminarClase',methods=['post'])
+@login_required
+def eliminarClase():
+    if current_user.is_authenticated and current_user.is_staff():
+        m = Materias()
+        p = Profesores()
+        h = Horarios()
+        g = Grupos()
+        u = Usuarios()
+        c = cicloEscolar()
+        ciclos = c.consultaGeneral()
+        actual=0
+        for cic in ciclos:
+            actual=cic.idCiclo
+        grupoSeleccionado=request.form['grupoSeleccionado']
+        for hh in h.consultaGeneral():
+            if hh.idGrupo==int(request.form['idGrupo']):
+                if hh.idProfesor==int(request.form['idProfesor']):
+                    if hh.idMateria == int(request.form['idMateria']):
+                        if hh.dia == request.form['dia']:
+                            h.eliminar(hh.idHorario)
+        banderaRegistrar=request.form['banderaRegistrar']
+        banderaModificar=request.form['banderaModificar']
+        banderaEliminar=request.form['banderaEliminar']
+        flash ('Se ha eliminado la clase con éxito!!')
+        return render_template('horarios/horarios.html', materias=m.consultaGeneral(),
+                               profesores=p.consultaGeneral(), horarios=h.consultaGeneral(), grupos=g.consultaGeneral(),
+                               usuario=u.consultaGeneral(), grupoSeleccionado = grupoSeleccionado, ciclo = actual,
+                               banderaRegistrar=banderaRegistrar,banderaModificar=banderaModificar,banderaEliminar=banderaEliminar)
+    else:
+        abort(404)
+
+@app.route('/obtenerOpcion',methods=['post'])
+@login_required
+def obtenerOpcion():
+    if current_user.is_authenticated and current_user.is_staff():
+        m = Materias()
+        p = Profesores()
+        h = Horarios()
+        g = Grupos()
+        u = Usuarios()
+        c = cicloEscolar()
+        ciclos = c.consultaGeneral()
+        actual=0
+        for cic in ciclos:
+            actual=cic.idCiclo
+        grupoSeleccionado=request.form['grupoSeleccionado']
+
+        if request.form['opcion']== 'banderaRegistrar':
+            banderaRegistrar=1
+            banderaModificar=0
+            banderaEliminar=0
+        else:
+            if request.form['opcion']== 'banderaModificar':
+                banderaRegistrar=0
+                banderaModificar=1
+                banderaEliminar=0
+            else:
+                if request.form['opcion']== 'banderaEliminar':
+                    banderaRegistrar=0
+                    banderaModificar=0
+                    banderaEliminar=1
+
+        return render_template('horarios/horarios.html', materias=m.consultaGeneral(),
+                               profesores=p.consultaGeneral(), horarios=h.consultaGeneral(), grupos=g.consultaGeneral(),
+                               usuario=u.consultaGeneral(), grupoSeleccionado = grupoSeleccionado, ciclo = actual,
+                               banderaRegistrar=banderaRegistrar,banderaModificar=banderaModificar,banderaEliminar=banderaEliminar)
     else:
         abort(404)
 

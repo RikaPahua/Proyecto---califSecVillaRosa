@@ -1,39 +1,138 @@
 {% extends 'comunes/base.html'%}
 {% block content %}
 {{super()}}
-     <br/>
-<form id="generarHorarios" action="/generarHorario" method="post">
-    <H1>HORARIO</H1>
+<H1>HORARIO</H1>
+{% if get_flashed_messages() %}
+{% for m in get_flashed_messages()%}
+<div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{m}}</strong>
+</div>
+{% endfor %}
+{% endif %}
+<form id="generarHorarios" action="/consultarHorario" method="post">
      <div class="Tab">
             <div id="selec">
                 <a id="combo">
                     <label for="Grupos">Seleccionar el grupo: </label>
-                    <select id="Grupos">
-                        <option value="1A">1A</option>
-                        <option value="1B">1B</option>
-                        <option value="1C">1C</option>
-                        <option value="2A" selected>2A</option>
-                        <option value="2B">2B</option>
-                        <option value="2C">2C</option>
-                        <option value="3A">3A</option>
-                        <option value="3B" >3B</option>
-                        <option value="3C">3C</option>
-                    </select>
+                    <select id="Grupos" name="grupoSeleccionado">
+                        {%if grupoSeleccionado == '1A'%}
+                            <option value="1A"selected>1A</option>
+                            <option value="1B">1B</option>
+                            <option value="1C">1C</option>
+                            <option value="2A">2A</option>
+                            <option value="2B">2B</option>
+                            <option value="2C">2C</option>
+                            <option value="3A">3A</option>
+                            <option value="3B" >3B</option>
+                            <option value="3C">3C</option>
+                        {%else%}
+                            {%if grupoSeleccionado == '1B'%}
+                                <option value="1A">1A</option>
+                                <option value="1B"selected>1B</option>
+                                <option value="1C">1C</option>
+                                <option value="2A">2A</option>
+                                <option value="2B">2B</option>
+                                <option value="2C">2C</option>
+                                <option value="3A">3A</option>
+                                <option value="3B" >3B</option>
+                                <option value="3C">3C</option>
+                            {%else%}
+                                {%if grupoSeleccionado == '1C'%}
+                                    <option value="1A">1A</option>
+                                    <option value="1B">1B</option>
+                                    <option value="1C" selected>1C</option>
+                                    <option value="2A">2A</option>
+                                    <option value="2B">2B</option>
+                                    <option value="2C">2C</option>
+                                    <option value="3A">3A</option>
+                                    <option value="3B" >3B</option>
+                                    <option value="3C">3C</option>
+                                {%else%}
+                                    {%if grupoSeleccionado == '2A'%}
+                                        <option value="1A">1A</option>
+                                        <option value="1B">1B</option>
+                                        <option value="1C" >1C</option>
+                                        <option value="2A"selected>2A</option>
+                                        <option value="2B">2B</option>
+                                        <option value="2C">2C</option>
+                                        <option value="3A">3A</option>
+                                        <option value="3B" >3B</option>
+                                        <option value="3C">3C</option>
+                                    {%else%}
+                                        {%if grupoSeleccionado == '2B'%}
+                                            <option value="1A">1A</option>
+                                            <option value="1B">1B</option>
+                                            <option value="1C" >1C</option>
+                                            <option value="2A">2A</option>
+                                            <option value="2B" selected>2B</option>
+                                            <option value="2C">2C</option>
+                                            <option value="3A">3A</option>
+                                            <option value="3B" >3B</option>
+                                            <option value="3C">3C</option>
+                                        {%else%}
+                                            {%if grupoSeleccionado == '2C'%}
+                                                <option value="1A">1A</option>
+                                                <option value="1B">1B</option>
+                                                <option value="1C" >1C</option>
+                                                <option value="2A">2A</option>
+                                                <option value="2B">2B</option>
+                                                <option value="2C" selected>2C</option>
+                                                <option value="3A">3A</option>
+                                                <option value="3B" >3B</option>
+                                                <option value="3C">3C</option>
+                                            {%else%}
+                                                {%if grupoSeleccionado == '3A'%}
+                                                    <option value="1A">1A</option>
+                                                    <option value="1B">1B</option>
+                                                    <option value="1C" >1C</option>
+                                                    <option value="2A">2A</option>
+                                                    <option value="2B">2B</option>
+                                                    <option value="2C">2C</option>
+                                                    <option value="3A"selected>3A</option>
+                                                    <option value="3B">3B</option>
+                                                    <option value="3C">3C</option>
+                                                {%else%}
+                                                    {%if grupoSeleccionado == '3B'%}
+                                                        <option value="1A">1A</option>
+                                                        <option value="1B">1B</option>
+                                                        <option value="1C" >1C</option>
+                                                        <option value="2A">2A</option>
+                                                        <option value="2B">2B</option>
+                                                        <option value="2C">2C</option>
+                                                        <option value="3A">3A</option>
+                                                        <option value="3B"selected>3B</option>
+                                                        <option value="3C">3C</option>
+                                                    {%else%}
+                                                        {%if grupoSeleccionado == '3C'%}
+                                                            <option value="1A">1A</option>
+                                                            <option value="1B">1B</option>
+                                                            <option value="1C" >1C</option>
+                                                            <option value="2A">2A</option>
+                                                            <option value="2B">2B</option>
+                                                            <option value="2C">2C</option>
+                                                            <option value="3A">3A</option>
+                                                            <option value="3B">3B</option>
+                                                            <option value="3C"selected>3C</option>
+                                                        {%endif%}
+                                                    {%endif%}
+                                                {%endif%}
+                                            {%endif%}
+                                        {%endif%}
+                                    {%endif%}
+                                {%endif%}
+                            {%endif%}
+                        {%endif%}
 
-                    <label for="materia">&nbsp;&nbsp; Selecciona ciclo escolar: </label>
-                    <select id="materia">
-                        <option value="ciclo">2020-2021</option>
                     </select>
-
-                    <button  id="registro1">Seleccionar</button>
+                    <button type="submit"  class="btn btn-info">Consultar horario</button>
                 </a>
-
             </div>
-
-         <br/>
-    <table class="table table-bordered">
-        <thead class="table-dark">
-
+     </div>
+</form>
+<br/><br/>
+<table class="table table-bordered">
+   <thead class="table-dark">
         <tr>
 
             <th>Materia</th>
@@ -44,10 +143,9 @@
             <th>Jueves</th>
             <th>Viernes</th>
         </tr>
-        </thead>
-
+   </thead>
         {%for g in grupos%}
-            {%if g.nombre ==  '2A'%}
+            {%if g.nombre == grupoSeleccionado%}
                     {% for m in materias%}
                         <tr>
                         {%for h in horarios%}
@@ -70,7 +168,6 @@
                                                             {%else%}
                                                             {%endif%}
                                                         {%endfor%}
-
 
 
                                                                 <td>{{h.horarioInicio}} - {{h.horarioFin}}</td>
@@ -115,57 +212,193 @@
 
                     {%endfor%}
 
-
             {%else%}
             {%endif%}
             {%endfor%}
-
-
-
-
-
-
-        </table>
-          <br/>
-         <div id="selec2">
-                <a >
-                    <label for="Grupos">Profesor:  </label>
-                <select >
-                    <option value="1A">Cecilia</option>
-                    <option value="1B">Ricardo</option>
-                    <option value="1C">Alejandro</option>
-                    <option value="2A">Antonio</option>
-
-                </select>
-
-                    <label for="materia">&nbsp;&nbsp; Materia: </label>
-                    <select >
-                        <option value="Matematicas">Matematicas</option>
-                        <option value="Historia">Historia</option>
-                        <option value="Quimica">Quimica</option>
-                        <option value="Ciencias Naturales">Ciencias Naturales</option>
-                        <option value="Geografia">Geografia</option>
-                        <option value="Ed. Fisica">Ed. Fisica</option>
-                        <option value="Civica y Etica">Civica y Etica</option>
-                    </select>
-                    <label for="materia">&nbsp;&nbsp; Dia: </label>
-                    <select >
-                        <option value="Lunes">Lunes</option>
-                        <option value="Martes">Martes</option>
-                        <option value="Miercoles">Miercoles</option>
-                        <option value="Jueves">Jueves</option>
-                        <option value="Viernes">Viernes</option>
-                    </select>
-
-                    <label for="materia">&nbsp; Hora inicio: </label>
-                    <input type="time"  name="horain">
-                    <label for="materia">&nbsp;&nbsp Hora fin: </label>
-                    <input type="time"  name="horaout">
-
-                    <button  type="submit" id="registro">Generar</button>
-                </a>
-
-            </div>
+</table>
+<br/><br/>
+<form action="/obtenerOpcion" method="post">
+    <div id="selec5">
+        <label for="opcion">SELECCIONA UNA OPERACIÓN:  </label>
+        <select id="opcion" name="opcion">
+            <option selected disabled>Seleccionar</option>
+            <option value="banderaRegistrar">Registrar una clase</option>
+            <option value="banderaModificar">Editar una clase</option>
+            <option value="banderaEliminar">Eliminar una clase</option>
+        </select>
+        <input type="hidden" name="grupoSeleccionado" value="{{grupoSeleccionado}}">
+        <button type="submit"  class="btn btn-info">Desplegar</button>
     </div>
-    </form>
+</form>
+<br/><br/>
+
+{%if banderaRegistrar==1%}
+<form id="agregarclase" action="/registrarClase" method="post" >
+    <h1>REGISTRAR CLASE</h1>
+    <BR/>
+    <div id="selec2">
+        <a>
+            <label for="profesor">Profesor:  </label>
+            <select id="profesor" name="idProfesor">
+                <option selected disabled>Seleccionar</option>
+                {%for u in usuario%}
+                    {%for p in profesores%}
+                        {%if u.idUsuario == p.idUsuario%}
+                            <option value="{{p.idProfesor}}">{{u.nombre}}</option>
+                        {%endif%}
+                    {%endfor%}
+                {%endfor%}
+            </select>
+            <label for="idMateria"> Materia: </label>
+            <select id="idMateria" name="idMateria">
+                <option selected disabled>Seleccionar</option>
+                {%for m in materias%}
+                    <option value="{{m.idMateria}}">{{m.nombre}}</option>
+                {%endfor%}
+            </select>
+
+            <label for="dia"> Dia: </label>
+            <select id="dia" name="dia">
+                <option selected disabled>Seleccionar</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miercoles">Miercoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+            </select>
+            <label for="horarioInicio"> Hora inicio: </label>
+            <input type="time"  name="horarioInicio" id="horarioInicio">
+            <label for="horarioIFin"> &nbsp Hora fin: </label>
+            <input type="time" name="horarioFin" id="horarioIFin">
+            {%for g in grupos%}
+                {%if g.nombre == grupoSeleccionado%}
+                    <input type="hidden" name="idGrupo" value="{{g.idGrupo}}">
+                    <input type="hidden" name="noSalon" value="{{g.idGrupo}}">
+                {%endif%}
+            {%endfor%}
+            <input type="hidden" name="idCiclo" value="{{ciclo}}">
+            <input type="hidden" name="grupoSeleccionado" value="{{grupoSeleccionado}}">
+            <input type="hidden" name="banderaRegistrar" value="{{banderaRegistrar}}">
+            <input type="hidden" name="banderaModificar" value="{{banderaModificar}}">
+            <input type="hidden" name="banderaEliminar" value="{{banderaEliminar}}">
+            <button type="submit"  class="btn btn-info">Registrar clase</button>
+        </a>
+    </div>
+    </div>
+</form>
+{%endif%}
+
+
+{%if banderaModificar==1%}
+<br/><br/>
+<form id="modificarClase" action="/modificarClase" method="post" >
+    <h1>MODIFICAR CLASE</h1>
+    <BR/>
+    <div id="select3">
+        <a >
+            <label for="idProfesor2">Profesor:  </label>
+            <select id="idProfesor2" name="idProfesor">
+                <option selected disabled>Seleccionar</option>
+                {%for u in usuario%}
+                {%for p in profesores%}
+                {%if u.idUsuario == p.idUsuario%}
+                <option value="{{p.idProfesor}}">{{u.nombre}}</option>
+                {%endif%}
+                {%endfor%}
+                {%endfor%}
+            </select>
+            <label for="idMateria2"> Materia: </label>
+            <select id="idMateria2" name="idMateria">
+                <option selected disabled>Seleccionar</option>
+                {%for m in materias%}
+                <option value="{{m.idMateria}}">{{m.nombre}}</option>
+                {%endfor%}
+            </select>
+
+            <label for="dia2"> Dia: </label>
+            <select id="dia2" name="dia">
+                <option selected disabled>Seleccionar</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miercoles">Miercoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+            </select>
+            <label for="horarioInicio2"> Hora inicio: </label>
+            <input type="time"  name="horarioInicio" id="horarioInicio2">
+            <label for="horarioIFin2"> &nbsp Hora fin: </label>
+            <input type="time" name="horarioFin" id="horarioIFin2">
+            {%for g in grupos%}
+            {%if g.nombre == grupoSeleccionado%}
+            <input type="hidden" name="idGrupo" value="{{g.idGrupo}}">
+            <input type="hidden" name="noSalon" value="{{g.idGrupo}}">
+            {%endif%}
+            {%endfor%}
+            <input type="hidden" name="idCiclo" value="{{ciclo}}">
+            <input type="hidden" name="grupoSeleccionado" value="{{grupoSeleccionado}}">
+            <input type="hidden" name="banderaRegistrar" value="{{banderaRegistrar}}">
+            <input type="hidden" name="banderaModificar" value="{{banderaModificar}}">
+            <input type="hidden" name="banderaEliminar" value="{{banderaEliminar}}">
+            <button type="submit"  class="btn btn-info">Modificar clase</button>
+        </a>
+    </div>
+    </div>
+</form>
+{%endif%}
+{%if banderaEliminar==1%}
+<br/><br/>
+<form id="EliminarClase" action="/eliminarClase" method="post" >
+    <h1>ELIMINAR CLASE</h1>
+    <BR/>
+    <div id="select4">
+        <a >
+            <label for="idProfesor3">Profesor:  </label>
+            <select id="idProfesor3" name="idProfesor">
+                <option selected disabled>Seleccionar</option>
+                {%for u in usuario%}
+                {%for p in profesores%}
+                {%if u.idUsuario == p.idUsuario%}
+                <option value="{{p.idProfesor}}">{{u.nombre}}</option>
+                {%endif%}
+                {%endfor%}
+                {%endfor%}
+            </select>
+            <label for="idMateria3"> Materia: </label>
+            <select id="idMateria3" name="idMateria">
+                <option selected disabled>Seleccionar</option>
+                {%for m in materias%}
+                <option value="{{m.idMateria}}">{{m.nombre}}</option>
+                {%endfor%}
+            </select>
+
+            <label for="dia3"> Dia: </label>
+            <select id="dia3" name="dia">
+                <option selected disabled>Seleccionar</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miercoles">Miercoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+            </select>
+            <label for="horarioInicio3"> Hora inicio: </label>
+            <input type="time"  name="horarioInicio" id="horarioInicio3">
+            <label for="horarioIFin3"> &nbsp Hora fin: </label>
+            <input type="time" name="horarioFin" id="horarioIFin3">
+            {%for g in grupos%}
+            {%if g.nombre == grupoSeleccionado%}
+            <input type="hidden" name="idGrupo" value="{{g.idGrupo}}">
+            <input type="hidden" name="noSalon" value="{{g.idGrupo}}">
+            {%endif%}
+            {%endfor%}
+            <input type="hidden" name="idCiclo" value="{{ciclo}}">
+            <input type="hidden" name="grupoSeleccionado" value="{{grupoSeleccionado}}">
+            <input type="hidden" name="banderaRegistrar" value="{{banderaRegistrar}}">
+            <input type="hidden" name="banderaModificar" value="{{banderaModificar}}">
+            <input type="hidden" name="banderaEliminar" value="{{banderaEliminar}}">
+            <button type="submit"  class="btn btn-info">Eliminar clase</button>
+        </a>
+    </div>
+    </div>
+</form>
+{%endif%}
 {%endblock content%}

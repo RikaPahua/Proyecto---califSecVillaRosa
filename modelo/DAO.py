@@ -337,12 +337,24 @@ class Horarios(db.Model):
     horarioFin = Column(Time, nullable=True)
     noSalon = Column(Integer, nullable=True)
 
+    def insertar (self):
+        db.session.add(self)
+        db.session.commit()
+
     def consultaGeneral(self):
         return self.query.all()
 
     def consultaIndividual(self, id):
         return self.query.get(id)
 
+    def actualizar (self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        objeto= self.consultaIndividual(id)
+        db.session.delete(objeto)
+        db.session.commit()
 
 class Calificaciones(db.Model):
     __tablename__ = 'Calificaciones'
